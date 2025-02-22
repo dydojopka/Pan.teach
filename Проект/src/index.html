@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Run, snake, run</title>
+    <script src="js/log.js"></script>
+</head>
+
+<body>
+    <div class="menu active" id="main-menu">
+        <div class="logo">
+            <img src="img/logo2.png" alt="Логотип">
+        </div>
+        <div class="buttons">
+            <button id="play-button">Играть</button>
+            <button id="settings-button">Настройки</button>
+            <button id="about-game-button">Об игре</button>
+        </div>
+    </div>
+
+    <div class="menu" id="play">
+        <div class="play-data">
+            <div class="data">
+                <div class="time">Время: <span>0с</span></div>
+                <div class="score">Счёт: <span>0</span></div>
+                <div class="best-score">Лучший счёт: <span>0</span></div>
+            </div>
+<!--            <button id="restart-game">Перезапустить</button>-->
+            <button id="to-menu-play">В меню</button>
+        </div>
+        <div class="field">
+            <div class="box">
+                <div id="box-opponent"></div>
+                <div id="box-snake"></div>
+                <div id="box-apple"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="menu" id="settings">
+        <h1>Настройки</h1>
+        <div class="settings-block apples">
+            <p>Количество яблок (<span>2</span>)</p>
+            <div class="controls">
+                <button id="minus-apple">-</button>
+                <button id="plus-apple">+</button>
+            </div>
+        </div>
+        <div class="settings-block opponent">
+            <p>Противник</p>
+            <div class="controls">
+                <input type="checkbox" name="has-opponent" id="has-opponent">
+                <label for="has-opponent"></label>
+            </div>
+        </div>
+        <div class="settings-block is-growing">
+            <p>Растущая змейка</p>
+            <div class="controls">
+                <input type="checkbox" name="is-growing" id="is-growing">
+                <label for="is-growing"></label>
+            </div>
+        </div>
+        <div class="settings-block is-limitless">
+            <p>Безграничная карта</p>
+            <div class="controls">
+                <input type="checkbox" name="is-limitless" id="is-limitless">
+                <label for="is-limitless"></label>
+            </div>
+        </div>
+        <button id="to-menu-settings">В меню</button>
+    </div>
+
+    <div class="menu" id="about-game">
+        <h1>Об игре</h1>
+        <p>Змейка - это классическая компьютерная игра,
+            в которой игрок управляет движущейся змейкой,
+            цель которой - съесть как можно большее количество еды, разбросанной по игровому полю.
+        </p>
+        <button id="to-menu-about">В меню</button>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,259 @@
+:root {
+    --text-color: black;
+
+    --color-yellow: rgb(255, 223, 76);
+    --color-red: rgb(243, 15, 15);
+    --color-green: rgb(36, 218, 74);
+    --color-darkgreen: rgb(18, 161, 49);
+    --color-white: rgb(231, 231, 231);
+    --color-orange: rgb(255, 143, 14);
+
+    --background-color: rgb(12, 114, 34);
+    --border-style: 1px solid;
+    --box-size: calc(1.2vw + 1.2vh);
+}
+
+body {
+    font-family: 'Pixeloid', serif;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background-image: url(../img/background.png);
+}
+
+.menu {
+    background-color: var(--color-darkgreen);
+    width: 45vw;
+    height: 90vh;
+    border: 12px solid;
+
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+
+    opacity: 0;
+    transition: opacity 50ms ease;
+}
+
+.menu.active {
+    opacity: 1;
+    display: flex;
+}
+
+.menu .logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.menu .logo img {
+    width: 90%;
+}
+
+.buttons {
+    width: 100%;
+    display: grid;
+    grid-template-rows: repeat(3, 1fr);
+    justify-items: center;
+    gap: 30px;
+}
+
+#play {
+    width: calc(80vw - 7px);
+    padding: 0;
+    display: flex;
+    align-items: start;
+    justify-content: flex-start;
+}
+
+#play .play-data {
+    width: calc(100% - 60px);
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 8px solid;
+    padding: 20px 30px;
+    font-size: 25px;
+}
+
+#play .field {
+    width: 100%;
+    height: 100%;
+}
+
+#play .play-data button {
+    font-size: 30px;
+    width: auto;
+    border: 8px solid;
+    padding: 0 40px;
+}
+
+#play,
+#about-game {
+    display: none;
+}
+
+h1 {
+    font-family: 'Pixeloid Bold', serif;
+    font-size: 3.5em;
+    margin: 0;
+}
+
+button {
+    width: 80%;
+    border: 8px solid;
+
+    text-align: center;
+    font-family: 'Pixeloid', serif;
+    font-size: 2.5em;
+    background-color: transparent;
+    color: var(--text-color);
+    padding: 6px 0;
+}
+
+button:hover {
+    color: var(--color-yellow);
+}
+
+button:active {
+    color: var(--color-red);
+}
+
+.settings-block {
+    width: 80%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 1.6em;
+}
+
+.settings-block p {
+    margin: 0;
+}
+
+.settings-block .controls {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.settings-block .controls button {
+    width: 60px;
+    height: 60px;
+    font-size: 43px;
+    border: 5px solid;
+    line-height: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 0;
+}
+
+#about-game > p {
+    font-size: 1.7em;
+    padding-inline: 10%;
+}
+
+input[type=checkbox] {
+    position: absolute;
+    z-index: -1;
+    opacity: 0;
+    width: 0;
+}
+
+input[type=checkbox]+label {
+    display: inline-flex;
+    align-items: center;
+    user-select: none;
+    padding: 4px;
+    border: 5px solid;
+}
+
+input[type=checkbox]+label:hover {
+    color: var(--color-yellow);
+}
+
+input[type=checkbox]+label:before {
+    content: "";
+    display: inline-flex;
+    width: 37px;
+    height: 37px;
+    flex-shrink: 0;
+    flex-grow: 0;
+}
+
+input[type=checkbox]:checked+label:before {
+    background-color: black;
+}
+
+input[type=checkbox]:checked+label:hover::before {
+    background-color: var(--color-yellow);
+}
+
+.field {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.box div div {
+    width: var(--box-size);
+    height: var(--box-size);
+    border: var(--border-style);
+    position: absolute;
+}
+
+.box-opponent {
+    background-color: rgb(227, 230, 86);
+    z-index: 2;
+}
+
+.box-snake {
+    background-color: var(--color-green);
+    z-index: 2;
+}
+
+.box-apple {
+    background-image: url("../img/apple.png");
+    background-position: center;
+    background-size: contain;
+    border: none !important;
+    z-index: 1;
+}
+
+.box-snake.hidden {
+    opacity: 0;
+}
+
+.field {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.field p {
+    font-size: 60px;
+    font-family: 'Pixeloid Bold', serif;
+}
+
+.field .pause {
+    width: 100%;
+    height: 100%;
+    background: var(--color-darkgreen);
+    opacity: 0.7;
+    position: relative;
+    z-index: 99;
+}
+
+.field .pause + p {
+    position: absolute;
+    z-index: 100;
+}

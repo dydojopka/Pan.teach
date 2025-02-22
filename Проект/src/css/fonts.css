@@ -1,0 +1,9 @@
+@font-face {
+    font-family: "Pixeloid";
+    src: url(../fonts/Pixeloid/PixeloidRegular/PixeloidSans.ttf);
+}
+
+@font-face {
+    font-family: "Pixeloid Bold";
+    src: url(../fonts/Pixeloid/PixeloidBold/PixeloidSans-Bold.ttf);
+}

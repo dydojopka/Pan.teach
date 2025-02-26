@@ -1,0 +1,19 @@
+@font-face {
+    font-family: "ShareTech";
+    src: url(../fonts/ShareTech/ShareTech_Regular/Share-Tech-CYR.otf);
+}
+
+@font-face {
+    font-family: "ShareTech Bold";
+    src: url(../fonts/ShareTech/ShareTech_Bold/Share-Tech-CYR-Bold.otf);
+}
+
+@font-face {
+    font-family: "ShareTech Italic";
+    src: url(../fonts/ShareTech/ShareTech_Italic/Share-Tech-CYR-Italic.otf);
+}
+
+@font-face {
+    font-family: "ShareTech Italic-Bold";
+    src: url(../fonts/ShareTech/ShareTech_Bold+Italic/Share-Tech-CYR-Italic-Bold.otf);
+}

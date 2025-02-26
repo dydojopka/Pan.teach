@@ -1,10 +1,40 @@
 :root {
-    --blue-logo-color: rgb(5, 75, 158);
+    --color-blue: rgb(5, 75, 158);
+    --color-blue-light: rgb(7, 111, 234);
+    --color-blue-dark: rgb(5, 75, 158);
+
+    --color-white: rgb(240, 240, 240);
+    --color-gray: rgb(129, 133, 136);
+    --color-black: rgb(26, 26, 26);
 }
 
 [data-theme="light"] {
-    --background: rgb(240, 242, 241);
-    --gray: rgb(129, 133, 136);
+    --background: var(--color-white);
+    --text-color: var(--color-black);
+    --color-accent: var(--color-blue);
+
+
+    --shadow:
+        -.5rem -.5rem 1rem hsl(0 0% 100% / .75),
+        .5rem .5rem 1rem hsl(0 0% 50% / .5);
+    
+    --shadow-in-box:
+    inset .5rem .5rem 1rem hsl(0 0% 50% / .5),
+    inset -.5rem -.5rem 1rem hsl(0 0% 100% / .75);
+}
+
+[data-theme="dark"] {
+    --background: var(--color-black);
+    --text-color: var(--color-white);
+    --color-accent: var(--color-blue-light);
+
+    --shadow:
+        -.5rem -.5rem 1rem hsla(0, 100%, 2%, 0.75),
+        .5rem .5rem 1rem hsla(0, 0%, 50%, 0.144);
+
+    --shadow-in-box:
+        inset .5rem .5rem 1rem hsla(0, 0%, 50%, 0.144),
+        inset -.5rem -.5rem 1rem hsla(0, 100%, 2%, 0.75);
 }
 
 /*кнопки выбора задач*/
@@ -13,23 +43,20 @@ button.bool_buttons {
     aspect-ratio: 1/1;
     border: 0.5rem solid transparent;
     border-radius: 1rem;
-    color: hsl(0 0% 10%);
+    color: var(--text-color);
     background: none;
 
     display: grid;
     place-content: center;
     gap: 1rem;
 
-    --shadow:
-        -.5rem -.5rem 1rem hsl(0 0% 100% / .75),
-        .5rem .5rem 1rem hsl(0 0% 50% / .5);
     box-shadow: var(--shadow);
     outline: none;
     transition: all 0.1s;
 
     &:hover,
     &:focus-visible {
-        color: var(--blue-logo-color);
+        color: var(--color-accent);
         scale: 1.1
     }
 
@@ -37,9 +64,8 @@ button.bool_buttons {
     &.active {
         box-shadow:
             var(--shadow),
-            inset .5rem .5rem 1rem hsl(0 0% 50% / .5),
-            inset -.5rem -.5rem 1rem hsl(0 0% 100% / .75);
-        color: var(--blue-logo-color);
+            var(--shadow-in-box);
+        color: var(--color-accent);
 
         >i {
             font-size: 28cqi;
@@ -56,7 +82,6 @@ button.bool_buttons {
     }
 
     >span {
-        font-family: system-ui, sans-serif;
         font-size: 16cqi;
     }
 }
@@ -64,12 +89,13 @@ button.bool_buttons {
 body {
     background-color: var(--background);
     padding: 2rem;
+    font-family: 'ShareTech', serif;
+    color: var(--text-color);
 }
 
 h1 {
     text-align: center;
-    color: rgb(26, 26, 26);
-    font-family: system-ui, sans-serif;
+    font-family: 'ShareTech Bold', serif;
     font-size: 3rem;
 }
 

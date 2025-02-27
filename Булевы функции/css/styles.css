@@ -19,14 +19,15 @@
         .5rem .5rem 1rem hsl(0 0% 50% / .5);
     
     --shadow-in-box:
-    inset .5rem .5rem 1rem hsl(0 0% 50% / .5),
-    inset -.5rem -.5rem 1rem hsl(0 0% 100% / .75);
+        inset .5rem .5rem 1rem hsl(0 0% 50% / .5),
+        inset -.5rem -.5rem 1rem hsl(0 0% 100% / .75);
 }
 
 [data-theme="dark"] {
     --background: var(--color-black);
     --text-color: var(--color-white);
     --color-accent: var(--color-blue-light);
+
 
     --shadow:
         -.5rem -.5rem 1rem hsla(0, 100%, 2%, 0.75),
@@ -45,11 +46,12 @@ button.bool_buttons {
     border-radius: 1rem;
     color: var(--text-color);
     background: none;
+    font-family: 'ShareTech italic', serif;
 
     display: grid;
-    place-content: center;
+    place-content: space-between;
     gap: 1rem;
-
+    
     box-shadow: var(--shadow);
     outline: none;
     transition: all 0.1s;
@@ -63,27 +65,18 @@ button.bool_buttons {
     &:active,
     &.active {
         box-shadow:
-            var(--shadow),
-            var(--shadow-in-box);
+        var(--shadow),
+        var(--shadow-in-box);
+        
         color: var(--color-accent);
-
-        >i {
-            font-size: 28cqi;
-        }
-
-
-        >span {
-            font-size: 13cqi;
-        }
+        
+        >i {font-size: 27cqi;}
+        >span {font-size: 14cqi;}
     }
+    
+    >i {font-size: 31cqi;}
+    >span {font-size: 16cqi;}
 
-    >i {
-        font-size: 31cqi;
-    }
-
-    >span {
-        font-size: 16cqi;
-    }
 }
 
 body {
@@ -96,7 +89,7 @@ body {
 h1 {
     text-align: center;
     font-family: 'ShareTech Bold', serif;
-    font-size: 3rem;
+    font-size: 4rem;
 }
 
 .buttons {

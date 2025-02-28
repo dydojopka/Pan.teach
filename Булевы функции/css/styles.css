@@ -61,39 +61,44 @@ button.buttons-task {
     font-family: 'ShareTech italic', serif;
 
     display: grid;
-    place-content: space-between;
+    grid-template-rows: 1fr auto; /* Распределение пространства */
+    align-items: end; /* Выравнивание текста снизу */
+    justify-items: center; /* Центрирование по горизонтали */
     gap: 1rem;
     
     box-shadow: var(--shadow);
     outline: none;
     transition: all 0.2s;
-
-    aspect-ratio: 1/1;
     min-height: 80px;
 
     /* Эффект при наведении */
     &:hover,
     &:focus-visible {
         color: var(--color-accent);
-        scale: 1.1
+        scale: 1.1;
     }
 
-    /* Эффект при активном состоянии кнопки */
+    /* Эффект при активном состоянии */
     &:active,
     &.active {
-        box-shadow:
-        var(--shadow),
-        var(--shadow-in-box);
-        
+        box-shadow: var(--shadow), var(--shadow-in-box);
         color: var(--color-accent);
         
-        >i {font-size: 27cqi;}
-        >span {font-size: 14cqi;}
+        > i { font-size: 2.5rem; } /* Фиксированный размер иконок */
+        > span { font-size: 1.8rem; } /* Фиксированный размер текста */
     }
     
-    >i {font-size: 31cqi;}
-    >span {font-size: 16cqi;}
-
+    > i {
+        font-size: 3rem; /* Базовый размер иконок */
+        align-self: start; /* Иконка прижата к верху */
+    }
+    
+    > span {
+        font-size: 2rem; /* Базовый размер текста */
+        padding-bottom: 0.5rem; /* Отступ от нижнего края */
+        text-align: center;
+        width: 100%;
+    }
 }
 
 /* Общие стили для тела страницы */

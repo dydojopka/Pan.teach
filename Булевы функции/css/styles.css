@@ -1,3 +1,4 @@
+/* Определение переменных для цветов */
 :root {
     --color-blue: rgb(5, 75, 158);
     --color-blue-light: rgb(7, 111, 234);
@@ -7,7 +8,7 @@
     --color-gray: rgb(129, 133, 136);
     --color-black: rgb(26, 26, 26);
 }
-
+/* Стили для светлой темы */
 [data-theme="light"] {
     --background: var(--color-white);
     --text-color: var(--color-black);
@@ -22,7 +23,7 @@
         inset .5rem .5rem 1rem hsl(0 0% 50% / .5),
         inset -.5rem -.5rem 1rem hsl(0 0% 100% / .75);
 }
-
+/* Стили для тёмной темы */
 [data-theme="dark"] {
     --background: var(--color-black);
     --text-color: var(--color-white);
@@ -38,8 +39,19 @@
         inset -.5rem -.5rem 1rem hsla(0, 100%, 2%, 0.75);
 }
 
-/*кнопки выбора задач*/
-button.bool_buttons {
+/* Кнопка для переключения темы */
+.theme-btn {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+/* Кнопоки выбора задач */
+button.buttons-task {
     container-type: inline-size;
     aspect-ratio: 1/1;
     border: 0.5rem solid transparent;
@@ -54,14 +66,19 @@ button.bool_buttons {
     
     box-shadow: var(--shadow);
     outline: none;
-    transition: all 0.1s;
+    transition: all 0.2s;
 
+    aspect-ratio: 1/1;
+    min-height: 80px;
+
+    /* Эффект при наведении */
     &:hover,
     &:focus-visible {
         color: var(--color-accent);
         scale: 1.1
     }
 
+    /* Эффект при активном состоянии кнопки */
     &:active,
     &.active {
         box-shadow:
@@ -79,19 +96,24 @@ button.bool_buttons {
 
 }
 
+/* Общие стили для тела страницы */
 body {
     background-color: var(--background);
     padding: 2rem;
     font-family: 'ShareTech', serif;
     color: var(--text-color);
+    transition: background-color 0.3s, color 0.3s; /* Плавная смена темы */
+    overflow: hidden; /* Блокировка прокрутки */
 }
 
+/* Заголовки */
 h1 {
     text-align: center;
     font-family: 'ShareTech Bold', serif;
     font-size: 4rem;
 }
 
+/* Сетки для кнопок */
 .buttons {
     display: grid;
     width: min(75rem, 100%);
@@ -99,3 +121,184 @@ h1 {
     grid-template-columns: repeat(auto-fit, minmax(min(8rem, 100%), 1fr));
     gap: 2rem;
 }
+
+/* Pan.teach */
+.site-title {
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: 'ShareTech Bold', serif;
+    font-size: 4.5rem;
+    text-align: center;
+    z-index: 2;
+    margin: 0;
+    white-space: nowrap;
+}
+.pan-text {
+    color: var(--color-accent);
+    text-shadow: 0 0 15px var(--color-blue-light);
+}
+.teach-text {
+    color: var(--text-color);
+}
+
+/* Меню с выбором раздела(буллевые функции или теория графов) */
+.main-menu { 
+    position: relative;
+    overflow: hidden;
+    min-height: 100vh;
+}
+
+/* Секции с кнопками */
+.section-selector {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 4rem;
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Движение при выборе блока */
+.section-selector.active {
+    transform: translateX(0);
+}
+.section-selector.hide-left {
+    transform: translateX(120%);
+}
+.section-selector.hide-right {
+    transform: translateX(-120%);
+}
+
+/* Кнопки Булевые функции и Теория графов (позже сменю на что-то по лучше) */
+.section-btn {
+    width: 300px;
+    height: 400px;
+    border: none;
+    border-radius: 20px;
+    background: var(--color-accent);
+    color: var(--background);
+    font-size: 2rem;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    box-shadow: var(--shadow);
+}
+
+/* Начальные позиции секций */
+.boolean-section {
+    transform: translateX(-120%); /* Скрыта слева */
+}
+.graph-section {
+    transform: translateX(120%); /* Скрыта справа */
+}
+
+/* Активная секция */
+.section-content.active {
+    transform: translateX(0) !important;
+    opacity: 1;
+    pointer-events: auto;
+    z-index: 1;
+}
+
+.section-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: calc(100% - 4rem); /* Учитывая padding */
+    padding: 2rem;
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    opacity: 0;
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Активен раздел Булевые функции */
+.boolean-section.active {
+    transform: translateX(0);
+}
+
+/* Активен раздел Теория графов */
+.graph-section.active {
+    transform: translateX(0);
+}
+
+/* Кнопка назад внутри разделов */
+.back-btn {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    padding: 0.5rem 1rem;
+    background: var(--color-accent);
+    border: none;
+    border-radius: 0.5rem;
+    color: var(--background);
+    cursor: pointer;
+}
+
+/* Адаптивная вёрстка */
+.buttons {
+    display: grid;
+    width: min(90%, 100rem);
+    margin-inline: auto;
+    gap: 2rem;
+    padding: 2rem 0;
+}
+
+/* Большие экраны (6x2) */
+.buttons {
+    grid-template-columns: repeat(6, minmax(120px, 1fr));
+}
+
+/* Средние экраны (4x3) */
+@media (max-width: 1200px) {
+    .buttons {
+        grid-template-columns: repeat(4, minmax(100px, 1fr));
+    }
+}
+
+/* Планшеты (3x4) */
+@media (max-width: 768px) {
+    .site-title {
+        font-size: 3rem;
+        top: 5%;
+    }
+    h1 {
+        font-size: 2.5rem;
+    }
+    .buttons_task > span {
+        font-size: 12px !important;
+    }
+    .buttons {
+        gap: 1rem;
+        grid-template-columns: repeat(3, minmax(80px, 1fr));
+    }
+}
+
+/* Мобильные (2x6) */
+@media (max-width: 480px) {
+    .site-title {
+        font-size: 2.2rem;
+    }
+    .buttons {
+        grid-template-columns: repeat(2, minmax(70px, 1fr));
+    }
+}
+
+/* Запрет выделения текста для h1 и всех кнопок */
+h1, button {
+    -webkit-user-select: none; /* Chrome, Safari */
+    -moz-user-select: none;    /* Firefox */
+    -ms-user-select: none;     /* IE/Edge */
+    user-select: none;         /* Стандарт */
+    
+    /* Для мобильных устройств */
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* потом если где-то нужно будет включть выделение просто добавить:
+    user-select: text !important;
+*/

@@ -6,76 +6,143 @@
     <title>Pan.teach</title>
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/fonts.css">
-    <script src=""></script>
 </head>
 
 <body>
-<!--    <div class="Boolean_or_Graph"> //главный экран выбора раздела задача (булевые или графы)
-        <div class="buttons"> 
-            <button class="bool_buttons">
-                <i class=""></i>
-                <span>Задача 1</span>
-            </button>
-            <button class="bool_buttons">
-                <i class=""></i>
-                <span>Задача 2</span>
-            </button>
-        </div>
-    </div> -->
+    <!-- Кнопка для переключения темы -->
+    <button id="theme-toggle" class="theme-btn">🌓</button>
 
-    <div class="Boolean_functions">
-        <h1>Булевы функции</h1>
-        <div class="buttons"> <!--кнопки выбра булевой задачи-->
-            <button class="bool_buttons">
-                <i class=""></i>
-                <span>Задача 1</span>
-            </button>
-            <button class="bool_buttons">
-                <i class=""></i>
-                <span>Задача 2</span>
-            </button>
-            <button class="bool_buttons">
-                <i class=""></i>
-                <span>Задача 3</span>
-            </button>
-            <button class="bool_buttons">
-                <i class=""></i>
-                <span>Задача 4</span>
-            </button>
-            <button class="bool_buttons">
-                <i class=""></i>
-                <span>Задача 5</span>
-            </button>
-            <button class="bool_buttons">
-                <i class=""></i>
-                <span>Задача 6</span>
-            </button>
-            <button class="bool_buttons">
-                <i class=""></i>
-                <span>Задача 7</span>
-            </button>
-            <button class="bool_buttons">
-                <i class=""></i>
-                <span>Задача 8</span>
-            </button>
-            <button class="bool_buttons">
-                <i class=""></i>
-                <span>Задача 9</span>
-            </button>
-            <button class="bool_buttons">
-                <i class=""></i>
-                <span>Задача 10</span>
-            </button>
-            <button class="bool_buttons">
-                <i class=""></i>
-                <span>Задача 11</span>
-            </button>
-            <button class="bool_buttons">
-                <i class=""></i>
-                <span>Задача 12</span>
-            </button>
+    <div class="main-menu">
+        <div class="section-selector active">
+            <!-- Заголовок сайта -->
+            <h1 class="site-title">
+                <span class="pan-text">Pan.</span><span class="teach-text">teach</span>
+            </h1>
+            <!-- Блок выбора раздела -->
+            <div class="section-selector active">
+                <button class="section-btn left" data-target="boolean">
+                    <span>Булевы функции</span>
+                </button>
+                <button class="section-btn right" data-target="graph">
+                    <span>Теория графов</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Блок с булевыми функциями -->
+        <div class="section-content boolean-section">
+            <button class="back-btn" onclick="returnToMainMenu()">← Назад</button> <!-- Кнопка назад -->
+            <h1>Булевы функции</h1>
+            <div class="buttons"> <!-- Кнопки выбра булевой задачи-->
+                <button class="buttons-task">
+                    <i class=""></i>
+                    <span>Задача 1</span>
+                </button>
+                <button class="buttons-task">
+                    <i class=""></i>
+                    <span>Задача 2</span>
+                </button>
+                <button class="buttons-task">
+                    <i class=""></i>
+                    <span>Задача 3</span>
+                </button>
+                <button class="buttons-task">
+                    <i class=""></i>
+                    <span>Задача 4</span>
+                </button>
+                <button class="buttons-task">
+                    <i class=""></i>
+                    <span>Задача 5</span>
+                </button>
+                <button class="buttons-task">
+                    <i class=""></i>
+                    <span>Задача 6</span>
+                </button>
+                <button class="buttons-task">
+                    <i class=""></i>
+                    <span>Задача 7</span>
+                </button>
+                <button class="buttons-task">
+                    <i class=""></i>
+                    <span>Задача 8</span>
+                </button>
+                <button class="buttons-task">
+                    <i class=""></i>
+                    <span>Задача 9</span>
+                </button>
+                <button class="buttons-task">
+                    <i class=""></i>
+                    <span>Задача 10</span>
+                </button>
+                <button class="buttons-task">
+                    <i class=""></i>
+                    <span>Задача 11</span>
+                </button>
+                <button class="buttons-task">
+                    <i class=""></i>
+                    <span>Задача 12</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Блок с теорией графов -->
+        <div class="section-content graph-section">
+            <button class="back-btn" onclick="returnToMainMenu()">← Назад</button> <!-- Кнопка назад -->
+            <h1>Теория графов</h1>
+            <div class="buttons"> <!-- Кнопки выбра гаф. задачи-->
+                <button class="buttons-task">
+                    <i class=""></i>
+                    <span>Задача 1</span>
+                </button>
+                <button class="buttons-task">
+                    <i class=""></i>
+                    <span>Задача 2</span>
+                </button>
+                <button class="buttons-task">
+                    <i class=""></i>
+                    <span>Задача 3</span>
+                </button>
+                <button class="buttons-task">
+                    <i class=""></i>
+                    <span>Задача 4</span>
+                </button>
+                <button class="buttons-task">
+                    <i class=""></i>
+                    <span>Задача 5</span>
+                </button>
+                <button class="buttons-task">
+                    <i class=""></i>
+                    <span>Задача 6</span>
+                </button>
+                <button class="buttons-task">
+                    <i class=""></i>
+                    <span>Задача 7</span>
+                </button>
+                <button class="buttons-task">
+                    <i class=""></i>
+                    <span>Задача 8</span>
+                </button>
+                <button class="buttons-task">
+                    <i class=""></i>
+                    <span>Задача 9</span>
+                </button>
+                <button class="buttons-task">
+                    <i class=""></i>
+                    <span>Задача 10</span>
+                </button>
+                <button class="buttons-task">
+                    <i class=""></i>
+                    <span>Задача 11</span>
+                </button>
+                <button class="buttons-task">
+                    <i class=""></i>
+                    <span>Задача 12</span>
+                </button>
+            </div>
         </div>
     </div>
+    
+    <script src="js/theme.js"></script>
 </body>
 
 </html>

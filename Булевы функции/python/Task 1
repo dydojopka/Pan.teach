@@ -1,0 +1,30 @@
+import random
+
+def generate_boolean_function(n):
+    # Количество возможных комбинаций входных значений
+    num_combinations = 2 ** n
+
+    # Создаем список для хранения значений булевой функции
+    boolean_function = [random.randint(0, 1) for _ in range(num_combinations)]
+
+    return boolean_function
+
+def print_truth_table(n, boolean_function):
+    # Количество возможных комбинаций входных значений
+    num_combinations = 2 ** n
+
+    print("Таблица истинности для булевой функции:")
+    for i in range(num_combinations):
+        # Преобразуем индекс в двоичное представление
+        binary = bin(i)[2:].zfill(n)
+        # Разделяем двоичное представление на отдельные аргументы
+        args = [int(bit) for bit in binary]
+        # Получаем значение функции
+        result = boolean_function[i]
+
+        print(f"Вход: {args} -> Выход: {result}")
+
+# Пример использования
+n = int(input("Введите n "))  # Количество аргументов
+boolean_function = generate_boolean_function(n)
+print_truth_table(n, boolean_function)

@@ -94,7 +94,7 @@ button.buttons-task {
     }
     
     > span {
-        font-size: 2rem; /* Базовый размер текста */
+        font-size: 16cqi; /* Базовый размер текста */
         padding-bottom: 0.5rem; /* Отступ от нижнего края */
         text-align: center;
         width: 100%;
@@ -151,7 +151,7 @@ h1 {
 /* Меню с выбором раздела(буллевые функции или теория графов) */
 .main-menu { 
     position: relative;
-    overflow: hidden;
+    overflow: visible;
     min-height: 100vh;
 }
 

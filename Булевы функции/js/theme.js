@@ -1,4 +1,3 @@
-
 // Кнопка смены темы
 document.getElementById('theme-toggle').addEventListener('click', () => {
     const html = document.documentElement;

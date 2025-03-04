@@ -12,11 +12,14 @@
     --color-gray: rgb(129, 133, 136);
     --color-black: rgb(26, 26, 26);
 }
+
 /* Стили для светлой темы */
 [data-theme="light"] {
     --background: var(--color-white);
     --text-color: var(--color-black);
     --color-main: var(--color-orange);
+    --color-main-light: var(--color-orange-light);
+    --color-main-dark: var(--color-orange-dark);
 
 
     --shadow:
@@ -27,11 +30,14 @@
         inset .5rem .5rem 1rem hsl(0 0% 50% / .5),
         inset -.5rem -.5rem 1rem hsl(0 0% 100% / .75);
 }
+
 /* Стили для тёмной темы */
 [data-theme="dark"] {
     --background: var(--color-black);
     --text-color: var(--color-white);
     --color-main: var(--color-orange);
+    --color-main-light: var(--color-orange-light);
+    --color-main-dark: var(--color-orange-dark);
 
 
     --shadow:
@@ -115,6 +121,10 @@ body {
     overflow: hidden; /* Блокировка прокрутки */
 }
 
+button {
+    font-family: 'ShareTech', serif;
+}
+
 /* Заголовки */
 h1 {
     text-align: center;
@@ -137,7 +147,6 @@ h1 {
     top: 10%;
     left: 50%;
     transform: translateX(-50%);
-    font-family: 'ShareTech Bold', serif;
     font-size: 4.5rem;
     text-align: center;
     z-index: 2;
@@ -146,13 +155,13 @@ h1 {
 }
 .pan-text {
     color: var(--color-main);
-    text-shadow: 0 0 12px var(--color-orange-light);
+    text-shadow: 0 0 12px var(--color-main-light);
 }
 .teach-text {
     color: var(--text-color);
 }
 
-/* Меню с выбором раздела(буллевые функции или теория графов) */
+/* Меню с выбором раздела (буллевые функции или теория графов) */
 .main-menu { 
     position: relative;
     overflow: visible;

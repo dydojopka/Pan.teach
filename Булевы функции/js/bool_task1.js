@@ -1,3 +1,18 @@
+
+// Синхронизация темы с главной и обратно 
+function toggleTheme() {
+    const html = document.documentElement;
+    const newTheme = html.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+    html.setAttribute('data-theme', newTheme);
+    localStorage.setItem('theme', newTheme);
+}
+
+// Запрет ввода нечисловых значений
+document.getElementById('nInput').addEventListener('input', function(e) {
+    this.value = this.value.replace(/[^0-9]/g, '');
+    if(parseInt(this.value) > 10) this.value = '10'; // Если введено значение больше 10 то ставится просто 10
+});
+
 function generateBooleanFunction(n) {
     const numCombinations = 2 ** n;
     return Array.from({ length: numCombinations }, () => Math.floor(Math.random() * 2));
@@ -19,7 +34,7 @@ function generateTable() {
     tableContainer.innerHTML = '';
 
     // Вывод строки f
-    output.innerHTML = `f = (${booleanFunction.join(', ')})`;
+    output.innerHTML = `<b>f</b> = (${booleanFunction.join(', ')})`;
 
     // Создание таблицы
     const table = document.createElement('table');

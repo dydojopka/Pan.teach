@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ru" data-theme="light">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Задача 1: Булевы функции</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <!-- Применение темы сразу при загрузке -->
+    <script>
+        document.documentElement.setAttribute('data-theme',
+            localStorage.getItem('theme') || 'light'
+        );
+    </script>
+    <style>
+        body {overflow: scroll ;}
+    </style>
+</head>
+
+<body class="task-loading">
+    <header class="site-header">
+        <!-- Два пустых элемента чтобы не сьезжала кнопка темы - потом исправить -->
+        <div>
+        </div>
+        <div>
+        </div>
+        
+        <!-- Кнопка для переключения темы(По хорошему лучше вообще не добовлять её сюда, отрисуй таблицу и попробуй сменить тему - поймёшь)-->
+        <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌓</button>
+    </header>
+
+    <div class="task-container">
+        <button class="back-btn" onclick="window.history.back()">← Назад</button>
+        <div class="task-header">
+            <h1>Генератор булевых функций</h1>
+        </div>
+
+        <div class="input-group">
+            <input type="number" id="nInput" placeholder="Введите n (1-10)" min="1" max="10" pattern="\d*"
+                onkeypress="return event.charCode >= 48 && event.charCode <= 57">
+            <button class="generate-btn" onclick="generateTable()">Сгенерировать</button>
+        </div>
+
+        <div id="output" class="function-output"></div>
+        <div id="tableContainer" class="table-wrapper"></div>
+    </div>
+
+    <script src="../js/bool_task1.js"></script>
+</body>
+
+</html>

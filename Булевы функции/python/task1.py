@@ -10,21 +10,20 @@ def generate_boolean_function(n):
     return boolean_function
 
 def print_truth_table(n, boolean_function):
-    # Количество возможных комбинаций входных значений
-    num_combinations = 2 ** n
-
+    num_combinations = 2 ** n # Количество возможных комбинаций входных значений
     print("Таблица истинности для булевой функции:")
     for i in range(num_combinations):
-        # Преобразуем индекс в двоичное представление
-        binary = bin(i)[2:].zfill(n)
-        # Разделяем двоичное представление на отдельные аргументы
-        args = [int(bit) for bit in binary]
-        # Получаем значение функции
-        result = boolean_function[i]
+        binary = bin(i)[2:].zfill(n) # Преобразуем индекс в двоичное представление
+        args = [int(bit) for bit in binary] # Разделяем двоичное представление на отдельные аргументы
+        result = boolean_function[i] # Получаем значение функции
 
         print(f"Вход: {args} -> Выход: {result}")
 
-# Пример использования
-n = int(input("Введите n "))  # Количество аргументов
+    # Вывод в f строку     
+    result_str = ", ".join(map(str, boolean_function))
+    print(f"f = ({result_str})")
+    
+
+n = int(input("Введите n: ")) # Количество аргументов
 boolean_function = generate_boolean_function(n)
 print_truth_table(n, boolean_function)

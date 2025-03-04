@@ -6,6 +6,7 @@
 
     --color-orange: rgb(230, 59, 25);
     --color-orange-light: rgb(255, 95, 27);
+    --color-orange-light-tran: rgba(255, 95, 27, 0.5);
     --color-orange-dark: rgb(179, 45, 19);
 
     --color-white: rgb(240, 240, 240);
@@ -155,7 +156,11 @@ h1 {
 }
 .pan-text {
     color: var(--color-main);
+<<<<<<< HEAD
     text-shadow: 0 0 12px var(--color-main-light);
+=======
+    text-shadow: 0 0 2cqi var(--color-orange-light-tran);
+>>>>>>> 4889e0c37391ba26bf1a9d6aa2e99f57dc8e9141
 }
 .teach-text {
     color: var(--text-color);

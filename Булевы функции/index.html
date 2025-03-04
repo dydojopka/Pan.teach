@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ru" data-theme="light">
+<html lang="ru" data-theme="dark">
 
 <head>
     <meta charset="UTF-8">
@@ -9,15 +9,23 @@
 </head>
 
 <body>
-    <!-- Кнопка для переключения темы -->
-    <button id="theme-toggle" class="theme-btn">🌓</button>
+    <header class="site-header">
+        <!-- Название сайта -->
+        <h1 class="site-title">
+            <span class="pan-text">Pan.</span><span class="teach-text">teach</span>
+        </h1>
+        
+        <!-- Название текущего раздела -->
+        <div class="current-section">
+            <span id="section-name">Главное меню</span>
+        </div>
+        
+        <!-- Кнопка для переключения темы -->
+        <button id="theme-toggle" class="theme-btn">🌓</button>
+    </header>
 
     <div class="main-menu">
         <div class="section-selector active">
-            <!-- Заголовок сайта -->
-            <h1 class="site-title">
-                <span class="pan-text">Pan.</span><span class="teach-text">teach</span>
-            </h1>
             <!-- Блок выбора раздела -->
             <div class="section-selector active">
                 <button class="section-btn left" data-target="boolean">
@@ -32,7 +40,6 @@
         <!-- Блок с булевыми функциями -->
         <div class="section-content boolean-section">
             <button class="back-btn" onclick="returnToMainMenu()">← Назад</button> <!-- Кнопка назад -->
-            <h1>Булевы функции</h1>
             <div class="buttons"> <!-- Кнопки выбра булевой задачи-->
                 <button class="buttons-task">
                     <i class=""></i>
@@ -88,7 +95,6 @@
         <!-- Блок с теорией графов -->
         <div class="section-content graph-section">
             <button class="back-btn" onclick="returnToMainMenu()">← Назад</button> <!-- Кнопка назад -->
-            <h1>Теория графов</h1>
             <div class="buttons"> <!-- Кнопки выбра гаф. задачи-->
                 <button class="buttons-task">
                     <i class=""></i>

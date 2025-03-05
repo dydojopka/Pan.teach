@@ -23,6 +23,10 @@
     --color-main-light: var(--color-orange-light);
     --color-main-dark: var(--color-orange-dark);
 
+    --color-scrollbar-thumb: rgb(168, 168, 168);
+    --color-scrollbar-thumb-hover: rgb(151, 153, 155);
+    --color-scrollbar-thumb-active: rgb(129, 129, 129);
+    
 
     --shadow:
         -.5rem -.5rem 1rem hsl(0 0% 100% / .75),
@@ -40,6 +44,10 @@
     --color-main: var(--color-orange);
     --color-main-light: var(--color-orange-light);
     --color-main-dark: var(--color-orange-dark);
+    
+    --color-scrollbar-thumb: rgb(129, 133, 136);
+    --color-scrollbar-thumb-hover: rgb(169, 175, 179);
+    --color-scrollbar-thumb-active: rgb(221, 221, 221);
 
 
     --shadow:
@@ -457,7 +465,7 @@ input[type="number"] {
     padding: 0.8rem 2rem;
     font-size: 1rem;
     background: var(--color-main);
-    /* color: var(--background); */
+    color: var(--background);
     border: none;
     border-radius: 0.5rem;
     cursor: pointer;
@@ -501,7 +509,7 @@ input{
 
 table {
     width: 100%;
-    background: var(--background);
+    /* background: var(--background); */
     border-collapse: collapse;
 }
 
@@ -530,7 +538,7 @@ th::after {
 }
 
 td {
-    background: var(--background);
+    /* background: var(--background); */
     color: var(--text-color);
 }
 
@@ -543,3 +551,32 @@ td:last-child {
         2px 0 8px -4px var(--color-main);
     transition: all 0.3s;
 }
+
+::-webkit-scrollbar {
+    width: 3px;
+    height: 6px;
+
+    z-index: 0;
+}
+
+::-webkit-scrollbar-track {
+    background-color: var(--color-clear);
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: .5rem;
+    background-color: var(--color-scrollbar-thumb);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: var(--color-scrollbar-thumb-hover);
+}
+
+::-webkit-scrollbar-thumb:active {
+    background-color: var(--color-scrollbar-thumb-active);
+}
+
+input[type="number"]::-webkit-inner-spin-button, input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+  }
+  

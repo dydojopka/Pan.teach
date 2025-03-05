@@ -6,26 +6,29 @@
     <title>Задача 1: Булевы функции</title>
     <link rel="stylesheet" href="../css/styles.css">
     <link rel="stylesheet" href="../css/fonts.css">
-    <!-- Применение темы сразу при загрузке -->
     <script>
         document.documentElement.setAttribute('data-theme',
             localStorage.getItem('theme') || 'light'
         );
     </script>
     <style>
-        body {overflow: scroll ;}
+        body {overflow: auto ;} /* Прокрутка по необходимости */
     </style>
 </head>
 
 <body class="task-loading">
     <header class="site-header">
-        <!-- Два пустых элемента чтобы не сьезжала кнопка темы - потом исправить -->
-        <div>
-        </div>
-        <div>
+        <!-- Название сайта -->
+        <h1 class="site-title">
+            <span class="pan-text">Pan.</span><span class="teach-text">teach</span>
+        </h1>
+        
+        <!-- Название текущего раздела -->
+        <div class="current-section">
+            <span id="section-name">Булевы функции</span>
         </div>
         
-        <!-- Кнопка для переключения темы(По хорошему лучше вообще не добовлять её сюда, отрисуй таблицу и попробуй сменить тему - поймёшь)-->
+        <!-- Кнопка для переключения темы -->
         <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌓</button>
     </header>
 

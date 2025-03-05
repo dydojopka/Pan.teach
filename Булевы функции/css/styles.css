@@ -9,6 +9,7 @@
     --color-orange-light-tran: rgba(255, 95, 27, 0.5);
     --color-orange-dark: rgb(179, 45, 19);
 
+    --color-clear: rgba(0, 0, 0, 0);
     --color-white: rgb(240, 240, 240);
     --color-gray: rgb(129, 133, 136);
     --color-black: rgb(26, 26, 26);
@@ -42,18 +43,16 @@
 
 
     --shadow:
-        -.5rem -.5rem 1rem hsla(0, 0%, 21%, 0.144),
+        -.5rem -.5rem 1rem hsla(0, 0%, 21%, 0.384),
         .5rem .5rem 1rem hsla(0, 0%, 0%, 0.493);
 
     --shadow-in-box:
         inset .5rem .5rem 1rem hsla(0, 0%, 0%, 0.493),
-        inset -.5rem -.5rem 1rem hsla(0, 0%, 50%, 0.144);
+        inset -.5rem -.5rem 1rem hsla(0, 0%, 21%, 0.384);
 }
 
 /* Кнопка для переключения темы */
-
 .theme-btn {
-    margin-right: 4rem; /* Добавляем отступ справа для выравнивания */
     background: none;
     border: none;
     font-size: 1.5rem;
@@ -139,7 +138,7 @@ body {
     font-family: 'ShareTech', serif;
     color: var(--text-color);
     transition: background-color 0.3s, color 0.3s; /* Плавная смена темы */
-    overflow: hidden; /* Блокировка прокрутки */
+    overflow: hidden; /*Блокировка прокрутки*/
 }
 
 button {
@@ -426,6 +425,8 @@ body.task-loading {
     max-width: 1000px;
     margin: 2rem auto;
     padding: 2rem;
+    /* box-shadow: var(--shadow-in-box);
+    border-radius: 0.5rem; */
 }
 
 .task-header {
@@ -446,7 +447,7 @@ input[type="number"] {
     padding: 0.8rem;
     border: 2px solid var(--color-main);
     border-radius: 0.5rem;
-    background: var(--background);
+    background: var(--color-clear);
     color: var(--text-color);
     font-family: 'ShareTech', serif;
     font-size: 1.2rem;
@@ -456,20 +457,31 @@ input[type="number"] {
     padding: 0.8rem 2rem;
     font-size: 1rem;
     background: var(--color-main);
-    color: var(--background);
+    /* color: var(--background); */
     border: none;
     border-radius: 0.5rem;
     cursor: pointer;
     transition: all 0.2s;
+
+    box-shadow: var(--shadow)
 }
 
 .generate-btn:hover {
-    transform: scale(1.05);
+    background-color: var(--color-main-light);
+    transform: scale(1.01);
+}
+
+.generate-btn:active {
+    background-color: var(--color-main);
+    transform: scale(1);
+}
+
+input{
     box-shadow: var(--shadow);
 }
 
-.function-output {
-    background: var(--background);
+#output{
+    /* background: var(--background); */
     border: 2px solid var(--color-main);
     border-radius: 0.5rem;
     padding: 1rem;
@@ -477,6 +489,7 @@ input[type="number"] {
     overflow-x: auto;
     white-space: nowrap;
     font-family: 'ShareTech Mono', monospace;
+    box-shadow: var(--shadow);
 }
 
 .table-wrapper {

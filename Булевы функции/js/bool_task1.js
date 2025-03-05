@@ -1,4 +1,3 @@
-
 // Синхронизация темы с главной и обратно 
 function toggleTheme() {
     const html = document.documentElement;
@@ -34,7 +33,7 @@ function generateTable() {
     tableContainer.innerHTML = '';
 
     // Вывод строки f
-    output.innerHTML = `<b>f</b> = (${booleanFunction.join(', ')})`;
+    output.innerHTML = `<b>f</b> = (${booleanFunction.join('')})`;
 
     // Создание таблицы
     const table = document.createElement('table');

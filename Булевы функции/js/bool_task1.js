@@ -30,7 +30,7 @@ function generateTable() {
     tableContainer.innerHTML = '';
 
     // Вывод строки f
-    output.innerHTML = `<b>f</b> = (${booleanFunction.join(', ')})`;
+    output.innerHTML = `<b>f</b> = (${booleanFunction.join('')})`;
 
     // Создание таблицы
     const table = document.createElement('table');

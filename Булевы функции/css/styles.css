@@ -60,7 +60,7 @@
 }
 
 /* Кнопка для переключения темы */
-.theme-btn {
+.header-btn {
     background: none;
     border: none;
     font-size: 1.5rem;
@@ -173,7 +173,7 @@ h1 {
     align-items: center;
     padding: 1rem 2rem;
     box-sizing: border-box;
-    /* background-color: var(--background); */
+    background-color: var(--background);
     box-shadow: var(--shadow);
     z-index: 1000;
 }
@@ -440,11 +440,10 @@ h1, button, span {
 .task-container {
     animation: fadeIn 0.9s cubic-bezier(0.4, 0, 0.2, 1);
     max-width: 1000px;
-    margin-top: 70px; /* Отступ под шапку */
-    margin: 2rem auto;
+    margin-top: 72px; /* Отступ под шапку */
     padding: 2rem;
-    /* box-shadow: var(--shadow-in-box);
-    border-radius: 0.5rem; */
+    box-shadow: var(--shadow-in-box);
+    border-radius: 0.5rem;
 }
 
 .task-header {

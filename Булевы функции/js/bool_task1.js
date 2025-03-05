@@ -10,6 +10,7 @@ function toggleTheme() {
 document.getElementById('nInput').addEventListener('input', function(e) {
     this.value = this.value.replace(/[^0-9]/g, '');
     if(parseInt(this.value) > 10) this.value = '10'; // Если введено значение больше 10 то ставится просто 10
+    if(parseInt(this.value) < 1) this.value = '1'; // Если введено значение меньше 1 то ставится просто 1
 });
 
 function generateBooleanFunction(n) {
@@ -19,10 +20,6 @@ function generateBooleanFunction(n) {
 
 function generateTable() {
     const n = parseInt(document.getElementById('nInput').value);
-    if (isNaN(n) || n < 1) {
-        alert("Введите корректное значение n (≥1)");
-        return;
-    }
 
     const booleanFunction = generateBooleanFunction(n);
     const output = document.getElementById('output');
@@ -33,7 +30,7 @@ function generateTable() {
     tableContainer.innerHTML = '';
 
     // Вывод строки f
-    output.innerHTML = `<b>f</b> = (${booleanFunction.join('')})`;
+    output.innerHTML = `<b>f</b> = (${booleanFunction.join(', ')})`;
 
     // Создание таблицы
     const table = document.createElement('table');

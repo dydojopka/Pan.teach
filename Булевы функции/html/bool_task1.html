@@ -12,23 +12,176 @@
         );
     </script>
     <style>
-        body {overflow: auto ;} /* Прокрутка по необходимости */
+        body {
+            overflow: auto;
+        }
+
+        /* Прокрутка по необходимости */
     </style>
 </head>
 
 <body class="task-loading">
     <header class="site-header">
-        <!-- Название сайта -->
+        <!-- Кнопка боковой панели -->
         <button id="menu-toggle" class="header-btn">🟰</button>
-        
+
         <!-- Название текущего раздела -->
         <div class="current-section">
             <span id="section-name">Булевы функции</span>
         </div>
-        
+
         <!-- Кнопка для переключения темы -->
         <button id="theme-toggle" class="header-btn" onclick="toggleTheme()">🌓</button>
     </header>
+
+    <div class="sidebar">
+        <header>
+            <span class="pan-text">Pan.</span>
+            <span class="teach-text">teach</span>
+        </header>
+
+        <div class="sidebar-content">
+            <!-- Папка "Булевы функции" -->
+            <div class="folder">
+                <div class="folder-header active">
+                    <i class="fas fa-folder"></i>
+                    <span>Булевы функции</span>
+                </div>
+                <div class="tasks">
+                    <a href="#" class="task current">
+                        <span class="connector"></span>
+                        <i class=""></i>
+                        <span>Задача 1</span>
+                    </a>
+                    <a href="#" class="task">
+                        <span class="connector"></span>
+                        <i class=""></i>
+                        <span>Задача 2</span>
+                    </a>
+                    <a href="#" class="task">
+                        <span class="connector"></span>
+                        <i class=""></i>
+                        <span>Задача 3</span>
+                    </a>
+                    <a href="#" class="task">
+                        <span class="connector"></span>
+                        <i class=""></i>
+                        <span>Задача 4</span>
+                    </a>
+                    <a href="#" class="task">
+                        <span class="connector"></span>
+                        <i class=""></i>
+                        <span>Задача 5</span>
+                    </a>
+                    <a href="#" class="task">
+                        <span class="connector"></span>
+                        <i class=""></i>
+                        <span>Задача 6</span>
+                    </a>
+                    <a href="#" class="task">
+                        <span class="connector"></span>
+                        <i class=""></i>
+                        <span>Задача 7</span>
+                    </a>
+                    <a href="#" class="task">
+                        <span class="connector"></span>
+                        <i class=""></i>
+                        <span>Задача 8</span>
+                    </a>
+                    <a href="#" class="task">
+                        <span class="connector"></span>
+                        <i class=""></i>
+                        <span>Задача 9</span>
+                    </a>
+                    <a href="#" class="task">
+                        <span class="connector"></span>
+                        <i class=""></i>
+                        <span>Задача 10</span>
+                    </a>
+                    <a href="#" class="task">
+                        <span class="connector"></span>
+                        <i class=""></i>
+                        <span>Задача 11</span>
+                    </a>
+                    <a href="#" class="task">
+                        <span class="connector"></span>
+                        <i class=""></i>
+                        <span>Задача 12</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Папка "Теория графов" -->
+            <div class="folder">
+                <div class="folder-header">
+                    <i class="fas fa-folder"></i>
+                    <span>Теория графов</span>
+                </div>
+                <div class="tasks">
+                    <a href="#" class="task">
+                        <span class="connector"></span>
+                        <i class=""></i>
+                        <span>Задача 1</span>
+                    </a>
+                    <a href="#" class="task">
+                        <span class="connector"></span>
+                        <i class=""></i>
+                        <span>Задача 2</span>
+                    </a>
+                    <a href="#" class="task">
+                        <span class="connector"></span>
+                        <i class=""></i>
+                        <span>Задача 3</span>
+                    </a>
+                    <a href="#" class="task">
+                        <span class="connector"></span>
+                        <i class=""></i>
+                        <span>Задача 4</span>
+                    </a>
+                    <a href="#" class="task">
+                        <span class="connector"></span>
+                        <i class=""></i>
+                        <span>Задача 5</span>
+                    </a>
+                    <a href="#" class="task">
+                        <span class="connector"></span>
+                        <i class=""></i>
+                        <span>Задача 6</span>
+                    </a>
+                    <a href="#" class="task">
+                        <span class="connector"></span>
+                        <i class=""></i>
+                        <span>Задача 7</span>
+                    </a>
+                    <a href="#" class="task">
+                        <span class="connector"></span>
+                        <i class=""></i>
+                        <span>Задача 8</span>
+                    </a>
+                    <a href="#" class="task">
+                        <span class="connector"></span>
+                        <i class=""></i>
+                        <span>Задача 9</span>
+                    </a>
+                    <a href="#" class="task">
+                        <span class="connector"></span>
+                        <i class=""></i>
+                        <span>Задача 10</span>
+                    </a>
+                    <a href="#" class="task">
+                        <span class="connector"></span>
+                        <i class=""></i>
+                        <span>Задача 11</span>
+                    </a>
+                    <a href="#" class="task">
+                        <span class="connector"></span>
+                        <i class=""></i>
+                        <span>Задача 12</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <div class="task-container">
         <button class="back-btn" onclick="window.history.back()">← Назад</button>

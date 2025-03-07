@@ -6,6 +6,12 @@ function toggleTheme() {
     localStorage.setItem('theme', newTheme);
 }
 
+// Кнопка бокового меню
+document.getElementById('menu-toggle').addEventListener('click', function () {
+    const sidebar = document.querySelector('.sidebar');
+    sidebar.classList.toggle('sidebar--active');
+});
+
 // Запрет ввода нечисловых значений
 document.getElementById('nInput').addEventListener('input', function(e) {
     this.value = this.value.replace(/[^0-9]/g, '');

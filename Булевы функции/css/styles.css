@@ -167,7 +167,8 @@ h1 {
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%; /* Учитывая padding */
+    height: 80px;
+    width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -309,7 +310,7 @@ h1 {
 
 /* Кнопка назад внутри разделов */
 .back-btn {
-    margin: 1rem 0; /* Добавляем отступы сверху и снизу */
+    margin: 1.5rem 0; /* Добавляем отступы сверху и снизу */
     padding: 0.5rem 1rem;
     background: var(--color-main);
     border: none;
@@ -437,13 +438,137 @@ h1, button, span {
     }
 }
 
+/* ⇊Стили боковой панели⇊ */
+.sidebar {
+    position: fixed;
+    width: 240px;
+    left: -240px;
+    height: calc(100% - 80px); /* Учитываем высоту шапки */
+    top: 80px; /* Отступ сверху = высота шапки */
+    background: var(--background);
+    transition: all 0.5s ease;
+    font-family: 'ShareTech', serif;
+    z-index: 900;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+/* Контейнер для прокрутки */
+.sidebar-content {
+    flex: 1;
+    overflow-y: auto;
+    padding: 15px 0;
+}
+
+.sidebar--active {
+    left: 0;
+    box-shadow: 8px 0 15px rgba(0, 0, 0, 0.1);
+}
+
+#menu-toggle,
+.task-container {
+    transition: transform 0.5s ease;
+}
+
+.sidebar > header {
+    font-size: 28px;
+    color: var(--text-color);
+    line-height: 70px;
+    margin-left: 1rem;
+    padding: 0 15px;
+    flex-shrink: 0; /* Фиксируем заголовок */
+    background: var(--background);
+    border-bottom: 2px solid var(--color-main);
+}
+
+.sidebar a {
+    display: flex;
+    align-items: center;
+    height: 30px;
+    color: var(--text-color);
+    /*border-top: 1px solid rgba(255, 255, 255, .1);*/
+    /*border-bottom: 1px solid black;*/
+    border-bottom: 1px solid var(--color-gray);
+    transition: all 0.2s;
+    padding-left: 15px;
+}
+
+.sidebar a:hover,
+.sidebar a.active {
+    border-left: 5px solid var(--color-main);
+    color: var(--color-main);
+}
+
+.sidebar--active ~ #menu-toggle,
+.sidebar--active ~ .task-container {
+    transform: translateX(240px) /* Учитываем высоту шапки */
+}
+
+.sidebar a i {
+    font-size: 23px;
+}
+
+.sidebar a span {
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.folder {
+    margin: 15px 0;
+}
+
+.folder-header {
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    color: var(--text-color);
+    font-size: 1.5rem;
+    font-family: 'ShareTech Bold', serif;
+}
+.folder-header.active {
+    color: var(--color-main);
+    text-decoration: underline;
+}
+
+
+.folder-header i {
+    margin-right: 10px;
+    font-size: 1.2em;
+}
+
+.tasks {
+    position: relative;
+    padding-left: 20px;
+}
+
+.task {
+    position: relative;
+    display: flex;
+    align-items: center;
+    margin: 5px 0;
+    text-decoration: none;
+}
+.task.current {
+    text-decoration: underline;
+}
+
+.task i {
+    margin-right: 10px;
+    font-size: 0.9em;
+    position: relative;
+    z-index: 1;
+}
+/* ⇈Стили боковой панели⇈*/
+
 .task-container {
     animation: fadeIn 0.9s cubic-bezier(0.4, 0, 0.2, 1);
     max-width: 1000px;
-    margin-top: 72px; /* Отступ под шапку */
+    margin-top: 120px; /* Отступ под шапку */
     padding: 2rem;
     box-shadow: var(--shadow-in-box);
     border-radius: 0.5rem;
+    z-index: 800;
 }
 
 .task-header {

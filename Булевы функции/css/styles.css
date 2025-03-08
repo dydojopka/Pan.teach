@@ -11,8 +11,10 @@
 
     --color-clear: rgba(0, 0, 0, 0);
     --color-white: rgb(240, 240, 240);
+    --color-white-dark: rgb(236, 236, 236);
     --color-gray: rgb(129, 133, 136);
     --color-black: rgb(26, 26, 26);
+    --color-black-light: rgb(30, 30, 30);
 }
 
 /* Стили для светлой темы */
@@ -23,10 +25,11 @@
     --color-main-light: var(--color-orange-light);
     --color-main-dark: var(--color-orange-dark);
 
-    --color-scrollbar-thumb: rgb(168, 168, 168);
+    --color-scrollbar-thumb: rgb(168, 168, 168, 0.25);
     --color-scrollbar-thumb-hover: rgb(151, 153, 155);
     --color-scrollbar-thumb-active: rgb(129, 129, 129);
     
+    --color-background-second: var(--color-white-dark);
 
     --shadow:
         -.5rem -.5rem 1rem hsl(0 0% 100% / .75),
@@ -45,10 +48,11 @@
     --color-main-light: var(--color-orange-light);
     --color-main-dark: var(--color-orange-dark);
     
-    --color-scrollbar-thumb: rgb(129, 133, 136);
+    --color-scrollbar-thumb: rgb(129, 133, 136, 0.25);
     --color-scrollbar-thumb-hover: rgb(169, 175, 179);
     --color-scrollbar-thumb-active: rgb(221, 221, 221);
 
+    --color-background-second: var(--color-black-light);
 
     --shadow:
         -.5rem -.5rem 1rem hsla(0, 0%, 21%, 0.384),
@@ -441,8 +445,8 @@ h1, button, span {
 /* ⇊Стили боковой панели⇊ */
 .sidebar {
     position: fixed;
-    width: 240px;
-    left: -240px;
+    width: 340px;
+    left: -340px;
     height: calc(100% - 80px); /* Учитываем высоту шапки */
     top: 80px; /* Отступ сверху = высота шапки */
     background: var(--background);
@@ -451,8 +455,13 @@ h1, button, span {
     z-index: 900;
     display: flex;
     flex-direction: column;
-    overflow: hidden;
+    overflow: auto;
+    direction: rtl;
 }
+.sidebar-content > * {
+    direction: ltr;
+}
+
 
 /* Контейнер для прокрутки */
 .sidebar-content {
@@ -461,9 +470,15 @@ h1, button, span {
     padding: 15px 0;
 }
 
+/* Стилизация скроллбара */
+.sidebar-content::-webkit-scrollbar {
+    
+    right: 0; /* Позиционируем слева */
+}
+
 .sidebar--active {
     left: 0;
-    box-shadow: 8px 0 15px rgba(0, 0, 0, 0.1);
+    /*box-shadow: 8px 0 15px rgba(0, 0, 0, 0.1);*/
 }
 
 #menu-toggle,
@@ -480,6 +495,7 @@ h1, button, span {
     flex-shrink: 0; /* Фиксируем заголовок */
     background: var(--background);
     border-bottom: 2px solid var(--color-main);
+    direction: ltr;
 }
 
 .sidebar a {
@@ -489,7 +505,7 @@ h1, button, span {
     color: var(--text-color);
     /*border-top: 1px solid rgba(255, 255, 255, .1);*/
     /*border-bottom: 1px solid black;*/
-    border-bottom: 1px solid var(--color-gray);
+    border-bottom: 1px solid var(--color-background-second);
     transition: all 0.2s;
     padding-left: 15px;
 }
@@ -502,7 +518,7 @@ h1, button, span {
 
 .sidebar--active ~ #menu-toggle,
 .sidebar--active ~ .task-container {
-    transform: translateX(240px) /* Учитываем высоту шапки */
+    transform: translateX(120px);
 }
 
 .sidebar a i {
@@ -547,6 +563,7 @@ h1, button, span {
     display: flex;
     align-items: center;
     margin: 5px 0;
+    margin-right: 10px;
     text-decoration: none;
 }
 .task.current {
@@ -562,6 +579,7 @@ h1, button, span {
 /* ⇈Стили боковой панели⇈*/
 
 .task-container {
+    margin: auto;
     animation: fadeIn 0.9s cubic-bezier(0.4, 0, 0.2, 1);
     max-width: 1000px;
     margin-top: 120px; /* Отступ под шапку */
@@ -702,5 +720,5 @@ td:last-child {
 
 input[type="number"]::-webkit-inner-spin-button, input[type="number"]::-webkit-outer-spin-button {
     -webkit-appearance: none;
-  }
+}
   

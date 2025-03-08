@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Задача 1: Булевы функции</title>
+    <title>Задача 6: Булевы функции</title>
     <link rel="stylesheet" href="../css/styles.css">
     <link rel="stylesheet" href="../css/fonts.css">
     <script>
@@ -12,11 +12,7 @@
         );
     </script>
     <style>
-        body {
-            overflow: auto;
-        }
-
-        /* Прокрутка по необходимости */
+        body {overflow: auto; /* Прокрутка по необходимости */ }
     </style>
 </head>
 
@@ -48,9 +44,9 @@
                     <span>Булевы функции</span>
                 </div>
                 <div class="tasks">
-                    <a href="#" class="task current">
+                    <a href="bool_task1.html" class="task">
                         <span class="connector"></span>
-                        <i class=""></i>
+                        <i class="bool_task1.html"></i>
                         <span>Задача 1</span>
                     </a>
                     <a href="bool_task2.html" class="task">
@@ -73,7 +69,7 @@
                         <i class=""></i>
                         <span>Задача 5</span>
                     </a>
-                    <a href="bool_task6.html" class="task">
+                    <a href="#" class="task current">
                         <span class="connector"></span>
                         <i class=""></i>
                         <span>Задача 6</span>
@@ -183,24 +179,8 @@
         </div>
     </div>
 
-    <div class="task-container">
-        <button class="back-btn" onclick="window.history.back()">← Назад</button>
-        <div class="task-header">
-            <h1>Генератор булевых функций</h1>
-        </div>
-
-        <div class="input-group">
-            <input type="number" id="nInput" placeholder="Введите n (1-10)" min="1" max="10" pattern="\d*"
-                onkeypress="return event.charCode >= 48 && event.charCode <= 57">
-            <button class="generate-btn" onclick="generateTable()">Сгенерировать</button>
-        </div>
-
-        <div id="output" class="function-output"></div>
-        <div id="tableContainer" class="table-wrapper"></div>
-    </div>
-
     <script src="../js/tasks_theme.js"></script>
-    <script src="../js/bool_task1.js"></script>
+    <script src="../js/bool_task6.js"></script>
 </body>
 
 </html>

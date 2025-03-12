@@ -179,6 +179,31 @@
         </div>
     </div>
 
+    <div class="task-container">
+        <button class="back-btn" onclick="window.history.back()">← Назад</button>
+        <div class="task-header">
+            <h1>Остаточная по вектору функции</h1>
+        </div>
+    
+        <div class="input-group">
+            <input type="number" id="nInput" placeholder="Введите вектор функции" oninput="updateArgs()">
+            <button class="generate-btn" onclick="generateTable()">Вычислить</button>
+        </div>
+    
+        <div class="radio-group" id="arg-radio-group">
+            <!-- Радиокнопки для аргументов будут добавляться динамически -->
+        </div>
+    
+        <div class="radio-group">
+            <label>Выберите остаточную:</label><br>
+            <label><input type="radio" name="residual" value="0" checked>Нулевая</label>
+            <label><input type="radio" name="residual" value="1">Единичная</label>
+        </div>
+    
+        <div id="output" class="function-output"></div>
+    </div>
+    
+    
     <script src="../js/tasks_theme.js"></script>
     <script src="../js/bool_task2.js"></script>
 </body>

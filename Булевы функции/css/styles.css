@@ -675,7 +675,7 @@ h1, button, span {
     margin-bottom: 2rem;
 }
 
-input[type="number"] {
+input[type="number"], input[type="text"] {
     flex: 1;
     padding: 0.8rem;
     border: 2px solid var(--color-main);
@@ -793,60 +793,4 @@ td:last-child {
 
 input[type="number"]::-webkit-inner-spin-button, input[type="number"]::-webkit-outer-spin-button {
     -webkit-appearance: none;
-}
-  
-
-
-
-
-
-
-/* Стили для строк ввода */
-.input-row {
-    display: grid;
-    grid-template-columns: 200px 1fr;
-    align-items: center;
-    gap: 1rem;
-    margin-bottom: 1.5rem;
-}
-
-.radio-group {
-    display: flex;
-    gap: 1rem;
-}
-
-.radio-btn {
-    padding: 0.5rem 1.5rem;
-    border: 2px solid var(--color-main);
-    border-radius: 0.5rem;
-    background: none;
-    color: var(--text-color);
-    cursor: pointer;
-    transition: all 0.2s;
-}
-
-.radio-btn.active {
-    background: var(--color-main);
-    color: var(--background);
-}
-
-.formula {
-    font-size: 1.5rem;
-    padding: 1rem;
-    border: 2px solid var(--color-main);
-    border-radius: 0.5rem;
-    margin: 1rem 0;
-    font-family: 'ShareTech Mono', monospace;
-}
-
-.result-section, .info-section {
-    background: var(--color-background-second);
-    padding: 1.5rem;
-    border-radius: 0.5rem;
-    margin: 1rem 0;
-}
-
-.vector-input {
-    font-family: 'ShareTech Mono', monospace;
-    letter-spacing: 0.2em;
 }

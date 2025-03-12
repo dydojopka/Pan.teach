@@ -186,11 +186,12 @@
         </div>
     
         <div class="input-group">
-            <input type="number" id="nInput" placeholder="Введите вектор функции" oninput="updateArgs()">
+            <input type="text" id="nInput" placeholder="Введите вектор функции" oninput="updateInputDisplay()" autocomplete="off">
             <button class="generate-btn" onclick="generateTable()">Вычислить</button>
         </div>
     
         <div class="radio-group" id="arg-radio-group">
+            <label>Выберите аргумент:</label><br>
             <!-- Радиокнопки для аргументов будут добавляться динамически -->
         </div>
     

@@ -259,19 +259,92 @@ h1 {
     transform: translateX(-120%);
 }
 
-/* Кнопки Булевые функции и Теория графов (позже сменю на что-то по лучше) */
+/* ⇊Кнопки Булевые функции и Теория графов⇊ */
+/* Наклонная часть, которая сдвигается */
 .section-btn {
-    width: 300px;
-    height: 400px;
+    width: 400px;
+    height: 300px;
     border: none;
     border-radius: 20px;
-    background: var(--color-main);
     color: var(--background);
     font-size: 2rem;
     cursor: pointer;
     transition: all 0.4s ease;
     box-shadow: var(--shadow);
+    position: relative;
+    overflow: hidden;
+    background: var(--accent-color); /* Новый цвет под сдвигающейся частью */
 }
+
+/* Наклонная часть, которая сдвигается */
+.section-btn::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 230%;
+    height: 200%;
+    background: var(--color-main); /* Исходный цвет кнопки */
+    transform: rotate(-45deg);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 2;
+    box-shadow: 4px 0 15px rgba(0,0,0,0.2);
+}
+
+/* Анимация при наведении */
+.section-btn:hover::before {
+    left: -130%;
+}
+
+/* Анимация нулей и единиц */
+.section-btn::after {
+    content: "01010101010101010101010101010101010101010101010101";
+    white-space: pre; /* Изменил nowrap на pre для многострочности */
+    line-height: 1.8em; /* Уменьшить межстрочный интервал */
+    position: absolute;
+    bottom: 20%;
+    left: 0;
+    width: 100%;
+    color: rgba(255,255,255,0.15);
+    font-size: 24px;
+    font-family: monospace;
+    white-space: nowrap;
+    animation: binaryFlow 5s linear infinite;
+    transform: rotate(-45deg);
+    z-index: 1;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+/* Активация анимации при наведении */
+.section-btn:hover::after {
+    opacity: 1;
+}
+
+@keyframes binaryFlow {
+    0% { 
+        transform: translateX(-25%) translateY(-25%) rotate(45deg);
+    }
+    100% { 
+        transform: translateX(25%) translateY(25%) rotate(45deg);
+    }
+}
+
+/* Текст кнопки */
+.section-btn span {
+    position: relative;
+    z-index: 3;
+    display: block;
+    padding: 20px;
+    transition: transform 0.4s ease;
+}
+
+/* Эффект подъема текста при наведении */
+.section-btn:hover span {
+    transform: translateY(-10px);
+}
+/* ⇈Кнопки Булевые функции и Теория графов⇈ */
 
 /* Начальные позиции секций */
 .boolean-section {
@@ -283,7 +356,7 @@ h1 {
 
 /* Активная секция */
 .section-content.active {
-    transform: translateX(0) !important;
+    transform: translateX(0);
     opacity: 1;
     pointer-events: auto;
     z-index: 1;

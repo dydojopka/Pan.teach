@@ -59,28 +59,35 @@ document.querySelectorAll('.section-btn').forEach(btn => {
 
 // Возврат в главное меню
 function returnToMainMenu() {
-    updateSectionName(null); // Сбрасываем название раздела
-
     const selector = document.querySelector('.section-selector');
-    const sections = document.querySelectorAll('.section-content');
-
-    // Сброс анимации
+    
+    // Сбрасываем анимационные классы
     selector.classList.remove('hide-left', 'hide-right');
-    sections.forEach(section => {
+    selector.classList.add('active');
+    
+    // Сбрасываем разделы
+    document.querySelectorAll('.section-content').forEach(section => {
         section.classList.remove('active');
-        section.style.transform = ''; // Сброс трансформации
+        section.style.transform = '';
     });
+    
+    updateSectionName(null);
 }
 
 // Обновление названия раздела
 function updateSectionName(section) {
     const sectionName = document.getElementById('section-name');
+    const selector = document.querySelector('.section-selector');
+    
     if (section === 'boolean') {
         sectionName.textContent = 'Булевы функции';
+        selector.classList.remove('active');
     } else if (section === 'graph') {
         sectionName.textContent = 'Теория графов';
+        selector.classList.remove('active');
     } else {
         sectionName.textContent = 'Главное меню';
+        selector.classList.add('active');
     }
 }
 
@@ -162,4 +169,26 @@ document.querySelectorAll('.buttons-task').forEach(btn => {
             window.location.href = getTaskUrl(originalBtn.id);
         }, 750);
     });
+});
+
+// Активация сохраненного раздела при загрузке
+document.addEventListener('DOMContentLoaded', () => {
+    const lastSection = localStorage.getItem('lastActiveSection');
+    if (lastSection) {
+        const selector = document.querySelector('.section-selector');
+        const activeSection = document.querySelector(`.${lastSection}-section`);
+
+        // Анимация скрытия для section-selector
+        selector.classList.add(lastSection === 'boolean' ? 'hide-left' : 'hide-right');
+
+        // Активация сохраненного раздела
+        setTimeout(() => {
+            activeSection.classList.add('active');
+            updateSectionName(lastSection);
+            selector.classList.remove('active');
+             // Полностью скрываем главное меню
+        }, 50);
+        
+        localStorage.removeItem('lastActiveSection');
+    }
 });

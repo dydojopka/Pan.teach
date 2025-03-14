@@ -254,9 +254,11 @@ h1 {
 }
 .section-selector.hide-left {
     transform: translateX(120%);
+    visibility: hidden;
 }
 .section-selector.hide-right {
     transform: translateX(-120%);
+    visibility: hidden;
 }
 
 /* ⇊Кнопки Булевые функции и Теория графов⇊ */
@@ -305,7 +307,7 @@ h1 {
     bottom: 20%;
     left: 0;
     width: 100%;
-    color: rgba(255,255,255,0.15);
+    color: var(--text-color);
     font-size: 24px;
     font-family: monospace;
     white-space: nowrap;
@@ -372,38 +374,58 @@ h1 {
     transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
     opacity: 0;
     pointer-events: none;
+    visibility: hidden;
     z-index: 0;
 }
 
 /* Активен раздел Булевые функции */
 .boolean-section.active {
     transform: translateX(0);
+    visibility: visible;
 }
 
 /* Активен раздел Теория графов */
 .graph-section.active {
     transform: translateX(0);
+    visibility: visible;
 }
 
-/* Кнопка назад внутри разделов */
+/* ⇊Кнопка назад внутри разделов⇊ */
 .back-btn {
-    margin: 1.5rem 0; /* Добавляем отступы сверху и снизу */
-    padding: 0.5rem 1rem;
-    background: var(--color-main);
-    border: none;
+    margin: 1.5rem; /* Отступы сверху и низу */
+    background-color: var(--color-main);
+    color: var(--color-white);
+    width: 8.5em;
+    height: 2.9em;
+    border: #00000000 0.2em solid;
     border-radius: 0.5rem;
-    color: var(--background);
-    cursor: pointer;
-    font-size: 1rem;
-    box-shadow: var(--shadow);
-    transition: background-color 0.3s, transform 0.3s;
+    transition: all 0.6s ease;
+    display: flex;
+    align-items: center;
+    padding-left: 0.8em; /* Отступ слева для иконки */
+    position: relative; /* Для абсолютного позиционирования иконки */
 }
 
-/* Эффект при наведении на кнопку "Назад" */
 .back-btn:hover {
     background-color: var(--color-main-light);
     transform: scale(1.05);
 }
+
+.back-btn svg {
+    width: 1.6em;
+    transition: all 0.6s ease;
+    position: absolute;
+    left: 0.8em;
+}
+
+.back-btn:hover svg {
+    transform: translateX(-8px); /* Сдвиг влево при наведении */
+}
+
+.back-btn-text {
+    margin-left: 2.2em; /* Отступ текста от иконки */
+}
+/* ⇈Кнопка назад внутри разделов⇈ */
 
 /* Анимация */
 .transition-overlay {
@@ -534,7 +556,6 @@ h1, button, span {
 .sidebar-content > * {
     direction: ltr;
 }
-
 
 /* Контейнер для прокрутки */
 .sidebar-content {

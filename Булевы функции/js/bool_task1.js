@@ -5,6 +5,10 @@ document.getElementById('nInput').addEventListener('input', function(e) {
     if(parseInt(this.value) < 1) this.value = '1'; // Если введено значение меньше 1 то ставится просто 1
 });
 
+function formatWithSpaces(input) {
+    return String(input).replace(/(.{4})(?=.)/g, '$1 ');  // Вставляем пробел после каждого 4-го символа
+}
+
 function generateBooleanFunction(n) {
     const numCombinations = 2 ** n;
     return Array.from({ length: numCombinations }, () => Math.floor(Math.random() * 2));
@@ -22,7 +26,7 @@ function generateTable() {
     tableContainer.innerHTML = '';
 
     // Вывод строки f
-    output.innerHTML = `<b>f</b> = (${booleanFunction.join('')})`;
+    output.innerHTML = `<b>f</b> = (${formatWithSpaces(booleanFunction.join(''))})`;
 
     // Создание таблицы
     const table = document.createElement('table');

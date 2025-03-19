@@ -11,7 +11,11 @@
         );
     </script>
     <style>
-        body {overflow: auto;} /* Прокрутка по необходимости */
+        body {
+            overflow: auto;
+        }
+
+        /* Прокрутка по необходимости */
     </style>
 </head>
 
@@ -179,19 +183,51 @@
     </div>
 
     <div class="task-container">
-        <button class="back-btn" onclick="returnToMainMenu()">
-            <div class="back-btn-text">
-                Назад
+        <div class="action-buttons">
+            <!-- Кнопка назад -->
+            <button class="back-btn" onclick="returnToMainMenu()">
+                <div class="back-btn-text">
+                    Назад
+                </div>
+
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="icon icon-tabler icons-tabler-outline icon-tabler-arrow-back-up">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                    <path d="M9 14l-4 -4l4 -4" />
+                    <path d="M5 10h11a4 4 0 1 1 0 8h-1" />
+                </svg>
+            </button>
+
+            <!-- Модальное окно -->
+            <div id="infoModal" class="modal" style="display: none;">
+                <div class="modal-header">
+                    Задача 1:
+                    <button class="close-btn">&times;</button>
+                </div>
+                <div class="modal-content">
+                    <pre>
+На вход - число n, 
+на выход - булевая функция от n аргументов</pre>
+                </div>
             </div>
 
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                class="icon icon-tabler icons-tabler-outline icon-tabler-arrow-back-up">
-                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                <path d="M9 14l-4 -4l4 -4" />
-                <path d="M5 10h11a4 4 0 1 1 0 8h-1" />
-            </svg>
-        </button>
+            <!-- Кнопка информации -->
+            <button class="info-btn" onclick="toggleInfoModal()">
+                <div class="info-btn-text">
+                    Справка
+                </div>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="icon icon-tabler icons-tabler-outline icon-tabler-info-circle">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                    <path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0" />
+                    <path d="M12 9h.01" />
+                    <path d="M11 12h1v4h1" />
+                </svg>
+            </button>
+        </div>
+
         <div class="task-header">
             <h1>Генератор булевых функций</h1>
         </div>

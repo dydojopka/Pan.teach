@@ -336,6 +336,12 @@ h1 {
     visibility: visible;
 }
 
+/* Контейнер кнопок назад и справка */
+.action-buttons{
+    display: flex;
+    justify-content: space-between;
+}
+
 /* ⇊Кнопка назад внутри разделов⇊ */
 .back-btn {
     margin: 1.5rem; /* Отступы сверху и низу */
@@ -372,6 +378,100 @@ h1 {
     margin-left: 2.2em; /* Отступ текста от иконки */
 }
 /* ⇈Кнопка назад внутри разделов⇈ */
+
+/* ⇊Кнопка и модальное окно информации внутри разделов⇊ */
+/* Кнопка информации */
+.info-btn {
+    margin: 1.5rem; /* Отступы сверху и низу */
+    background-color: var(--color-main);
+    color: var(--color-white);
+    width: 8.5em;
+    height: 2.9em;
+    border: #00000000 0.2em solid;
+    border-radius: 0.5rem;
+    transition: all 0.6s ease;
+    display: flex;
+    align-items: center;
+    padding-left: 0.8em; /* Отступ слева для иконки */
+    position: relative; /* Для абсолютного позиционирования иконки */
+}
+
+.info-btn:hover {
+    background-color: var(--color-main-light);
+    transform: scale(1.1);
+}
+
+.info-btn svg {
+    width: 1.6em;
+    transition: all 0.6s ease;
+    position: absolute;
+    right: 0.8em;
+}
+.info-btn:hover svg {
+    transform: scale(1.2); /* Сдвиг влево при наведении */
+}
+
+.info-btn-text {
+    margin-right: 2.2em;
+}
+
+/* Модальное окно */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1001;
+    background: var(--color-background-second);
+    border: 2px solid var(--color-main);
+    border-radius: 0.5rem;
+    box-shadow: var(--shadow);
+    min-width: 300px;
+    cursor: move;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    opacity: 0;
+    transform: none
+}
+.modal.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.modal-header {
+    padding: 1rem;
+    background: var(--color-main);
+    color: var(--background);
+    font-family: 'ShareTech Bold', serif;
+    border-radius: 0.5;
+    user-select: none;
+    position: relative;
+    cursor: move; /* Только заголовок для перетаскивания */
+}
+
+.modal-content {
+    padding: 1rem;
+    font-family: 'ShareTech', serif;
+    font-size: 16px;
+    cursor: text; /* Стандартный курсор для контента */
+}
+
+/* Кнопка закрытия */
+.close-btn {
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: var(--background);
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 0 0.5rem;
+    transition: color 0.2s;
+}
+
+.close-btn:hover {
+    color: var(--color-scrollbar-thumb-active);
+}
+/* ⇈Кнопка и модальное окно информации внутри разделов⇈ */
 
 /* Оверлей для стартовой анимации */
 .startup-overlay {

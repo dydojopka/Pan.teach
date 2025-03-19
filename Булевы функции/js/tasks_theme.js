@@ -7,9 +7,18 @@ function toggleTheme() {
 }
 
 // Кнопка бокового меню
-document.getElementById('menu-toggle').addEventListener('click', function () {
+document.getElementById('menu-toggle').addEventListener('click', function() {
     const sidebar = document.querySelector('.sidebar');
+    const infoBtn = document.querySelector('.info-btn');
+    const modal = document.getElementById('infoModal');
+    
     sidebar.classList.toggle('sidebar--active');
+    
+    // Закрываем модалку при открытии/закрытии панели
+    modal.style.display = 'none';
+    
+    // Переключаем состояние кнопки
+    infoBtn.classList.toggle('disabled', sidebar.classList.contains('sidebar--active'));
 });
 
 // Логика кнопки "Назад" для страниц задач

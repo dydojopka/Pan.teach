@@ -110,6 +110,11 @@ h1 {
     font-size: clamp(2.5rem, 5vw, 4rem);
 }
 
+/* Цвет SVG в шапке */
+.header-btn svg {
+    stroke: var(--text-color);
+}
+
 /* Шапка сайта */
 .site-header {
     position: fixed;

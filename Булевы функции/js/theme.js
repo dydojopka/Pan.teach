@@ -26,13 +26,6 @@ function toggleTheme() {
     localStorage.setItem('theme', newTheme);
 }
 
-// Инициализация темы при загрузке
-document.addEventListener('DOMContentLoaded', () => {
-    document.documentElement.setAttribute('data-theme', 
-        localStorage.getItem('theme') || 'light'
-    );
-});
-
 // Выбор раздела Булевые функции или Теория графов
 document.querySelectorAll('.section-btn').forEach(btn => {
     btn.addEventListener('click', function () {
@@ -60,17 +53,17 @@ document.querySelectorAll('.section-btn').forEach(btn => {
 // Возврат в главное меню
 function returnToMainMenu() {
     const selector = document.querySelector('.section-selector');
-    
+
     // Сбрасываем анимационные классы
     selector.classList.remove('hide-left', 'hide-right');
     selector.classList.add('active');
-    
+
     // Сбрасываем разделы
     document.querySelectorAll('.section-content').forEach(section => {
         section.classList.remove('active');
         section.style.transform = '';
     });
-    
+
     updateSectionName(null);
 }
 
@@ -78,7 +71,7 @@ function returnToMainMenu() {
 function updateSectionName(section) {
     const sectionName = document.getElementById('section-name');
     const selector = document.querySelector('.section-selector');
-    
+
     if (section === 'boolean') {
         sectionName.textContent = 'Булевы функции';
         selector.classList.remove('active');
@@ -99,15 +92,34 @@ document.getElementById('theme-toggle').addEventListener('click', () => {
     localStorage.setItem('theme', newTheme); // Сохраняем в localStorage
 });
 
-// При загрузке страницы
+// Тема при загрузке страницы
 const savedTheme = localStorage.getItem('theme') || 'light';
 document.documentElement.setAttribute('data-theme', savedTheme);
 
-// Анимация выбора задачи
+// Анимация загрузки страницы
+function animatePageLoad() {
+    const overlay = document.getElementById('initial-overlay');
+    
+    setTimeout(() => {
+        overlay.style.opacity = '0';
+        document.body.classList.add('loaded');
+    }, 400);
+
+    setTimeout(() => {
+        overlay.remove();
+    }, 800);
+}
+// Запускаем после полной загрузки
+window.addEventListener('load', animatePageLoad);
+
+// Анимация перехода на задачу
 document.querySelectorAll('.buttons-task').forEach(btn => {
     btn.addEventListener('click', function (e) {
         e.preventDefault();
         document.body.classList.add('animating');
+
+        const taskOverlay = document.getElementById('task-transition-overlay'); // Используем существующий оверлей
+        taskOverlay.style.opacity = '1'; // Активируем его
 
         // Сохраняем оригинальную кнопку
         const originalBtn = this;
@@ -146,20 +158,10 @@ document.querySelectorAll('.buttons-task').forEach(btn => {
             clone.style.opacity = '0.9';
         });
 
-        // Создаем фон
-        const overlay = document.createElement('div');
-        overlay.className = 'transition-overlay';
-        document.body.appendChild(overlay);
-
-        // Анимация фона
-        setTimeout(() => {
-            overlay.style.opacity = '1';
-        }, 300);
-
         // Удаление элементов после анимации
         setTimeout(() => {
             clone.remove();
-            overlay.remove();
+            taskOverlay.style.opacity = '0'; // Убираем оверлей задач
             originalBtn.style.opacity = '';
             originalBtn.style.pointerEvents = '';
         }, 800);
@@ -173,6 +175,12 @@ document.querySelectorAll('.buttons-task').forEach(btn => {
 
 // Активация сохраненного раздела при загрузке
 document.addEventListener('DOMContentLoaded', () => {
+    document.documentElement.setAttribute('data-theme',
+        localStorage.getItem('theme') || 'light'
+    );
+
+    animatePageLoad();
+
     const lastSection = localStorage.getItem('lastActiveSection');
     if (lastSection) {
         const selector = document.querySelector('.section-selector');
@@ -186,9 +194,9 @@ document.addEventListener('DOMContentLoaded', () => {
             activeSection.classList.add('active');
             updateSectionName(lastSection);
             selector.classList.remove('active');
-             // Полностью скрываем главное меню
+            // Полностью скрываем главное меню
         }, 50);
-        
+
         localStorage.removeItem('lastActiveSection');
     }
 });

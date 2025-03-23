@@ -199,6 +199,70 @@
         </div>
     </div>
 
+    <div class="task-container">
+        <div class="action-buttons">
+            <!-- Кнопка назад -->
+            <button class="back-btn" onclick="returnToMainMenu()">
+                <div class="back-btn-text">
+                    Назад
+                </div>
+
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="icon icon-tabler icons-tabler-outline icon-tabler-arrow-back-up">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                    <path d="M9 14l-4 -4l4 -4" />
+                    <path d="M5 10h11a4 4 0 1 1 0 8h-1" />
+                </svg>
+            </button>
+
+            <!-- Модальное окно -->
+            <div id="infoModal" class="modal" style="display: none;">
+                <div class="modal-header">
+                    Задача 8:
+                    <button class="close-btn">&times;</button>
+                </div>
+                <div class="modal-content">
+                    <pre>
+На вход - вектор значений булевой функции,
+на выход - СДНФ</pre>
+                </div>
+            </div>
+
+            <!-- Кнопка информации -->
+            <button class="info-btn" onclick="if(!this.classList.contains('disabled')) toggleInfoModal()">
+                <div class="info-btn-text">
+                    Справка
+                </div>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="icon icon-tabler icons-tabler-outline icon-tabler-info-circle">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                    <path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0" />
+                    <path d="M12 9h.01" />
+                    <path d="M11 12h1v4h1" />
+                </svg>
+            </button>
+        </div>
+
+        <div class="task-header">
+            <h1>Построение СДНФ</h1>
+        </div>
+
+        <div class="input-group">
+            <input type="text" id="vectorInput" placeholder="Введите вектор значении">
+            <button class="generate-btn" onclick="buildSDNF()">Построить</button>
+        </div>
+
+        <div id="error" class="error" style="display: none;"></div>
+        <div class="output" id="output">
+            <div id="sdnfFormula" class="formula"></div>
+        </div>
+        <div class="table-wrapper">
+            <table id="tableContainer"></table>
+        </div>
+    </div>
+
     <script src="../../js/tasks_theme.js"></script>
     <script src="../../js/tasks/bool_task8.js"></script>
 </body>

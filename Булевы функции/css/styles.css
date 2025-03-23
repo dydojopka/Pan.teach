@@ -782,7 +782,7 @@ input[type="number"], input[type="text"] {
     font-size: 1.2rem;
 }
 
-.generate-btn {
+.generate-btn, .check-btn {
     padding: 0.8rem 2rem;
     font-size: 1rem;
     background: var(--color-main);
@@ -795,12 +795,12 @@ input[type="number"], input[type="text"] {
     box-shadow: var(--shadow)
 }
 
-.generate-btn:hover {
+.generate-btn:hover, .check-btn:hover {
     background-color: var(--color-main-light);
     transform: scale(1.01);
 }
 
-.generate-btn:active {
+.generate-btn:active, .check-btn:active {
     background-color: var(--color-main);
     transform: scale(1);
 }
@@ -959,6 +959,7 @@ input{
 }
 /* ⇈Стили радио кнопок⇈ */
 
+/* Таблица */
 .table-wrapper {
     border: 2px solid var(--color-main);
     border-radius: 0.5rem;

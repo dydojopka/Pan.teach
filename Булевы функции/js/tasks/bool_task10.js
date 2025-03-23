@@ -1,6 +1,6 @@
 document.getElementById('nInput').addEventListener('input', function(e) {
     this.value = this.value.replace(/[^0-9]/g, '');
-    if(parseInt(this.value) > 10) this.value = '10';
+    if(parseInt(this.value) > 5) this.value = '5';
     if(parseInt(this.value) < 1) this.value = '1';
 });
 
@@ -72,7 +72,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     elements.generateBtn.addEventListener('click', () => {
-        const n = Math.max(1, Math.min(10, parseInt(elements.nInput.value) || 2));
+        const n = Math.max(1, parseInt(elements.nInput.value) || 2);
         currentVector = generateRandomFunction(n);
         elements.output.textContent = `f = (${formatBooleanVector(currentVector)})`;
         elements.resultText.textContent = '';

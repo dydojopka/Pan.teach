@@ -23,9 +23,17 @@
     &.active {
         box-shadow: var(--shadow), var(--shadow-in-box);
         color: var(--color-main);
-        
-        > i { font-size: 28cqi;} /* Фиксированный размер иконок */
-        > span { font-size: 13cqi;} /* Фиксированный размер текста */
+
+        >i {
+            font-size: 28cqi;
+        }
+
+        /* Фиксированный размер иконок */
+        >span {
+            font-size: 13cqi;
+        }
+
+        /* Фиксированный размер текста */
     }
 }
 
@@ -41,11 +49,14 @@ button.buttons-task {
     font-family: 'ShareTech italic', serif;
 
     display: grid;
-    grid-template-rows: 1fr auto; /* Распределение пространства */
-    align-items: end; /* Выравнивание текста снизу */
-    justify-items: center; /* Центрирование по горизонтали */
+    grid-template-rows: 1fr auto;
+    /* Распределение пространства */
+    align-items: end;
+    /* Выравнивание текста снизу */
+    justify-items: center;
+    /* Центрирование по горизонтали */
     gap: 1rem;
-    
+
     box-shadow: var(--shadow);
     outline: none;
     transition: all 0.2s;
@@ -63,19 +74,31 @@ button.buttons-task {
     &.active {
         box-shadow: var(--shadow), var(--shadow-in-box);
         color: var(--color-main);
-        
-        > i { font-size: 28cqi;} /* Фиксированный размер иконок */
-        > span { font-size: 13cqi;} /* Фиксированный размер текста */
+
+        >i {
+            font-size: 28cqi;
+        }
+
+        /* Фиксированный размер иконок */
+        >span {
+            font-size: 13cqi;
+        }
+
+        /* Фиксированный размер текста */
     }
-    
-    > i {
-        font-size: 31cqi; /* Базовый размер иконок */
-        align-self: start; /* Иконка прижата к верху */
+
+    >i {
+        font-size: 31cqi;
+        /* Базовый размер иконок */
+        align-self: start;
+        /* Иконка прижата к верху */
     }
-    
-    > span {
-        font-size: 16cqi; /* Базовый размер текста */
-        padding-bottom: 0.5rem; /* Отступ от нижнего края */
+
+    >span {
+        font-size: 16cqi;
+        /* Базовый размер текста */
+        padding-bottom: 0.5rem;
+        /* Отступ от нижнего края */
         text-align: center;
         width: 100%;
     }
@@ -93,8 +116,10 @@ body {
     padding: 2rem;
     font-family: 'ShareTech', serif;
     color: var(--text-color);
-    transition: background-color 0.3s, color 0.3s; /* Плавная смена темы */
-    overflow: hidden; /*Блокировка прокрутки*/
+    transition: background-color 0.3s, color 0.3s;
+    /* Плавная смена темы */
+    overflow: hidden;
+    /*Блокировка прокрутки*/
 }
 
 button {
@@ -169,16 +194,18 @@ h1 {
     margin: 0;
     white-space: nowrap;
 }
+
 .pan-text {
     color: var(--color-main);
     text-shadow: 0 0 12px var(--color-main-light);
 }
+
 .teach-text {
     color: var(--text-color);
 }
 
 /* Меню с выбором раздела (буллевые функции или теория графов) */
-.main-menu { 
+.main-menu {
     position: relative;
     overflow: visible;
     min-height: 100vh;
@@ -201,10 +228,12 @@ h1 {
 .section-selector.active {
     transform: translateX(0);
 }
+
 .section-selector.hide-left {
     transform: translateX(120%);
     visibility: hidden;
 }
+
 .section-selector.hide-right {
     transform: translateX(-120%);
     visibility: hidden;
@@ -224,8 +253,10 @@ h1 {
     box-shadow: var(--shadow);
     position: relative;
     overflow: hidden;
-    background: var(--color-background-second); /* Цвет под сдвигающейся частью */
+    background: var(--color-background-second);
+    /* Цвет под сдвигающейся частью */
 }
+
 .section-btn::before {
     content: '';
     position: absolute;
@@ -233,11 +264,12 @@ h1 {
     left: -50%;
     width: 230%;
     height: 200%;
-    background: var(--color-main); /* Цвет самой кнопки */
+    background: var(--color-main);
+    /* Цвет самой кнопки */
     transform: rotate(-45deg);
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     z-index: 2;
-    box-shadow: 4px 0 15px rgba(0,0,0,0.2);
+    box-shadow: 4px 0 15px rgba(0, 0, 0, 0.2);
 }
 
 /* Анимация при наведении */
@@ -264,22 +296,25 @@ h1 {
     transition: opacity 0.3s ease;
 }
 
-.section-btn:hover{
+.section-btn:hover {
     scale: 1.1;
 }
+
 /* Активация анимации при наведении */
 .section-btn:hover::after {
     opacity: 1;
 }
 
 @keyframes binaryFlow {
-    0% { 
+    0% {
         transform: translateX(0%);
     }
-    50% { 
+
+    50% {
         transform: translateX(100%);
     }
-    100% { 
+
+    100% {
         transform: translateX(0%);
     }
 }
@@ -297,14 +332,18 @@ h1 {
 .section-btn:hover span {
     transform: translateY(-10px);
 }
+
 /* ⇈Кнопки Булевые функции и Теория графов⇈ */
 
 /* Начальные позиции секций */
 .boolean-section {
-    transform: translateX(-120%); /* Скрыта слева */
+    transform: translateX(-120%);
+    /* Скрыта слева */
 }
+
 .graph-section {
-    transform: translateX(120%); /* Скрыта справа */
+    transform: translateX(120%);
+    /* Скрыта справа */
 }
 
 /* Активная секция */
@@ -320,7 +359,8 @@ h1 {
     top: 0;
     left: 0;
     width: 100%;
-    height: calc(100% - 4rem); /* Учитывая padding */
+    height: calc(100% - 4rem);
+    /* Учитывая padding */
     padding: 2rem;
     transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
     opacity: 0;
@@ -342,14 +382,15 @@ h1 {
 }
 
 /* Контейнер кнопок назад и справка */
-.action-buttons{
+.action-buttons {
     display: flex;
     justify-content: space-between;
 }
 
 /* ⇊Кнопка назад внутри разделов⇊ */
 .back-btn {
-    margin: 1.5rem; /* Отступы сверху и низу */
+    margin: 1.5rem;
+    /* Отступы сверху и низу */
     background-color: var(--color-main);
     color: var(--color-white);
     width: 8.5em;
@@ -359,8 +400,10 @@ h1 {
     transition: all 0.6s ease;
     display: flex;
     align-items: center;
-    padding-left: 0.8em; /* Отступ слева для иконки */
-    position: relative; /* Для абсолютного позиционирования иконки */
+    padding-left: 0.8em;
+    /* Отступ слева для иконки */
+    position: relative;
+    /* Для абсолютного позиционирования иконки */
 }
 
 .back-btn:hover {
@@ -376,18 +419,22 @@ h1 {
 }
 
 .back-btn:hover svg {
-    transform: translateX(-8px); /* Сдвиг влево при наведении */
+    transform: translateX(-8px);
+    /* Сдвиг влево при наведении */
 }
 
 .back-btn-text {
-    margin-left: 2.2em; /* Отступ текста от иконки */
+    margin-left: 2.2em;
+    /* Отступ текста от иконки */
 }
+
 /* ⇈Кнопка назад внутри разделов⇈ */
 
 /* ⇊Кнопка и модальное окно информации внутри разделов⇊ */
 /* Кнопка информации */
 .info-btn {
-    margin: 1.5rem; /* Отступы сверху и низу */
+    margin: 1.5rem;
+    /* Отступы сверху и низу */
     background-color: var(--color-main);
     color: var(--color-white);
     width: 8.5em;
@@ -397,8 +444,11 @@ h1 {
     transition: all 0.6s ease;
     display: flex;
     align-items: center;
-    padding-left: 0.8em; /* Отступ слева для иконки */
-    position: relative; /* Для абсолютного позиционирования иконки */
+    padding-left: 0.8em;
+    /* Отступ слева для иконки */
+    position: relative;
+    /* Для абсолютного позиционирования иконки */
+    justify-content: center;
 }
 
 .info-btn:hover {
@@ -412,9 +462,12 @@ h1 {
     position: absolute;
     right: 0.8em;
 }
+
 .info-btn:hover svg {
-    transform: scale(1.2); /* Увеличение при наведении */
+    transform: scale(1.2);
+    /* Увеличение при наведении */
 }
+
 .info-btn.disabled:hover svg {
     transform: none;
 }
@@ -428,6 +481,7 @@ h1 {
     cursor: not-allowed;
     opacity: 0.7;
 }
+
 .info-btn.disabled:hover {
     transform: none;
     background-color: var(--color-gray);
@@ -448,10 +502,12 @@ h1 {
     opacity: 0;
     transform: none
 }
+
 .modal.visible {
     opacity: 1;
     transform: translateY(0);
 }
+
 .modal-header {
     padding: 1rem;
     background: var(--color-main);
@@ -460,13 +516,16 @@ h1 {
     border-radius: 0.5;
     user-select: none;
     position: relative;
-    cursor: move; /* Только заголовок для перетаскивания */
+    cursor: move;
+    /* Только заголовок для перетаскивания */
 }
+
 .modal-content {
     padding: 1rem;
     font-family: 'ShareTech', serif;
     font-size: 16px;
-    cursor: text; /* Стандартный курсор для контента */
+    cursor: text;
+    /* Стандартный курсор для контента */
 }
 
 /* Кнопка закрытия */
@@ -487,6 +546,7 @@ h1 {
 .close-btn:hover {
     color: var(--color-scrollbar-thumb-active);
 }
+
 /* ⇈Кнопка и модальное окно информации внутри разделов⇈ */
 
 /* Оверлей для стартовой анимации */
@@ -497,7 +557,8 @@ h1 {
     width: 100%;
     height: 100%;
     background: var(--background);
-    z-index: 9999; /* Выше всего контента */
+    z-index: 9999;
+    /* Выше всего контента */
     opacity: 1;
     transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -510,7 +571,8 @@ h1 {
     width: 100%;
     height: 100%;
     background: var(--background);
-    z-index: 9997; /* Ниже клона кнопки */
+    z-index: 9997;
+    /* Ниже клона кнопки */
     opacity: 0;
     transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1);
     pointer-events: none;
@@ -541,24 +603,29 @@ h1 {
     site-header {
         padding: 0.5rem 1rem;
     }
+
     .site-header .site-title {
         font-size: 1.5rem;
     }
+
     .current-section {
         font-size: 1.2rem;
     }
-    
+
     .site-title {
         font-size: 3rem;
         top: 5%;
     }
-    .buttons_task > span {
-        font-size: 12px !important;
+
+    .buttons_task>span {
+        font-size: 12px;
     }
+
     .buttons {
         gap: 1rem;
         grid-template-columns: repeat(3, minmax(80px, 1fr));
     }
+
     .back-btn {
         font-size: 0.9rem;
     }
@@ -569,18 +636,26 @@ h1 {
     .site-title {
         font-size: 2.2rem;
     }
+
     .buttons {
         grid-template-columns: repeat(2, minmax(70px, 1fr));
     }
 }
 
 /* Запрет выделения текста для h1 и всех кнопок */
-h1, button, span {
-    -webkit-user-select: none; /* Chrome, Safari */
-    -moz-user-select: none;    /* Firefox */
-    -ms-user-select: none;     /* IE/Edge */
-    user-select: none;         /* Стандарт */
-    
+h1,
+button,
+span,
+.function-names {
+    -webkit-user-select: none;
+    /* Chrome, Safari */
+    -moz-user-select: none;
+    /* Firefox */
+    -ms-user-select: none;
+    /* IE/Edge */
+    user-select: none;
+    /* Стандарт */
+
     /* Для мобильных устройств */
     -webkit-tap-highlight-color: transparent;
 }
@@ -595,6 +670,7 @@ h1, button, span {
         opacity: 0;
         transform: translateY(20px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -606,6 +682,7 @@ h1, button, span {
         backdrop-filter: blur(100px);
         opacity: 0;
     }
+
     to {
         backdrop-filter: blur(0);
         opacity: 1;
@@ -617,8 +694,10 @@ h1, button, span {
     position: fixed;
     width: 340px;
     left: -340px;
-    height: calc(100% - 80px); /* Учитываем высоту шапки */
-    top: 80px; /* Отступ сверху = высота шапки */
+    height: calc(100% - 80px);
+    /* Учитываем высоту шапки */
+    top: 80px;
+    /* Отступ сверху = высота шапки */
     background: var(--background);
     transition: all 0.5s ease;
     font-family: 'ShareTech', serif;
@@ -628,7 +707,8 @@ h1, button, span {
     overflow: auto;
     direction: rtl;
 }
-.sidebar-content > * {
+
+.sidebar-content>* {
     direction: ltr;
 }
 
@@ -641,8 +721,9 @@ h1, button, span {
 
 /* Стилизация скроллбара */
 .sidebar-content::-webkit-scrollbar {
-    
-    right: 0; /* Позиционируем слева */
+
+    right: 0;
+    /* Позиционируем слева */
 }
 
 .sidebar--active {
@@ -655,13 +736,14 @@ h1, button, span {
     transition: transform 0.5s ease;
 }
 
-.sidebar > header {
+.sidebar>header {
     font-size: 28px;
     color: var(--text-color);
     line-height: 70px;
     margin-left: 1rem;
     padding: 0 15px;
-    flex-shrink: 0; /* Фиксируем заголовок */
+    flex-shrink: 0;
+    /* Фиксируем заголовок */
     background: var(--background);
     border-bottom: 2px solid var(--color-main);
     direction: ltr;
@@ -685,8 +767,8 @@ h1, button, span {
     color: var(--color-main);
 }
 
-.sidebar--active ~ #menu-toggle,
-.sidebar--active ~ .task-container {
+.sidebar--active~#menu-toggle,
+.sidebar--active~.task-container {
     transform: translateX(120px);
 }
 
@@ -711,6 +793,7 @@ h1, button, span {
     font-size: 1.5rem;
     font-family: 'ShareTech Bold', serif;
 }
+
 .folder-header.active {
     color: var(--color-main);
     text-decoration: underline;
@@ -735,6 +818,7 @@ h1, button, span {
     margin-right: 10px;
     text-decoration: none;
 }
+
 .task.current {
     text-decoration: underline;
 }
@@ -745,13 +829,15 @@ h1, button, span {
     position: relative;
     z-index: 1;
 }
+
 /* ⇈Стили боковой панели⇈*/
 
 .task-container {
     margin: auto;
     animation: fadeIn 0.9s cubic-bezier(0.4, 0, 0.2, 1);
     max-width: 1000px;
-    margin-top: 120px; /* Отступ под шапку */
+    margin-top: 120px;
+    /* Отступ под шапку */
     padding: 2rem;
     box-shadow: var(--shadow-in-box);
     border-radius: 0.5rem;
@@ -771,7 +857,8 @@ h1, button, span {
     margin-bottom: 2rem;
 }
 
-input[type="number"], input[type="text"] {
+input[type="number"],
+input[type="text"] {
     flex: 1;
     padding: 0.8rem;
     border: 2px solid var(--color-main);
@@ -805,11 +892,24 @@ input[type="number"], input[type="text"] {
     transform: scale(1);
 }
 
-input{
+/* Стиль для неактивной кнопки проверки */
+.generate-btn.disabled {
+    background-color: var(--color-gray);
+    cursor: not-allowed;
+    opacity: 0.7;
+    transform: none;
+}
+
+.generate-btn.disabled:hover {
+    background-color: var(--color-gray);
+    transform: none;
+}
+
+input {
     box-shadow: var(--shadow);
 }
 
-#output{
+#output {
     /* background: var(--background); */
     border: 2px solid var(--color-main);
     border-radius: 0.5rem;
@@ -821,7 +921,7 @@ input{
     box-shadow: var(--shadow);
 }
 
-/* ⇊Стили для динамических радио-кнопок аргументов⇊ */
+/* ⇊Стили для динамических радио-кнопок аргументов(bool_task2)⇊ */
 #arg-radio-group {
     border: 2px solid var(--color-main);
     border-radius: 0.5rem;
@@ -835,7 +935,7 @@ input{
 }
 
 /* Стиль только для label с радио-кнопками */
-#arg-radio-group > div {
+#arg-radio-group>div {
     position: relative;
 }
 
@@ -843,7 +943,7 @@ input{
     display: none;
 }
 
-#arg-radio-group input[type="radio"] + label {
+#arg-radio-group input[type="radio"]+label {
     display: inline-flex;
     align-items: center;
     /* padding: 0.5rem 1rem; */
@@ -854,7 +954,7 @@ input{
     /* border: 2px solid var(--color-main); */
 }
 
-#arg-radio-group input[type="radio"] + label::before {
+#arg-radio-group input[type="radio"]+label::before {
     content: "";
     display: inline-block;
     width: 18px;
@@ -870,13 +970,14 @@ input{
     color: var(--background);
 } */
 
-#arg-radio-group input[type="radio"]:checked + label::before {
+#arg-radio-group input[type="radio"]:checked+label::before {
     background: var(--color-main);
     border-color: var(--background);
 }
-/* ⇈Стили для динамических радио-кнопок аргументов⇈ */
 
-/* ⇊Стили радио кнопок⇊ */
+/* ⇈Стили для динамических радио-кнопок аргументов(bool_task2)⇈ */
+
+/* ⇊Стили радио кнопок(bool_task2)⇊ */
 .zero-unit-radio {
     display: inline-flex;
     height: 30px;
@@ -930,19 +1031,19 @@ input{
     display: none;
 }
 
-#residual-0:checked ~ .option-0,
-#residual-1:checked ~ .option-1 {
+#residual-0:checked~.option-0,
+#residual-1:checked~.option-1 {
     border-color: var(--color-main);
     background: var(--color-main);
 }
 
-#residual-0:checked ~ .option-0 .dot,
-#residual-1:checked ~ .option-1 .dot {
+#residual-0:checked~.option-0 .dot,
+#residual-1:checked~.option-1 .dot {
     background: var(--background);
 }
 
-#residual-0:checked ~ .option-0 .dot::before,
-#residual-1:checked ~ .option-1 .dot::before {
+#residual-0:checked~.option-0 .dot::before,
+#residual-1:checked~.option-1 .dot::before {
     opacity: 1;
     transform: scale(1);
 }
@@ -953,11 +1054,180 @@ input{
     transition: color 0.3s;
 }
 
-#residual-0:checked ~ .option-0 span,
-#residual-1:checked ~ .option-1 span {
+#residual-0:checked~.option-0 span,
+#residual-1:checked~.option-1 span {
     color: var(--background);
 }
-/* ⇈Стили радио кнопок⇈ */
+
+/* ⇈Стили радио кнопок(bool_task2)⇈ */
+
+/* ⇊Стили для контейнера радио-кнопок(bool_task4)⇊ */
+.function-names {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    margin: 1rem 0;
+    padding: 1rem;
+    border: 2px solid var(--color-main);
+    border-radius: 0.5rem;
+    box-shadow: var(--shadow);
+}
+
+.radio-option input[type="radio"] {
+    display: none;
+}
+
+.radio-option label {
+    height: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    /* padding: 0.5rem; */
+    background: var(--background);
+    border: 2px solid var(--color-main);
+    border-radius: 0.5rem;
+    color: var(--text-color);
+    cursor: pointer;
+    margin: 0.5rem 0.5rem;
+}
+
+.radio-option input[type="radio"]:checked+label {
+    background: var(--color-main);
+    color: var(--background);
+    border-color: var(--color-main);
+    transition: all 0.3s ease;
+}
+
+/* Неактивные стили */
+.radio-option input:disabled+label {
+    background: var(--color-gray);
+    border-color: var(--color-gray);
+    cursor: not-allowed;
+    opacity: 0.7;
+    transition: all 0.3s ease;
+}
+
+.radio-option input:disabled+label:hover {
+    transform: none;
+}
+
+/* Стиль для правильного ответа */
+.radio-option label.correct {
+    background: var(--color-green) !important;
+    border-color: var(--color-green) !important;
+}
+/* Стиль для неправильного ответа */
+.radio-option label.incorrect {
+    background: var(--color-red) !important;
+    border-color: var(--color-red) !important;
+}
+/* Стиль для невыбранного правильного ответа */
+.radio-option label.correct-answer {
+    border-color: var(--color-green) !important;
+}
+
+/* Стили для заблокированных кнопок */
+.radio-option input:disabled+label {
+    background: var(--color-gray);
+    border-color: var(--color-gray);
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+.radio-option input:disabled+label:hover {
+    transform: none;
+    box-shadow: none;
+}
+
+/* Адаптивность для мобильных устройств */
+@media (max-width: 768px) {
+    .function-names {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.75rem;
+        padding: 0.5rem;
+    }
+
+    .radio-option label {
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .function-names {
+        grid-template-columns: 1fr;
+    }
+
+    .radio-option {
+        aspect-ratio: unset;
+        height: 60px;
+    }
+}
+
+/* ⇈Стили для контейнера радио-кнопок(bool_task4)⇈ */
+
+/* ⇊Стили для уведомления ответа⇊ */
+.answer {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 1.5rem 3rem;
+    border-radius: 0.5rem;
+    font-size: 2rem;
+    font-family: 'ShareTech Bold', serif;
+    z-index: 1000;
+    opacity: 0;
+    animation: fadeInOut 2s ease;
+    pointer-events: none;
+    color: var(--background);
+}
+
+.answer svg {
+    width: 1.5em;
+    height: 1.5em;
+    margin-right: 0.8rem;
+    vertical-align: middle;
+}
+
+/* Верно */
+.answer.correct {
+    background: var(--color-green);
+}
+
+.answer.correct .correct-icon {
+    display: inline-block;
+}
+
+/* Не верно */
+.answer.incorrect {
+    background: var(--color-red);
+}
+
+.answer.incorrect .incorrect-icon {
+    display: inline-block;
+}
+
+/* Изначально скрыт */
+.hidden {
+    display: none;
+}
+
+@keyframes fadeInOut {
+
+    0%,
+    100% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.8);
+    }
+
+    20%,
+    80% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+/* ⇈Стили для уведомления ответа⇈ */
 
 .table-wrapper {
     border: 2px solid var(--color-main);
@@ -972,7 +1242,8 @@ table {
     border-collapse: collapse;
 }
 
-th, td {
+th,
+td {
     padding: 1rem;
     border: 1px solid var(--color-main);
     text-align: center;
@@ -995,7 +1266,7 @@ td:last-child {
     background: var(--color-main-light-tran);
     border-left: 5px solid var(--color-main);
     font-size: 1.2em;
-    box-shadow: 
+    box-shadow:
         inset 0 0 10px var(--color-main-light-tran),
         2px 0 8px -4px var(--color-main);
     transition: all 0.3s;
@@ -1025,6 +1296,7 @@ td:last-child {
     background-color: var(--color-scrollbar-thumb-active);
 }
 
-input[type="number"]::-webkit-inner-spin-button, input[type="number"]::-webkit-outer-spin-button {
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
     -webkit-appearance: none;
 }

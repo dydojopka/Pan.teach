@@ -228,8 +228,7 @@
                 <div class="modal-content">
                     <pre>
 На вход - вектор функции, 0 или 1, номер аргумента,
-на выход - соответствующая остаточная.
-                    </pre>
+на выход - соответствующая остаточная.</pre>
                 </div>
             </div>
 
@@ -258,15 +257,25 @@
             <button class="generate-btn" onclick="generateTable()">Вычислить</button>
         </div>
 
-        <div class="radio-group" id="arg-radio-group">
+        <div class="radio-group custom-radio" id="arg-radio-group">
             <label>Выберите аргумент:</label><br>
             <!-- Радиокнопки для аргументов будут добавляться динамически -->
         </div>
 
         <div class="radio-group">
-            <label>Выберите остаточную:</label><br>
-            <label><input type="radio" name="residual" value="0" checked>Нулевая</label>
-            <label><input type="radio" name="residual" value="1">Единичная</label>
+            <div class="zero-unit-radio">
+                <label>Выберите остаточную:</label>
+                <input type="radio" name="residual" id="residual-0" value="0" checked>
+                <input type="radio" name="residual" id="residual-1" value="1">
+                <label for="residual-0" class="option option-0">
+                    <div class="dot"></div>
+                    <span>Нулевая</span>
+                </label>
+                <label for="residual-1" class="option option-1">
+                    <div class="dot"></div>
+                    <span>Единичная</span>
+                </label>
+            </div>
         </div>
 
         <div id="output" class="function-output"></div>

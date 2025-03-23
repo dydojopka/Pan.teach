@@ -24,27 +24,27 @@ function updateInputDisplay() {
 
 // Функция для обновления радиокнопок
 function updateArgs(inputValue) {
-    // Убираем пробелы из строки для вычислений
-    const functionVector = inputValue.replace(/\s+/g, ''); // Убираем пробелы
+    const functionVector = inputValue.replace(/\s+/g, '');
     const n = Math.log2(functionVector.length);
-
-    if (!Number.isInteger(n)) return; // Если длина не степень двойки, не обновляем радиокнопки
+    if (!Number.isInteger(n)) return;
 
     const argRadioGroup = document.getElementById('arg-radio-group');
-    const existingRadioButtons = argRadioGroup.querySelectorAll('input[type="radio"]');
+    argRadioGroup.innerHTML = '<label>Выберите аргумент:</label>';
 
-    // Удаляем лишние радиокнопки
-    if (existingRadioButtons.length > n) {
-        for (let i = existingRadioButtons.length - 1; i >= n; i--) {
-            existingRadioButtons[i].parentElement.remove();
-        }
-    }
-
-    // Добавляем недостающие радиокнопки
-    for (let i = existingRadioButtons.length + 1; i <= n; i++) {
-        const radioButton = document.createElement('label');
-        radioButton.innerHTML = `<input type="radio" name="arg" value="${i}" ${i === 1 ? 'checked' : ''}>x${i}`;
-        argRadioGroup.appendChild(radioButton);
+    for (let i = 1; i <= n; i++) {
+        const container = document.createElement('div');
+        const radioId = `arg-${i}`;
+        
+        container.innerHTML = `
+            <input type="radio" 
+                   name="arg" 
+                   id="${radioId}" 
+                   value="${i}" 
+                   ${i === 1 ? 'checked' : ''}>
+            <label for="${radioId}">x${i}</label>
+        `;
+        
+        argRadioGroup.appendChild(container);
     }
 }
 

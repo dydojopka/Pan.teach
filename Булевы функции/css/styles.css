@@ -878,7 +878,6 @@ input[type="text"] {
     border-radius: 0.5rem;
     cursor: pointer;
     transition: all 0.2s;
-
     box-shadow: var(--shadow)
 }
 
@@ -913,11 +912,12 @@ input {
     /* background: var(--background); */
     border: 2px solid var(--color-main);
     border-radius: 0.5rem;
-    padding: 1rem;
+    padding: 0.8rem;
     margin-bottom: 1rem;
     overflow-x: auto;
     white-space: nowrap;
-    font-family: 'ShareTech Mono', monospace;
+    font-family: 'ShareTech', serif;
+    font-size: 1.2rem;
     box-shadow: var(--shadow);
 }
 

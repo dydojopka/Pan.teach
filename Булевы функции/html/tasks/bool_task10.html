@@ -198,6 +198,28 @@
             </div>
         </div>
     </div>
+    
+    <main class="main-content">
+        <div class="task-container">
+            <h1>Игра. Предполные классы б.ф.</h1>
+            <p>Определите предполные классы булевой функции:</p>
+            <div class="input-group">
+                <input type="number" id="nInput" placeholder="Введите n (1-10)" pattern="\d*">
+                <div id="output" class="function-output"></div>
+                <button class="generate-btn">Новый вектор функции</button>
+            </div>
+            <div>
+                <p>Выберите предполные классы, которым принадлежит функция:</p>
+                <label><input type="checkbox" value="T0"> T₀ (сохраняет 0)</label><br>
+                <label><input type="checkbox" value="T1"> T₁ (сохраняет 1)</label><br>
+                <label><input type="checkbox" value="S"> S (самодвойственная)</label><br>
+                <label><input type="checkbox" value="M"> M (монотонная)</label><br>
+                <label><input type="checkbox" value="L"> L (линейная)</label><br>
+            </div>
+            <button class="check-btn">Проверить ответ</button>
+            <p id="result"></p>
+        </div>
+    </main>
 
     <script src="../../js/tasks_theme.js"></script>
     <script src="../../js/tasks/bool_task10.js"></script>

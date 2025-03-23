@@ -1124,6 +1124,7 @@ input {
 /* Стиль для невыбранного правильного ответа */
 .radio-option label.correct-answer {
     border-color: var(--color-green) !important;
+    border: 3px solid;
 }
 
 /* Стили для заблокированных кнопок */

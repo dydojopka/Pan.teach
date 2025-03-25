@@ -1,3 +1,7 @@
+import { initValidation } from '../common.js';
+
+const GENERATE_BUTTON_ID = 'generate';
+
 function formatWithSpaces(input) {
     return input.replace(/(.{4})(?=.)/g, '$1 ');  // Вставляем пробел после каждого 4-го символа
 }
@@ -7,7 +11,7 @@ function updateInputDisplay() {
     let inputValue = inputField.value.replace(/[^0-1]/g, '');  // Убираем все, кроме 0 и 1
 
     // Форматируем значение с пробелами, чтобы визуально отображались пробелы
-    const formattedValue = formatWithSpaces(inputValue);  
+    const formattedValue = formatWithSpaces(inputValue);
 
     // Сохраняем позицию курсора
     const cursorPosition = inputField.selectionStart;
@@ -34,7 +38,7 @@ function updateArgs(inputValue) {
     for (let i = 1; i <= n; i++) {
         const container = document.createElement('div');
         const radioId = `arg-${i}`;
-        
+
         container.innerHTML = `
             <input type="radio" 
                    name="arg" 
@@ -43,7 +47,7 @@ function updateArgs(inputValue) {
                    ${i === 1 ? 'checked' : ''}>
             <label for="${radioId}">x${i}</label>
         `;
-        
+
         argRadioGroup.appendChild(container);
     }
 }
@@ -60,11 +64,24 @@ function computeResidual(functionVector, argValue, argIndex) {
     return residualFunction;
 }
 
+// Функция проверки условий валидации
+function validationCheck() {
+    const nInput = document.getElementById('nInput').value.replace(/\s+/g, '');
+
+    // Проверка 1: Корректность символов
+    if (!nInput || !/^[01]+$/.test(nInput)) return false;
+
+    // Проверка 2: Длина вектора
+    const functionVector = Array.from(nInput).map(digit => parseInt(digit, 10));
+    const n = Math.log2(functionVector.length);
+    return Number.isInteger(n);
+}
+
 // Генерация таблицы и формирование результата
 function generateTable() {
     const nInput = document.getElementById('nInput').value.replace(/\s+/g, ''); // Убираем пробелы из ввода
-    if (!nInput || !/^[01]+$/.test(nInput)) {
-        alert("Введите корректное числовое значение для вектора функции.");
+    if (!validationCheck()) {
+        // Здесь позже будет кастомный alert
         return;
     }
 
@@ -79,10 +96,22 @@ function generateTable() {
     const argValue = parseInt(document.querySelector('input[name="arg"]:checked').value) - 1;
 
     const residual = computeResidual(functionVector, residualValue, argValue);
-    
+
     // Формируем математическую формулу для вывода с пробелами
     const formattedResidual = formatWithSpaces(residual.join(''));
 
     const formula = `f<sup>${residualValue}</sup><sub>${argValue + 1}</sub> = (${formattedResidual})`;
     document.getElementById('output').innerHTML = formula;
 }
+
+// Инициализация валидации при загрузке
+document.addEventListener('DOMContentLoaded', () => {
+    initValidation(
+        GENERATE_BUTTON_ID,
+        validationCheck,
+        ['#nInput', 'input[name="arg"]', 'input[name="residual"]']
+    );
+
+    document.getElementById('nInput').addEventListener('input', updateInputDisplay);
+    document.getElementById(GENERATE_BUTTON_ID).addEventListener('click', generateTable);
+});

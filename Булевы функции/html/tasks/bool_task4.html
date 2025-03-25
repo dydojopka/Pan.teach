@@ -255,8 +255,9 @@
 
         <div class="input-group">
             <div id="output" class="function-output"></div>
-            <button class="generate-btn" onclick="">Новый вектор</button>
-            <button class="generate-btn" onclick="">Проверить ответ</button>
+            <!-- Кнопки работают через id в bool_task4.js -->
+            <button class="generate-btn" id="new-vector-btn">Новый вектор</button> 
+            <button class="generate-btn" id="check-answer-btn">Проверить ответ</button>
         </div>
 
         <!-- Окно верности/неверности ответа -->
@@ -361,7 +362,7 @@
     </div>
 
     <script src="../../js/tasks_theme.js"></script>
-    <script src="../../js/tasks/bool_task4.js"></script>
+    <script type="module" src="../../js/tasks/bool_task4.js"></script>
 </body>
 
 </html>

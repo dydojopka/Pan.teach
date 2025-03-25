@@ -1,3 +1,5 @@
+import { initValidation } from '../common.js';
+
 document.addEventListener('DOMContentLoaded', function () {
     const booleanFunctions = [
         { name: "Конъюнкция", vector: [0, 0, 0, 1], id: "conjunction" },
@@ -22,7 +24,8 @@ document.addEventListener('DOMContentLoaded', function () {
     let selectedFunction = null;
     const answerMessage = document.getElementById('answer-message');
     const messageText = document.getElementById('message-text');
-    const checkButton = document.querySelectorAll('.generate-btn')[1];
+    const newVectorButton = document.getElementById('new-vector-btn');
+    const checkButton = document.getElementById('check-answer-btn');
 
     function showMessage(isCorrect) {
         answerMessage.querySelectorAll('svg').forEach(icon => icon.style.display = 'none');
@@ -42,11 +45,11 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    function toggleCheckButtonState() {
-        const isEnabled = selectedFunction !== null;
-        checkButton.disabled = !isEnabled;
-        checkButton.classList.toggle('disabled', !isEnabled);
-    }
+    initValidation(
+        'check-answer-btn',
+        () => selectedFunction !== null,
+        ['input[name="boolean-function"]']
+    );
 
     function generateRandomFunction() {
         return booleanFunctions[Math.floor(Math.random() * booleanFunctions.length)];
@@ -55,26 +58,32 @@ document.addEventListener('DOMContentLoaded', function () {
     function startGame() {
         correctFunction = generateRandomFunction();
         selectedFunction = null;
-        
+
         // Сбрасываем все стили ответов
         document.querySelectorAll('.radio-option label').forEach(label => {
             label.classList.remove('correct', 'incorrect', 'correct-answer');
             label.style.removeProperty('border-color');
             label.style.removeProperty('box-shadow');
         });
-        
+
         document.getElementById('output').textContent = `Вектор функции: [${correctFunction.vector.join(', ')}]`;
         document.querySelectorAll('input[name="boolean-function"]').forEach(radio => {
             radio.checked = false;
             radio.disabled = false;
         });
-        toggleCheckButtonState();
+        const checkButton = document.getElementById('check-answer-btn');
+        if (checkButton.updateState) checkButton.updateState();
     }
 
     document.querySelectorAll('input[name="boolean-function"]').forEach(radio => {
         radio.addEventListener('change', function () {
             selectedFunction = booleanFunctions.find(f => f.id === this.value);
-            toggleCheckButtonState();
+            // Принудительно обновляем состояние кнопки
+            initValidation(
+                'check-answer-btn',
+                () => selectedFunction !== null,
+                ['input[name="boolean-function"]']
+            );
         });
     });
 
@@ -108,6 +117,6 @@ document.addEventListener('DOMContentLoaded', function () {
         checkButton.classList.add('disabled');
     });
 
-    document.querySelectorAll('.generate-btn')[0].addEventListener('click', startGame);
+    newVectorButton.addEventListener('click', startGame);
     startGame();
 });

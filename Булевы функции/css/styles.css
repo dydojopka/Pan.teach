@@ -913,12 +913,13 @@ input {
     border: 2px solid var(--color-main);
     border-radius: 0.5rem;
     padding: 0.8rem;
-    margin-bottom: 1rem;
+    /* margin-bottom: 1rem;  */
     overflow-x: auto;
     white-space: nowrap;
     font-family: 'ShareTech', serif;
     font-size: 1.2rem;
     box-shadow: var(--shadow);
+    
 }
 
 /* ⇊Стили для динамических радио-кнопок аргументов(bool_task2)⇊ */
@@ -1236,6 +1237,7 @@ input {
     border-radius: 0.5rem;
     overflow: hidden;
     box-shadow: var(--shadow);
+    margin-top: 1rem;
 }
 
 table {

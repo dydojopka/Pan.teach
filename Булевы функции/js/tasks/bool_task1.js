@@ -1,13 +1,11 @@
+import { formatWithSpaces } from '../common.js';
+
 // Запрет ввода нечисловых значений
 document.getElementById('nInput').addEventListener('input', function(e) {
     this.value = this.value.replace(/[^0-9]/g, '');
     if(parseInt(this.value) > 10) this.value = '10'; // Если введено значение больше 10 то ставится просто 10
     if(parseInt(this.value) < 1) this.value = '1'; // Если введено значение меньше 1 то ставится просто 1
 });
-
-function formatWithSpaces(input) {
-    return String(input).replace(/(.{4})(?=.)/g, '$1 ');  // Вставляем пробел после каждого 4-го символа
-}
 
 function generateBooleanFunction(n) {
     const numCombinations = 2 ** n;
@@ -60,3 +58,5 @@ function generateTable() {
 
     tableContainer.appendChild(table);
 }
+
+document.getElementById('generate').addEventListener('click', generateTable);

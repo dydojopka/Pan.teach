@@ -68,3 +68,13 @@ export function initValidation(buttonId, checkConditions, elementsToObserve) {
     // Первоначальная проверка при инициализации
     updateButtonState();
 }
+
+/** 
+ * Вставляет пробел каждые 4 символа
+ * 
+ * @param {string} input - Строка в которой нужно вставить пробелы
+ */
+export function formatWithSpaces(input) {
+    const str = String(input); // Явное преобразование в строку
+    return str.replace(/(.{4})(?=.)/g, '$1 '); // Регулярка с учётом границ строки
+}

@@ -1,10 +1,6 @@
-import { initValidation } from '../common.js';
+import { initValidation, formatWithSpaces } from '../common.js';
 
 const GENERATE_BUTTON_ID = 'generate';
-
-function formatWithSpaces(input) {
-    return input.replace(/(.{4})(?=.)/g, '$1 ');  // Вставляем пробел после каждого 4-го символа
-}
 
 function updateInputDisplay() {
     const inputField = document.getElementById('nInput');
@@ -14,13 +10,16 @@ function updateInputDisplay() {
     const formattedValue = formatWithSpaces(inputValue);
 
     // Сохраняем позицию курсора
-    const cursorPosition = inputField.selectionStart;
+    const cursorPosition = inputField.selectionStart - (inputField.value.match(/ /g)?.length || 0);
 
     // Вставляем форматированное значение обратно в input
     inputField.value = formattedValue;
 
+    // Сохранение новой позиции
+    const newCursorPos = cursorPosition + Math.floor(cursorPosition/4);
+
     // Восстанавливаем позицию курсора после обновления значения
-    inputField.setSelectionRange(cursorPosition + (formattedValue.length - inputValue.length), cursorPosition + (formattedValue.length - inputValue.length));
+    inputField.setSelectionRange(newCursorPos, newCursorPos);
 
     // Обновляем радиокнопки для аргументов
     updateArgs(inputValue);

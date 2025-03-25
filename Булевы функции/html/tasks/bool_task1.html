@@ -256,15 +256,15 @@
         <div class="input-group">
             <input type="number" id="nInput" placeholder="Введите n (1-10)" pattern="\d*"
                 onkeypress="return event.charCode >= 48 && event.charCode <= 57">
-            <button class="generate-btn" onclick="generateTable()">Сгенерировать</button>
+            <button class="generate-btn" id="generate">Сгенерировать</button>
         </div>
 
-        <div id="output" class="function-output"></div>
+        <div id="output" class="function-output" >f = (Тут будет булевая функция от n аргументов...)</div>
         <div id="tableContainer" class="table-wrapper"></div>
     </div>
 
     <script src="../../js/tasks_theme.js"></script>
-    <script src="../../js/tasks/bool_task1.js"></script>
+    <script type="module" src="../../js/tasks/bool_task1.js"></script>
 </body>
 
 </html>

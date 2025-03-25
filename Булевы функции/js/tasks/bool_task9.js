@@ -129,10 +129,13 @@ function buildSKNF() {
         return;
     }
 
+    // Очищаем вектор от пробелов
+    const cleanVector = vectorInput.replace(/\s/g, '');
+
     // Строим таблицу истинности
     generateTable(vectorInput);
 
     // Строим и отображаем СКНФ
-    const sknfFormula = buildSKNFFormula(vectorInput);
+    const sknfFormula = buildSKNFFormula(cleanVector);
     document.getElementById('sknfFormula').innerHTML = sknfFormula;
 }

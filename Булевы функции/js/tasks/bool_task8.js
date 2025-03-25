@@ -129,10 +129,13 @@ function buildSDNF() {
         return;
     }
 
+    // Очищаем вектор от пробелов
+    const cleanVector = vectorInput.replace(/\s/g, '');
+
     // Строим таблицу истинности
-    generateTable(vectorInput);
+    generateTable(cleanVector);
 
     // Строим и отображаем СДНФ
-    const sdnfFormula = buildSDNFFormula(vectorInput);
+    const sdnfFormula = buildSDNFFormula(cleanVector);
     document.getElementById('sdnfFormula').innerHTML = sdnfFormula;
 }

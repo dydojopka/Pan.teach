@@ -52,7 +52,6 @@ def evaluate_cnf(cnf, num_vars):
     return results
 
 def parse_cnf(cnf_str, num_vars):
-    """Парсит строку КНФ во внутреннее представление"""
     cnf = []
     # Удаляем все пробелы для упрощения парсинга
     cnf_str = cnf_str.replace(" ", "")

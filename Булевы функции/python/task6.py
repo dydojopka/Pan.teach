@@ -6,24 +6,66 @@ def generate_random_function(num_vars):
     return [random.randint(0, 1) for _ in range(length)]
 
 def vector_to_dnf(function_vector, num_vars):
-    """Преобразует вектор функции в совершенную ДНФ (СДНФ)"""
-    dnf = []
+    """Преобразует вектор функции в ДНФ (не обязательно совершенную)"""
+    # Сначала строим СДНФ
+    sdnf = []
     for i, value in enumerate(function_vector):
         if value == 1:
             conj = []
             for j in range(num_vars):
                 var_val = (i >> (num_vars - 1 - j)) & 1
                 conj.append((j, not var_val))
-            dnf.append(conj)
-    return dnf
+            sdnf.append(conj)
+    
+    if not sdnf:
+        return []  # Константа 0
+    if len(sdnf) == 2 ** num_vars:
+        return [()]  # Константа 1 (пустая конъюнкция)
+    
+    # Простая минимизация: объединяем конъюнкции, отличающиеся одним литералом
+    minimized = []
+    used = [False] * len(sdnf)
+    
+    for i in range(len(sdnf)):
+        if used[i]:
+            continue
+        for j in range(i+1, len(sdnf)):
+            if len(sdnf[i]) != len(sdnf[j]):
+                continue
+            # Находим различающиеся литералы
+            diff = []
+            for lit1, lit2 in zip(sorted(sdnf[i]), sorted(sdnf[j])):
+                if lit1 != lit2:
+                    diff.append((lit1, lit2))
+            # Если различаются ровно одним литералом по одной переменной
+            if len(diff) == 1 and diff[0][0][0] == diff[0][1][0]:
+                var = diff[0][0][0]
+                new_conj = [lit for lit in sdnf[i] if lit[0] != var]
+                minimized.append(new_conj)
+                used[i] = True
+                used[j] = True
+                break
+        if not used[i]:
+            minimized.append(sdnf[i])
+            used[i] = True
+    
+    # Если минимизация не удалась, возвращаем СДНФ
+    if len(minimized) >= len(sdnf):
+        return sdnf
+    
+    return minimized
 
 def dnf_to_string(dnf, num_vars):
     """Преобразует ДНФ в строку для вывода"""
     if not dnf:
         return "0"  # Константа 0
+    if dnf == [()]:
+        return "1"  # Константа 1
     
     conj_strs = []
     for conj in dnf:
+        if not conj:  # пустая конъюнкция - константа 1
+            return "1"
         lit_strs = []
         for var, neg in conj:
             if neg:
@@ -32,7 +74,7 @@ def dnf_to_string(dnf, num_vars):
                 lit_strs.append(f"x{var+1}")
         conj_strs.append("*".join(lit_strs))
     
-    return " + ".join(conj_strs) if conj_strs else "1"  # Константа 1
+    return " + ".join(conj_strs) if conj_strs else "1"
 
 def evaluate_dnf(dnf, num_vars):
     """Вычисляет значения ДНФ для всех возможных входных комбинаций"""
@@ -66,6 +108,10 @@ def parse_dnf(dnf_str, num_vars):
         conj = conj.strip()
         if not conj:
             continue
+        if conj == "1":
+            return [()]
+        if conj == "0":
+            return []
         literals = []
         for lit in conj.split('*'):
             lit = lit.strip()
@@ -125,7 +171,7 @@ def main():
     
     # Сравниваем с исходным вектором функции
     if computed_vector == function_vector:
-        print("\nПравильно! Введённая ДНФ соответствует заданной функции.")
+        print("\nВведённая ДНФ соответствует заданной функции.")
     else:
         print("\nВведённая ДНФ не соответствует заданной функции.")
         print("\nПравильная ДНФ:")

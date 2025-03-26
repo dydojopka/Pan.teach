@@ -15,122 +15,6 @@
             overflow: auto;
             /* Прокрутка по необходимости */
         }
-
-        .variables-and-containers {
-            display: flex;
-            flex-direction: row;
-            background: var(--background);
-            padding: 2rem;
-            margin: 2rem auto;
-            /* border-radius: 1rem; */
-            /* box-shadow: var(--shadow-in-box); */
-            max-width: 1200px;
-
-            gap: 2rem;
-            justify-content:center;
-        }
-
-        .variables-container {
-            display: flex;
-            gap: 2rem;
-            padding: 1rem;
-            justify-content: center;
-            flex-wrap: wrap;
-
-            box-shadow: var(--shadow-in-box);
-            border-radius: 1rem;
-        }
-
-        .function-vector {
-            font-family: 'ShareTech', serif;
-            font-size: 1.2em;
-            text-align: center;
-            margin: 1rem 0;
-            padding: 1rem;
-            background: var(--background);
-            border-radius: 0.5rem;
-            box-shadow: var(--shadow);
-        }
-
-        .variables-box,
-        .drop-box {
-            background: var(--background);
-            border-radius: 1rem;
-            padding: 1.5rem;
-            min-width: 250px;
-            box-shadow: var(--shadow-in-box);
-            transition: transform 0.3s ease;
-        }
-
-        .variables-box:hover,
-
-        .variables-box h3,
-        .drop-box h3 {
-            margin: 0 0 1rem 0;
-            color: var(--text-color);
-            font-size: 1.2em;
-            text-align: center;
-            font-family: 'ShareTech Bold', serif;
-        }
-
-        .variables-group {
-            display: flex;
-            flex-direction: column;
-            flex-wrap: wrap;
-            gap: 1rem;
-            justify-content: center;
-            align-items: center;
-            margin: 1rem 0;
-        }
-
-        .variable-item {
-            background: var(--color-main);
-            padding: 1rem;
-            border-radius: 0.5rem;
-            cursor: move;
-            user-select: none;
-            text-align: center;
-            color: var(--color-white);
-            font-family: 'ShareTech', serif;
-            transition: all 0.3s ease;
-            box-shadow: var(--shadow);
-        }
-
-        .variable-item:hover {
-            transform: scale(1.05);
-            background: var(--color-main-light);
-        }
-
-        .variable-item.dragging {
-            opacity: 0.7;
-            transform: scale(1.1);
-            box-shadow: var(--shadow), var(--shadow-in-box);
-        }
-
-        .variables-drop-zone {
-            min-height: 150px;
-            border: 2px dashed var(--color-main);
-            border-radius: 0.5rem;
-            padding: 1rem;
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-            transition: all 0.3s ease;
-            background: var(--background);
-        }
-
-        .variables-drop-zone.drag-over {
-            background: var(--color-main-light);
-            border-style: solid;
-            transform: scale(1.02);
-        }
-
-        .drop-containers {
-            display: flex;
-            gap: 2rem;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
     </style>
 </head>
 
@@ -343,9 +227,29 @@
                 </div>
                 <div class="modal-content">
                     <pre>
-Игра. Существенные и фиктивные переменные.
+Игра.
+Существенные и фиктивные переменные.
 Система предлагает вектор функции.
 Пользователь выбирает существенные и фиктивные переменные.</pre>
+                </div>
+            </div>
+
+            <!-- toast-уведомление -->
+            <div class="custom-toast">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="icon icon-tabler icons-tabler-outline icon-tabler-message-exclamation">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                    <path d="M8 9h8" />
+                    <path d="M8 13h6" />
+                    <path d="M15 18h-2l-5 3v-3h-2a3 3 0 0 1 -3 -3v-8a3 3 0 0 1 3 -3h12a3 3 0 0 1 3 3v5.5" />
+                    <path d="M19 16v3" />
+                    <path d="M19 22v.01" />
+                </svg>
+                <div class="toast-content">
+                    <div class="toast-message">
+                        <span class="toast-text"></span>
+                    </div>
                 </div>
             </div>
 
@@ -365,15 +269,16 @@
             </button>
         </div>
         <div class="task-header">
-            <h1>Существенные и фиктивные переменные</h1>
+            <h1>Игра. Существенные и фиктивные </h1>
         </div>
 
         <div class="input-group">
-            <input type="number" id="variablesCount" min="2" max="4" value="2" placeholder="Введите n (2-4)"
-                class="form-control">
-            <div id="functionVector" class="function-vector">f = <span></span></div>
+            <input type="number" id="variablesCount" placeholder="Введите n (2-4)" class="form-control">
             <button class="generate-btn" id="generate">Сгенерировать новый вектор</button>
+            <button class="generate-btn" id="checkAnswer">Проверить ответ</button>
         </div>
+
+        <div id="functionVector" class="function-output"><span>f = (Тут будет булевая функция от n аргументов...)</span></div>
 
         <div class="variables-and-containers">
             <div class="variables-container">
@@ -383,21 +288,20 @@
             </div>
 
             <!-- <div class="drop-containers"> -->
-                <div class="drop-box">
-                    <h3>Существенные переменные</h3>
-                    <div id="essentialVariables" class="variables-drop-zone" data-type="essential">
-                        <!-- Сюда будут перетаскиваться существенные переменные -->
-                    </div>
+            <div class="drop-box">
+                <span>Существенные переменные</span>
+                <div id="essentialVariables" class="variables-drop-zone" data-type="essential">
+                    <!-- Сюда будут перетаскиваться существенные переменные -->
                 </div>
+            </div>
 
-                <div class="drop-box">
-                    <h3>Фиктивные переменные</h3>
-                    <div id="fictiveVariables" class="variables-drop-zone" data-type="fictive">
-                        <!-- Сюда будут перетаскиваться фиктивные переменные -->
-                    </div>
+            <div class="drop-box">
+                <span>Фиктивные переменные</span>
+                <div id="fictiveVariables" class="variables-drop-zone" data-type="fictive">
+                    <!-- Сюда будут перетаскиваться фиктивные переменные -->
                 </div>
+            </div>
             <!-- </div> -->
-            <button class="check-btn" id="checkAnswer">Проверить ответ</button>
         </div>
 
         <div id="result" class="result-output"></div>

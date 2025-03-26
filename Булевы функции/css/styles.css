@@ -489,7 +489,7 @@ h1 {
 
 /* ⇊Стили toast-уведомления⇊ */
 .custom-toast {
-    position: relative;
+    position:sticky;
     left: 50%;
     transform: translateX(-50%);
     width: max-content;
@@ -500,7 +500,7 @@ h1 {
     color: var(--background);
     box-shadow: var(--shadow);
     font-family: 'ShareTech', serif;
-    z-index: 1001;
+    z-index: 999;
     opacity: 0;
     visibility: hidden;
     transition: all 0.3s ease;
@@ -954,7 +954,7 @@ input {
     box-shadow: var(--shadow);
 }
 
-#output {
+.function-output {
     /* background: var(--background); */
     border: 2px solid var(--color-main);
     border-radius: 0.5rem;
@@ -965,7 +965,6 @@ input {
     font-family: 'ShareTech', serif;
     font-size: 1.2rem;
     box-shadow: var(--shadow);
-    
 }
 
 /* ⇊Стили для динамических радио-кнопок аргументов(bool_task2)⇊ */
@@ -1210,8 +1209,105 @@ input {
         height: 60px;
     }
 }
-
 /* ⇈Стили для контейнера радио-кнопок(bool_task4)⇈ */
+
+/* ⇊Стили для drop-контейнеров(bool_task5)⇊ */
+.variables-and-containers {
+    display: flex;
+    flex-direction: row;
+    padding: 2rem 1rem;
+    gap: 2rem;
+    justify-content: flex-start;
+}
+
+.variables-container {
+    display: flex;
+    min-width: 3rem;
+    min-height: 17.5rem;
+    gap: 2rem;
+    padding: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    box-shadow: var(--shadow-in-box);
+    border-radius: 0.5rem;
+}
+
+.variables-box,
+.drop-box {
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+    box-shadow: var(--shadow-in-box);
+    flex: 1;
+}
+
+.variables-box span,
+.drop-box span {
+    margin: 0 0 1rem 0;
+    color: var(--text-color);
+    font-size: 1.2rem;
+    text-align: center;
+}
+
+.variables-group {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin: 1rem 0;
+}
+
+.variable-item {
+    background: var(--color-main);
+    padding: 1rem;
+    border-radius: 0.5rem;
+    cursor: move;
+    user-select: none;
+    text-align: center;
+    color: var(--color-white);
+    font-family: 'ShareTech', serif;
+    transition: all 0.3s ease;
+    box-shadow: var(--shadow);
+}
+
+.variable-item:hover {
+    transform: scale(1.05);
+    background: var(--color-main-light);
+}
+
+.variable-item.dragging {
+    opacity: 0.7;
+    transform: scale(1.1);
+    box-shadow: var(--shadow), var(--shadow-in-box);
+}
+
+.variables-drop-zone {
+    min-height: 10rem;
+    border: 2px dashed var(--color-main);
+    border-radius: 0.5rem;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    transition: all 0.3s ease;
+}
+
+.variables-drop-zone.correct {
+    border: 2px dashed var(--color-green) !important;
+}
+
+.variables-drop-zone.drag-over {
+    background: var(--color-main-light);
+    border-style: solid;
+    transform: scale(1.02);
+}
+
+.drop-containers {
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+}
+/* ⇈Стили для drop-контейнеров(bool_task5)⇈ */
 
 /* ⇊Стили для уведомления ответа⇊ */
 .answer {

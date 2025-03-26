@@ -66,7 +66,7 @@ document.addEventListener('DOMContentLoaded', function () {
             label.style.removeProperty('box-shadow');
         });
 
-        document.getElementById('output').textContent = `Вектор функции: (${correctFunction.vector.join('')})`;
+        document.getElementById('output').textContent = `f = (${correctFunction.vector.join('')})`;
         document.querySelectorAll('input[name="boolean-function"]').forEach(radio => {
             radio.checked = false;
             radio.disabled = false;

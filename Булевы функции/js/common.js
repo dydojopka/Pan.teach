@@ -84,7 +84,12 @@ export function showToast(message, isError = true) {
     const toast = document.querySelector('.custom-toast');
     if (!toast) return;
 
-    toast.querySelector('.toast-text').textContent = message;
+    const toastText = toast.querySelector('.toast-text');
+    if (message.includes('<math>')) {
+        toastText.innerHTML = message;
+    } else {
+        toastText.textContent = message;
+    }
     toast.classList.add('active');
     toast.style.backgroundColor = isError ? 'var(--color-red-light)' : 'var(--color-green-light)';
 }
@@ -97,4 +102,46 @@ export function hideToast() {
         toast.querySelector('.toast-text').textContent = '';
         toast.style.backgroundColor = '';
     }
+}
+
+/**
+ * Преобразует математическую формулу в MathML формат
+ * 
+ * @param {string} formula - Строка формулы в формате ДНФ/КНФ
+ * @returns {string} - Строка в формате MathML
+ */
+export function formulaToMathML(formula) {
+    // Обработка констант
+    const cleanFormula = formula.trim();
+    if (cleanFormula === '0') return "<math><mn>0</mn></math>";
+    if (cleanFormula === '1') return "<math><mn>1</mn></math>";
+
+    // Определяем тип формулы (ДНФ или КНФ) по первому оператору
+    const isDNF = formula.includes('+');
+    const mainOperator = isDNF ? '∨' : '∧';
+    const termOperator = isDNF ? '∧' : '∨';
+
+    // Разбиваем формулу на термы
+    const terms = isDNF 
+        ? formula.split('+').map(t => t.trim())
+        : formula.split('*').map(t => t.trim());
+
+    const mathmlTerms = terms.map(term => {
+        const variables = term.split(isDNF ? '*' : '+').map(v => {
+            const varTrim = v.trim();
+            const isNegated = varTrim.startsWith('!');
+            const varNum = parseInt(varTrim.replace(/[!x]/gi, ''));
+            
+            return isNegated
+                ? `<mover><msub><mi>x</mi><mn>${varNum}</mn></msub><mo stretchy="true" style="transform: scale(3, 1.2) translateX(-0.1em) translateY(-0.05em);">‾</mo></mover>`
+                : `<msub><mi>x</mi><mn>${varNum}</mn></msub>`;
+        });
+
+        return variables.length > 1
+            ? `<mrow><mo>(</mo>${variables.join(`<mo>${termOperator}</mo>`)}<mo>)</mo></mrow>`
+            : variables[0];
+    });
+
+    return `<math>${mathmlTerms.join(`<mo>${mainOperator}</mo>`)}</math>`;
+
 }

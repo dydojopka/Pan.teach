@@ -1,4 +1,4 @@
-import { initValidation, formatWithSpaces, showToast, hideToast } from '../common.js';
+import { initValidation, formatWithSpaces, showToast, hideToast, formulaToMathML } from '../common.js';
 
 document.addEventListener('DOMContentLoaded', function () {
     const generateBtn = document.getElementById('generate');
@@ -118,13 +118,19 @@ document.addEventListener('DOMContentLoaded', function () {
         return results;
     }
 
-    // Преобразование ДНФ в строку
+    // Преобразование ДНФ в строку с использованием MathML
     function dnfToString(dnf) {
-        if (dnf.length === 0) return "0";
-        if (dnf[0]?.length === 0) return "1"; // Константа 1
-        return dnf.map(conj =>
-            conj.map(([v, n]) => `${n ? '!' : ''}x${v + 1}`).join('*')
-        ).join(' + ');
+        if (dnf.length === 0) return formulaToMathML('0');
+        if (dnf[0].length === 0) return formulaToMathML('1');
+        // Преобразуем ДНФ в строковый формат
+        const formula = dnf.map(term => {
+            const literals = term.map(([varIdx, neg]) => 
+                `${neg ? '!' : ''}x${varIdx + 1}`
+            ).join('*');
+            return literals;
+        }).join('+');
+        
+        return formulaToMathML(formula);
     }
 
     // Генерация новой функции

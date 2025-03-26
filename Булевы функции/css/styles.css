@@ -956,7 +956,7 @@ input {
     box-shadow: var(--shadow);
 }
 
-.function-output {
+.function-output, #output {
     /* background: var(--background); */
     border: 2px solid var(--color-main);
     border-radius: 0.5rem;

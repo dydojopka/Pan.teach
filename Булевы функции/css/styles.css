@@ -487,6 +487,52 @@ h1 {
     background-color: var(--color-gray);
 }
 
+/* ⇊Стили toast-уведомления⇊ */
+.custom-toast {
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    width: max-content;
+    max-width: 25rem;
+    padding: 12px 20px;
+    border-radius: 0.5rem;
+    background: var(--color-red-light);
+    color: var(--background);
+    box-shadow: var(--shadow);
+    font-family: 'ShareTech', serif;
+    z-index: 1001;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.custom-toast.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(10px);
+}
+
+.custom-toast svg{
+    animation: scaling 3s linear infinite;
+}
+
+@keyframes scaling {
+    0%{
+    transform: scale(1);
+    }
+    50%{
+        transform: scale(1.15)
+    }
+    100%{
+        transform: scale(1);
+    }
+}
+/* ⇈Стили toast-уведомления⇈ */
+
+
 /* Модальное окно */
 .modal {
     display: none;

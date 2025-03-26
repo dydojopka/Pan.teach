@@ -78,3 +78,19 @@ export function formatWithSpaces(input) {
     const str = String(input); // Явное преобразование в строку
     return str.replace(/(.{4})(?=.)/g, '$1 '); // Регулярка с учётом границ строки
 }
+
+
+export function showToast(message, isError = true) {
+    const toast = document.querySelector('.custom-toast');
+    if (!toast) return;
+
+    toast.querySelector('.toast-text').textContent = message;
+    toast.classList.add('active');
+    toast.style.backgroundColor = isError ? 'var(--color-red-light)' : 'var(--color-green-light)';
+
+}
+
+export function hideToast() {
+    const toast = document.querySelector('.custom-toast');
+    if (toast) toast.classList.remove('active');
+}

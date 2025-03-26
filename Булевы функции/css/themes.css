@@ -17,7 +17,9 @@
     --color-black-light: rgb(30, 30, 30);
 
     --color-red: rgb(255, 0, 0);
+    --color-red-light: rgb(244, 67, 54);
     --color-green: rgb(0, 155, 15);
+    --color-green-light: rgb(76, 175, 80);
 }
 
 /* Стили для светлой темы */

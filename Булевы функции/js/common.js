@@ -87,10 +87,14 @@ export function showToast(message, isError = true) {
     toast.querySelector('.toast-text').textContent = message;
     toast.classList.add('active');
     toast.style.backgroundColor = isError ? 'var(--color-red-light)' : 'var(--color-green-light)';
-
 }
 
 export function hideToast() {
     const toast = document.querySelector('.custom-toast');
-    if (toast) toast.classList.remove('active');
+    if (toast) {
+        toast.classList.remove('active');
+        // Очищаем текст и сбрасываем стили
+        toast.querySelector('.toast-text').textContent = '';
+        toast.style.backgroundColor = '';
+    }
 }

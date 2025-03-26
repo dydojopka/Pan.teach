@@ -516,6 +516,8 @@ h1 {
 }
 
 .custom-toast svg{
+    min-height: 24px;
+    min-width: 24px;
     animation: scaling 3s linear infinite;
 }
 

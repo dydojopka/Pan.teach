@@ -234,6 +234,25 @@
                 </div>
             </div>
 
+            <!-- toast-уведомление -->
+            <div class="custom-toast">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="icon icon-tabler icons-tabler-outline icon-tabler-message-exclamation">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                    <path d="M8 9h8" />
+                    <path d="M8 13h6" />
+                    <path d="M15 18h-2l-5 3v-3h-2a3 3 0 0 1 -3 -3v-8a3 3 0 0 1 3 -3h12a3 3 0 0 1 3 3v5.5" />
+                    <path d="M19 16v3" />
+                    <path d="M19 22v.01" />
+                </svg>
+                <div class="toast-content">
+                    <div class="toast-message">
+                        <span class="toast-text"></span>
+                    </div>
+                </div>
+            </div>
+
             <!-- Кнопка информации -->
             <button class="info-btn" onclick="if(!this.classList.contains('disabled')) toggleInfoModal()">
                 <div class="info-btn-text">
@@ -254,11 +273,9 @@
         </div>
 
         <div class="input-group">
-            <input type="text" id="nInput" placeholder="Введите нулевую остаточную" oninput="updateInputDisplay()"
-                autocomplete="off">
-            <input type="text" id="nInput" placeholder="Введите еденичную остаточную" oninput="updateInputDisplay()"
-                autocomplete="off">
-            <button class="generate-btn" onclick="generateTable()">Вычислить</button>
+            <input type="text" id="zeroInput" placeholder="Введите нулевую остаточную" autocomplete="off">
+            <input type="text" id="oneInput" placeholder="Введите единичную остаточную" autocomplete="off">
+            <button id="generateBtn" class="generate-btn">Вычислить</button>
         </div>
 
         <div class="radio-group custom-radio" id="arg-radio-group">
@@ -266,11 +283,11 @@
             <!-- Радиокнопки для аргументов будут добавляться динамически -->
         </div>
 
-        <div id="output" class="function-output"></div>
+        <div id="output" class="function-output">f = (...)</div>
     </div>
 
     <script src="../../js/tasks_theme.js"></script>
-    <script src="../../js/tasks/bool_task3.js"></script>
+    <script type="module" src="../../js/tasks/bool_task3.js"></script>
 </body>
 
 </html>

@@ -72,20 +72,15 @@ document.addEventListener('DOMContentLoaded', function () {
         nInput: document.getElementById('nInput')
     };
 
-    function showAnswerMessage(isCorrect) {
-        // Сброс предыдущих состояний
-        elements.answerMessage.classList.remove('correct', 'incorrect');
-        elements.correctIcon.style.display = 'none';
-        elements.incorrectIcon.style.display = 'none';
-
-        // Обновление иконки и текста
+    function showMessage(isCorrect) {
+        elements.answerMessage.querySelectorAll('svg').forEach(icon => icon.style.display = 'none');
+        const iconClass = isCorrect ? 'correct-icon' : 'incorrect-icon';
+        elements.answerMessage.querySelector(`.${iconClass}`).style.display = 'inline-block';
+        elements.answerMessage.className = `answer ${isCorrect ? 'correct' : 'incorrect'} visible`;
         elements.messageText.textContent = isCorrect ? 'Верно!' : 'Неверно!';
-        elements.answerMessage.classList.add(isCorrect ? 'correct' : 'incorrect');
-        elements.answerMessage.classList.add('visible');
 
-        // Автоматическое скрытие через 2 секунды
         setTimeout(() => {
-            elements.answerMessage.classList.remove('visible');
+            elements.answerMessage.className = 'answer hidden';
         }, 2000);
     }
 
@@ -106,15 +101,21 @@ document.addEventListener('DOMContentLoaded', function () {
         currentVector = generateRandomFunction(n);
         elements.output.textContent = `f = (${formatBooleanVector(currentVector)})`;
 
+        // Скрываем toast через прямое управление стилями
+        const toast = document.querySelector('.custom-toast');
+        if (toast) toast.classList.remove('active'); // Только удаление класса
+
         // Сброс состояний
         document.querySelectorAll('input[type="checkbox"]').forEach(cb => {
             cb.checked = false;
             cb.disabled = false;
-            cb.parentElement.classList.remove('correct');
+            cb.parentElement.classList.remove('correct', 'incorrect', 'correct-answer');
         });
 
-        elements.answerMessage.classList.add('hidden');
+        elements.checkBtn.disabled = false;
+        elements.checkBtn.classList.remove('disabled');
         
+        elements.answerMessage.classList.add('hidden');
     });
 
     elements.checkBtn.addEventListener('click', () => {
@@ -123,28 +124,55 @@ document.addEventListener('DOMContentLoaded', function () {
             return;
         }
 
+        // Заменить на:
+        document.querySelectorAll('.custom-toast').forEach(t => {
+            t.classList.remove('active'); // Только удаление класса
+        });
+
         const selected = Array.from(document.querySelectorAll('input:checked')).map(cb => cb.value);
         const checkFunctions = { checkT0, checkT1, checkS, checkM, checkL };
         const actual = ['T0', 'T1', 'S', 'M', 'L'].filter(cls => checkFunctions[`check${cls}`](currentVector));
 
         const correct = arraysEqual(selected.sort(), actual.sort());
 
-        // Показ окна ответа
-        showAnswerMessage(correct);
+        // Показ сообщения
+        showMessage(correct);
 
-        // Обновление окна ответа
-        elements.answerMessage.classList.remove('hidden');
-        elements.messageText.textContent = correct ? 'Верно!' : 'Неверно!';
-        elements.correctIcon.style.display = correct ? 'block' : 'none';
-        elements.incorrectIcon.style.display = correct ? 'none' : 'block';
+        // Сброс предыдущих стилей
+        document.querySelectorAll('input[type="checkbox"]').forEach(cb => {
+            cb.parentElement.classList.remove('correct', 'incorrect', 'correct-answer');
+        });
 
         if (!correct) {
+            // Подсветка неправильно выбранных
+            selected.forEach(cls => {
+                if (!actual.includes(cls)) {
+                    document.getElementById(cls).parentElement.classList.add('incorrect');
+                }
+            });
+            // Подсветка правильных классов
+            actual.forEach(cls => {
+                document.getElementById(cls).parentElement.classList.add('correct-answer');
+            });
             showToast(`Правильные классы: ${actual.join(', ')}`, true);
         } else {
+            // Подсветка правильных
             actual.forEach(cls => {
                 document.getElementById(cls).parentElement.classList.add('correct');
             });
             document.querySelectorAll('input[type="checkbox"]').forEach(cb => cb.disabled = true);
+            
+            // Новый код: отключаем кнопку проверки
+            elements.checkBtn.disabled = true;
+            elements.checkBtn.classList.add('disabled');
         }
+    });
+
+    document.querySelectorAll('input[type="checkbox"]').forEach(cb => {
+        cb.addEventListener('change', () => {
+            document.querySelectorAll('.custom-toast').forEach(t => {
+                t.classList.remove('active'); // Только удаление класса
+            });
+        });
     });
 });

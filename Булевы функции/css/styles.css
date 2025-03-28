@@ -547,7 +547,7 @@ h1 {
     background: var(--color-background-second);
     border: 2px solid var(--color-main);
     border-radius: 0.5rem;
-    box-shadow: var(--shadow);
+    /* box-shadow: var(--shadow); */
     min-width: 300px;
     cursor: move;
     transition: opacity 0.2s ease, transform 0.2s ease;

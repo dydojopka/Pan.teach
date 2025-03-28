@@ -24,7 +24,7 @@ function generateTable() {
     tableContainer.innerHTML = '';
 
     // Вывод строки f
-    output.innerHTML = `<b>f</b> = (${formatWithSpaces(booleanFunction.join(''))})`;
+    output.innerHTML = `f = (${formatWithSpaces(booleanFunction.join(''))})`;
 
     // Создание таблицы
     const table = document.createElement('table');

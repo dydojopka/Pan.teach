@@ -1385,6 +1385,90 @@ input {
 }
 /* ⇈Стили для кастомных чекбоксов(bool_task10)⇈*/
 
+/* ⇊Стили для клавиатуры ввода ДНФ (bool_task6)⇊ */
+.keyboard-output {
+    flex: 1;
+    padding: 0.8rem;
+    border: 2px solid var(--color-main);
+    border-radius: 0.5rem;
+    box-shadow: var(--shadow);
+    background: var(--color-clear);
+    color: var(--text-color);
+    font-family: 'ShareTech', serif;
+    font-size: 1.2rem;
+    min-height: 1.5rem;
+}
+
+.keyboard {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    width: 100%;
+    max-width: 600px;
+    /* margin-top: 2rem; */
+    /* box-shadow: var(--shadow); */
+    /* padding: 1rem; */
+    border-radius: 0.5rem;
+    background: var(--background);
+}
+
+.keyboard-row {
+    display: flex;
+    gap: 0.5rem;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.keyboard-button, .keyboard-button-main {
+    flex: 1;
+    padding: 0.8rem;
+    font-size: 1.2rem;
+    background: var(--background);
+    color: var(--text-color);
+    border: 2px solid var(--color-main);
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: 'ShareTech', serif;
+    box-shadow: var(--shadow);
+    min-width: 40px;
+}
+
+.keyboard-button:hover, .keyboard-button-main:hover {
+    background-color: var(--color-main);
+    color: var(--background);
+    transform: scale(1.05);
+}
+
+.keyboard-button:active, .keyboard-button-main:active {
+    background-color: var(--color-main);
+    color: var(--background);
+    transform: scale(.95);
+    /* box-shadow: var(--shadow-in-box); */
+}
+
+.keyboard-button-main {
+    background-color: var(--color-main);
+    color: var(--background);
+}
+
+/* Адаптивная верстка для клавиатуры */
+@media (max-width: 480px) {
+    .keyboard-button, .keyboard-button-main {
+        padding: 0.6rem;
+        font-size: 1rem;
+        min-width: 30px;
+    }
+    
+    .keyboard {
+        padding: 0.5rem;
+    }
+    
+    .keyboard-row {
+        gap: 0.3rem;
+    }
+}
+
 /* ⇊Стили для уведомления ответа⇊ */
 .answer {
     position: fixed;

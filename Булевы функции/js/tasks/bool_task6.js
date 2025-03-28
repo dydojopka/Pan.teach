@@ -67,20 +67,60 @@ document.addEventListener('DOMContentLoaded', function () {
         if (cleanStr === '0') return [];
         if (cleanStr === '1') return [[]];
 
+        // Предварительная обработка скобок
+        let processedStr = cleanStr;
+        // Удаляем внешние скобки, если они охватывают всё выражение
+        if (processedStr.startsWith('(') && processedStr.endsWith(')')) {
+            // Проверяем, что это действительно внешние скобки
+            let depth = 0;
+            let isOuterBrackets = true;
+            
+            for (let i = 0; i < processedStr.length - 1; i++) {
+                if (processedStr[i] === '(') depth++;
+                else if (processedStr[i] === ')') depth--;
+                
+                // Если глубина стала 0 до конца строки, значит это не внешние скобки
+                if (depth === 0 && i < processedStr.length - 1) {
+                    isOuterBrackets = false;
+                    break;
+                }
+            }
+            
+            if (isOuterBrackets) {
+                processedStr = processedStr.substring(1, processedStr.length - 1).trim();
+            }
+        }
+
         const dnf = [];
-        const conjunctions = dnfStr.split('+').map(c => c.trim()).filter(c => c);
+        const conjunctions = processedStr.split('+').map(c => c.trim()).filter(c => c);
 
         for (const conj of conjunctions) {
             const literals = [];
-            const lits = conj.split('*').map(l => l.trim()).filter(l => l);
+            // Обрабатываем скобки внутри конъюнкции
+            let processedConj = conj;
+            if (processedConj.startsWith('(') && processedConj.endsWith(')')) {
+                processedConj = processedConj.substring(1, processedConj.length - 1).trim();
+            }
+            
+            const lits = processedConj.split('*').map(l => l.trim()).filter(l => l);
 
             for (const lit of lits) {
                 let neg = false;
                 let varName = lit;
 
-                if (lit.startsWith('!')) {
+                // Обрабатываем скобки вокруг отрицания
+                if (varName.startsWith('(') && varName.endsWith(')')) {
+                    varName = varName.substring(1, varName.length - 1).trim();
+                }
+
+                if (varName.startsWith('!')) {
                     neg = true;
-                    varName = lit.slice(1);
+                    varName = varName.slice(1);
+                }
+
+                // Обрабатываем скобки вокруг переменной после отрицания
+                if (varName.startsWith('(') && varName.endsWith(')')) {
+                    varName = varName.substring(1, varName.length - 1).trim();
                 }
 
                 const varNum = parseInt(varName.replace(/x/gi, '')) - 1;
@@ -158,7 +198,8 @@ document.addEventListener('DOMContentLoaded', function () {
     // Проверка ответа
     function checkAnswer() {
         try {
-            const userDNF = parseDNF(dnfInput.value, numVars);
+            // Используем переменную formula вместо dnfInput.value, так как она содержит актуальное значение ввода
+            const userDNF = parseDNF(formula, numVars);
             const computed = evaluateDNF(userDNF, numVars);
 
             if (computed.join('') === functionVector.join('')) {
@@ -173,12 +214,10 @@ document.addEventListener('DOMContentLoaded', function () {
             } else {
                 showMessage(false);
                 const correct = dnfToString(correctDNF);
-                showToast(`Неверно! Правильная ДНФ: ${correct}`);
-                // Убрали setTimeout
+                showToast(`Неверно!`);
             }
         } catch (e) {
             showToast(`Ошибка: ${e.message}`);
-            // Убрали setTimeout
         }
     }
 
@@ -197,6 +236,111 @@ document.addEventListener('DOMContentLoaded', function () {
     // Обработчики событий
     generateBtn.addEventListener('click', generateNewFunction);
     checkBtn.addEventListener('click', checkAnswer);
+
+    // Логика для клавиатуры
+    const keyboardButtons = {
+        '(-btn': '(',
+        ')-btn': ')',
+        'x1-btn': 'x1',
+        'x2-btn': 'x2',
+        'x3-btn': 'x3',
+        'x4-btn': 'x4',
+        'x5-btn': 'x5',
+        '1-btn': '1',
+        '0-btn': '0',
+        '¬-btn': '!',
+        '∧-btn': '*',
+        '∨-btn': '+',
+        'backspace-btn': 'backspace',
+        'clear-btn': 'clear'
+    };
+
+    // Инициализация клавиатуры
+    const keyboard = document.querySelector('.keyboard');
+    const keyboardOutput = document.getElementById('DNF');
+    let formula = '';
+
+    // Функция для преобразования формулы в MathML
+    function customFormulaToMathML(formula) {
+        if (formula.trim() === '') return '';
+        if (formula === '0') return "<math><mn>0</mn></math>";
+        if (formula === '1') return "<math><mn>1</mn></math>";
+        
+        // Заменяем операторы на их MathML представление
+        let mathml = "<math>";
+        let i = 0;
+        
+        while (i < formula.length) {
+            if (formula[i] === 'x' && i + 1 < formula.length && /[1-5]/.test(formula[i+1])) {
+                // Переменная x с индексом
+                mathml += `<msub><mi>x</mi><mn>${formula[i+1]}</mn></msub>`;
+                i += 2;
+            } else if (formula[i] === '!') {
+                // Отрицание (следующий символ должен быть x)
+                if (i + 1 < formula.length && formula[i+1] === 'x' && i + 2 < formula.length && /[1-5]/.test(formula[i+2])) {
+                    mathml += `<mover><msub><mi>x</mi><mn>${formula[i+2]}</mn></msub><mo stretchy="true" style="transform: scale(3, 1.2) translateX(-0.1em) translateY(-0.05em);">‾</mo></mover>`;
+                    i += 3;
+                } else {
+                    mathml += `<mo>¬</mo>`;
+                    i++;
+                }
+            } else if (formula[i] === '*') {
+                mathml += `<mo>∧</mo>`;
+                i++;
+            } else if (formula[i] === '+') {
+                mathml += `<mo>∨</mo>`;
+                i++;
+            } else if (formula[i] === '0' || formula[i] === '1') {
+                mathml += `<mn>${formula[i]}</mn>`;
+                i++;
+            } else {
+                // Другие символы
+                mathml += `<mo>${formula[i]}</mo>`;
+                i++;
+            }
+        }
+        
+        mathml += "</math>";
+        return mathml;
+    }
+    
+    // Функция для обновления отображения формулы
+    function updateFormulaDisplay() {
+        if (formula.trim() === '') {
+            keyboardOutput.innerHTML = '';
+            return;
+        }
+        
+        keyboardOutput.innerHTML = customFormulaToMathML(formula);
+    }
+
+    // Обработчик нажатий на кнопки клавиатуры
+    Object.keys(keyboardButtons).forEach(btnId => {
+        const btn = document.getElementById(btnId);
+        if (btn) {
+            btn.addEventListener('click', () => {
+                const action = keyboardButtons[btnId];
+                
+                switch (action) {
+                    case 'backspace':
+                        formula = formula.slice(0, -1);
+                        break;
+                    case 'clear':
+                        formula = '';
+                        break;
+                    default:
+                        formula += action;
+                        break;
+                }
+                
+                updateFormulaDisplay();
+                // Обновляем значение для проверки валидации
+                dnfInput.value = formula;
+                // Вызываем событие input для активации валидации
+                dnfInput.dispatchEvent(new Event('input'));
+            });
+        }
+    });
 
     // Ограничение ввода для n
     nInput.addEventListener('input', function () {

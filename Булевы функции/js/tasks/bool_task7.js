@@ -335,17 +335,24 @@ document.addEventListener('DOMContentLoaded', function () {
                 
                 updateFormulaDisplay();
                 // Обновляем значение для проверки валидации
-                dnfInput.value = formula;
+                cnfInput.value = formula;
                 // Вызываем событие input для активации валидации
-                dnfInput.dispatchEvent(new Event('input'));
+                cnfInput.dispatchEvent(new Event('input'));
             });
         }
     });
 
-    // Ограничение ввода для n
+    // Ограничение ввода для n и управление состоянием кнопки генерации
     nInput.addEventListener('input', function () {
         this.value = this.value.replace(/[^0-5]/g, '');
-        if (this.value > 5) this.value = 5;
-        if (this.value < 1) this.value = 1;
+        
+        // Управление состоянием кнопки генерации
+        const hasValue = this.value.trim() !== '';
+        generateBtn.disabled = !hasValue;
+        generateBtn.classList.toggle('disabled', !hasValue);
     });
+    
+    // Инициализация состояния кнопки генерации при загрузке страницы
+    generateBtn.disabled = nInput.value.trim() === '';
+    generateBtn.classList.toggle('disabled', nInput.value.trim() === '');
 });

@@ -76,7 +76,7 @@ function validationCheck() {
 
     // Проверка 1: Корректность символов
     if (!nInput || !/^[01]+$/.test(nInput)) {
-        errorMessage = "Введите вектор функции";
+        // errorMessage = "Введите вектор функции";
     }
     // Проверка 2: Длина вектора
     else if (nInput.length < 2 || !Number.isInteger(Math.log2(nInput.length))) {

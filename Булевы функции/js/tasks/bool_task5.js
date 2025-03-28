@@ -25,7 +25,7 @@ function generateVector() {
     createVariableControls();
     hideToast();
     resetDropZones();
-    document.getElementById('checkAnswer').disabled = false;
+    updateCheckButtonState();
 }
 
 // Функция для проверки заполнения всех переменных
@@ -33,6 +33,14 @@ function checkAllVariablesPlaced() {
     const essential = document.querySelectorAll('#essentialVariables .variable-item').length;
     const fictive = document.querySelectorAll('#fictiveVariables .variable-item').length;
     return (essential + fictive) === variablesCount;
+}
+
+// Функция для обновления состояния кнопки проверки ответа
+function updateCheckButtonState() {
+    const button = document.getElementById('checkAnswer');
+    const isValid = currentVector && checkAllVariablesPlaced();
+    button.disabled = !isValid;
+    button.classList.toggle('disabled', !isValid);
 }
 
 // Функция для отображения вектора функции
@@ -65,9 +73,9 @@ function createVariableControls() {
     document.getElementById('essentialVariables').innerHTML = '';
     document.getElementById('fictiveVariables').innerHTML = '';
 
+    // Используем MutationObserver для отслеживания изменений в контейнерах переменных
     const observer = new MutationObserver(() => {
-        const button = document.getElementById('checkAnswer');
-        if (button) button.disabled = !(currentVector && checkAllVariablesPlaced());
+        updateCheckButtonState();
     });
     observer.observe(document.getElementById('essentialVariables'), { childList: true });
     observer.observe(document.getElementById('fictiveVariables'), { childList: true });
@@ -117,6 +125,9 @@ function handleDrop(e) {
 
         this.appendChild(newElement);
         draggedElement.remove();
+        
+        // Обновляем состояние кнопки проверки после перемещения переменной
+        updateCheckButtonState();
     }
 }
 
@@ -176,11 +187,17 @@ function checkAnswer() {
     }
 }
 
-// Добавляем валидацию для поля ввода
-document.getElementById('variablesCount').addEventListener('input', function (e) {
+// Ограничение ввода для n и управление состоянием кнопки генерации
+document.getElementById('variablesCount').addEventListener('input', function () {
     this.value = this.value.replace(/[^0-9]/g, '');
     if (parseInt(this.value) > 4) this.value = '4';
     if (parseInt(this.value) < 2) this.value = '2';
+    
+    // Управление состоянием кнопки генерации
+    const hasValue = this.value.trim() !== '';
+    const generateBtn = document.getElementById('generate');
+    generateBtn.disabled = !hasValue;
+    generateBtn.classList.toggle('disabled', !hasValue);
 });
 
 // Функция для блокировки зон и изменения стилей
@@ -236,17 +253,16 @@ document.addEventListener('DOMContentLoaded', function () {
         zone.addEventListener('drop', handleDrop);
     });
 
-    // УСЛАЛ ДЕЛАТЬ ЧТОБЫ РАБОТАЛ ПРАВЛЬНО - ЗАБИЛ, увы
-    // Валидация для кнопки генерации
-    // initValidation(
-    //     'checkAnswer',
-    //     () => currentVector && checkAllVariablesPlaced(),
-    //     ['.variables-drop-zone', '#variablesCount', '#variablesGroup']
-    // );
-
     document.getElementById('generate').addEventListener('click', generateVector);
     document.getElementById('checkAnswer').addEventListener('click', checkAnswer);
 
     // Блокировка кнопки проверки при старте
-    // document.getElementById('checkAnswer').disabled = true;
+    document.getElementById('checkAnswer').disabled = true;
+    document.getElementById('checkAnswer').classList.add('disabled');
+    
+    // Инициализация состояния кнопки генерации при загрузке страницы
+    const variablesInput = document.getElementById('variablesCount');
+    const generateBtn = document.getElementById('generate');
+    generateBtn.disabled = variablesInput.value.trim() === '';
+    generateBtn.classList.toggle('disabled', variablesInput.value.trim() === '');
 });

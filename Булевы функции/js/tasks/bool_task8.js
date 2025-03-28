@@ -1,8 +1,22 @@
+import { initValidation, showToast, hideToast } from '../common.js';
+
+const BUILD_BUTTON_ID = 'buildButton';
+
 document.addEventListener('DOMContentLoaded', function() {    
     // Добавляем обработчик события input
     document.getElementById('vectorInput').addEventListener('input', function() {
         updateInputDisplay();
     });
+    
+    // Инициализация валидации
+    initValidation(
+        BUILD_BUTTON_ID,
+        validationCheck,
+        ['#vectorInput']
+    );
+    
+    // Добавляем обработчик для кнопки
+    document.getElementById(BUILD_BUTTON_ID).addEventListener('click', buildSDNF);
 });
 
 function formatWithSpaces(input) {
@@ -42,13 +56,37 @@ function updateInputDisplay() {
 }
 
 function showError(message) {
-    const errorDiv = document.getElementById('error');
-    errorDiv.textContent = message;
-    errorDiv.style.display = 'block';
+    showToast(message);
 }
 
 function hideError() {
-    document.getElementById('error').style.display = 'none';
+    hideToast();
+}
+
+// Функция проверки условий валидации
+function validationCheck() {
+    const vectorInput = document.getElementById('vectorInput').value.replace(/\s+/g, '');
+    
+    // Проверка на пустой ввод
+    if (!vectorInput) {
+        return false;
+    }
+    
+    // Проверка на корректность символов
+    if (!/^[01]+$/.test(vectorInput)) {
+        showError('Вектор должен содержать только 0 и 1');
+        return false;
+    }
+    
+    // Проверка на степень двойки
+    const length = vectorInput.length;
+    if (length === 0 || (length & (length - 1)) !== 0) {
+        showError('Длина вектора должна быть степенью двойки');
+        return false;
+    }
+    
+    hideError();
+    return true;
 }
 
 function generateTable(vector) {

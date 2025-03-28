@@ -75,23 +75,24 @@ button.buttons-task {
         box-shadow: var(--shadow), var(--shadow-in-box);
         color: var(--color-main);
 
-        >i {
-            font-size: 28cqi;
-        }
-
         /* Фиксированный размер иконок */
-        >span {
-            font-size: 13cqi;
+        >svg {
+            width: 45cqi;
         }
 
         /* Фиксированный размер текста */
+        >span {
+            font-size: 13cqi;
+        }
     }
 
-    >i {
-        font-size: 31cqi;
-        /* Базовый размер иконок */
+    >svg {
+        width: 50cqi;
+        height: 50cqi;
         align-self: start;
-        /* Иконка прижата к верху */
+        /* margin-top: 30%; Регулируйте по необходимости */
+        margin: auto; /* Дополнительное центрирование */
+        align-self: center; /* Центрируем по вертикали */
     }
 
     >span {
@@ -489,7 +490,7 @@ h1 {
 
 /* ⇊Стили toast-уведомления⇊ */
 .custom-toast {
-    position:sticky;
+    position: sticky;
     left: 50%;
     transform: translateX(-50%);
     width: max-content;
@@ -515,23 +516,26 @@ h1 {
     transform: translateX(-50%) translateY(10px);
 }
 
-.custom-toast svg{
+.custom-toast svg {
     min-height: 24px;
     min-width: 24px;
     animation: scaling 3s linear infinite;
 }
 
 @keyframes scaling {
-    0%{
-    transform: scale(1);
+    0% {
+        transform: scale(1);
     }
-    50%{
+
+    50% {
         transform: scale(1.15)
     }
-    100%{
+
+    100% {
         transform: scale(1);
     }
 }
+
 /* ⇈Стили toast-уведомления⇈ */
 
 
@@ -892,9 +896,9 @@ label,
     z-index: 800;
 }
 
-.task-container span{
+.task-container span {
     font-size: 1rem;
-} 
+}
 
 .task-header {
     display: flex;
@@ -921,7 +925,8 @@ input[type="text"] {
     font-size: 1.2rem;
 }
 
-.generate-btn, .check-btn {
+.generate-btn,
+.check-btn {
     padding: 0.8rem 2rem;
     font-size: 1rem;
     background: var(--color-main);
@@ -933,25 +938,29 @@ input[type="text"] {
     box-shadow: var(--shadow)
 }
 
-.generate-btn:hover, .check-btn:hover {
+.generate-btn:hover,
+.check-btn:hover {
     background-color: var(--color-main-light);
     transform: scale(1.01);
 }
 
-.generate-btn:active, .check-btn:active {
+.generate-btn:active,
+.check-btn:active {
     background-color: var(--color-main);
     transform: scale(1);
 }
 
 /* Стиль для неактивной кнопки проверки */
-.generate-btn.disabled, .check-btn.disabled {
+.generate-btn.disabled,
+.check-btn.disabled {
     background-color: var(--color-gray);
     cursor: not-allowed;
     opacity: 0.7;
     transform: none;
 }
 
-.generate-btn.disabled:hover, .check-btn.disabled:hover {
+.generate-btn.disabled:hover,
+.check-btn.disabled:hover {
     background-color: var(--color-gray);
     transform: none;
 }
@@ -960,7 +969,8 @@ input {
     box-shadow: var(--shadow);
 }
 
-.function-output, #output {
+.function-output,
+#output {
     /* background: var(--background); */
     border: 2px solid var(--color-main);
     border-radius: 0.5rem;
@@ -1168,11 +1178,13 @@ input {
     background: var(--color-green) !important;
     border-color: var(--color-green) !important;
 }
+
 /* Стиль для неправильного ответа */
 .radio-option label.incorrect {
     background: var(--color-red) !important;
     border-color: var(--color-red) !important;
 }
+
 /* Стиль для невыбранного правильного ответа */
 .radio-option label.correct-answer {
     border-color: var(--color-green) !important;
@@ -1215,6 +1227,7 @@ input {
         height: 60px;
     }
 }
+
 /* ⇈Стили для контейнера радио-кнопок(bool_task4)⇈ */
 
 /* ⇊Стили для drop-контейнеров(bool_task5)⇊ */
@@ -1317,6 +1330,7 @@ input {
     flex-wrap: wrap;
     justify-content: flex-start;
 }
+
 /* ⇈Стили для drop-контейнеров(bool_task5)⇈ */
 
 /* ⇊Стили для кастомных чекбоксов(bool_task10)⇊ */
@@ -1349,11 +1363,11 @@ input {
     z-index: -1;
 }
 
-.checkbox-wrapper input[type=checkbox]:checked + label {
+.checkbox-wrapper input[type=checkbox]:checked+label {
     padding-left: 1em;
 }
 
-.checkbox-wrapper input[type=checkbox]:checked + label:before {
+.checkbox-wrapper input[type=checkbox]:checked+label:before {
     top: 0;
     width: 100%;
     height: 2em;
@@ -1379,10 +1393,11 @@ input {
 }
 
 /* Блокировка чекбоксов */
-.checkbox-wrapper input[type="checkbox"]:disabled + label {
+.checkbox-wrapper input[type="checkbox"]:disabled+label {
     cursor: not-allowed;
     opacity: 0.7;
 }
+
 /* ⇈Стили для кастомных чекбоксов(bool_task10)⇈*/
 
 /* ⇊Стили для клавиатуры ввода ДНФ (bool_task6)⇊ */
@@ -1419,7 +1434,8 @@ input {
     justify-content: space-between;
 }
 
-.keyboard-button, .keyboard-button-main {
+.keyboard-button,
+.keyboard-button-main {
     flex: 1;
     padding: 0.8rem;
     font-size: 1.2rem;
@@ -1434,13 +1450,15 @@ input {
     min-width: 40px;
 }
 
-.keyboard-button:hover, .keyboard-button-main:hover {
+.keyboard-button:hover,
+.keyboard-button-main:hover {
     background-color: var(--color-main);
     color: var(--background);
     transform: scale(1.05);
 }
 
-.keyboard-button:active, .keyboard-button-main:active {
+.keyboard-button:active,
+.keyboard-button-main:active {
     background-color: var(--color-main);
     color: var(--background);
     transform: scale(.95);
@@ -1454,16 +1472,18 @@ input {
 
 /* Адаптивная верстка для клавиатуры */
 @media (max-width: 480px) {
-    .keyboard-button, .keyboard-button-main {
+
+    .keyboard-button,
+    .keyboard-button-main {
         padding: 0.6rem;
         font-size: 1rem;
         min-width: 30px;
     }
-    
+
     .keyboard {
         padding: 0.5rem;
     }
-    
+
     .keyboard-row {
         gap: 0.3rem;
     }
@@ -1530,6 +1550,7 @@ input {
         transform: translate(-50%, -50%) scale(1);
     }
 }
+
 /* ⇈Стили для уведомления ответа⇈ */
 
 /* Таблица */

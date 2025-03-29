@@ -913,6 +913,15 @@ label,
     margin-bottom: 2rem;
 }
 
+.output-group {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    box-shadow: var(--shadow-in-box);
+    border-radius: 0.5rem;
+    padding: 1rem;
+}
+
 input[type="number"],
 input[type="text"] {
     flex: 1;
@@ -1121,6 +1130,39 @@ input {
     color: var(--background);
 }
 
+/* Стили для неактивных радио-кнопок */
+.zero-unit-radio input[type="radio"]:disabled ~ .option {
+    border-color: var(--color-gray);
+    cursor: not-allowed;
+}
+
+/* Изменение цвета точки для неактивных выбранных кнопок */
+#residual-0:checked:disabled ~ .option-0 .dot::before,
+#residual-1:checked:disabled ~ .option-1 .dot::before {
+    background: var(--color-gray);
+}
+
+/* Выбранная и неактивная кнопка */
+#residual-0:checked:disabled ~ .option-0,
+#residual-1:checked:disabled ~ .option-1 {
+    background: var(--color-gray);
+    border-color: var(--color-gray);
+}
+
+/* Текст и элементы внутри неактивных кнопок */
+.zero-unit-radio input[type="radio"]:disabled ~ .option span {
+    color: var(--color-gray);
+}
+
+.zero-unit-radio input[type="radio"]:disabled ~ .option .dot {
+    border-color: var(--color-gray);
+}
+
+/* Убрать ховер-эффекты для неактивных */
+.zero-unit-radio input[type="radio"]:disabled ~ .option:hover {
+    transform: none;
+    box-shadow: none;
+}
 /* ⇈Стили радио кнопок(bool_task2)⇈ */
 
 /* ⇊Стили для контейнера радио-кнопок(bool_task4)⇊ */
@@ -1384,6 +1426,10 @@ input {
     flex-direction: column;
     gap: 0.5rem;
     margin: 1rem 0;
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+    box-shadow: var(--shadow);
+    border: 2px solid var(--color-main);
 }
 
 /* Стили для правильных чекбоксов */

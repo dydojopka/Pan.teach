@@ -11,7 +11,10 @@
         );
     </script>
     <style>
-        body {overflow: auto; /* Прокрутка по необходимости */ }
+        body {
+            overflow: auto;
+            /* Прокрутка по необходимости */
+        }
     </style>
 </head>
 
@@ -199,8 +202,154 @@
         </div>
     </div>
 
+    <div class="task-container">
+
+        <div class="action-buttons">
+            <!-- Кнопка назад -->
+            <button class="back-btn" onclick="returnToMainMenu()">
+                <div class="back-btn-text">
+                    Назад
+                </div>
+
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="icon icon-tabler icons-tabler-outline icon-tabler-arrow-back-up">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                    <path d="M9 14l-4 -4l4 -4" />
+                    <path d="M5 10h11a4 4 0 1 1 0 8h-1" />
+                </svg>
+            </button>
+
+            <!-- Модальное окно -->
+            <div id="infoModal" class="modal" style="display: none;">
+                <div class="modal-header">
+                    Задача 11:
+                    <button class="close-btn">&times;</button>
+                </div>
+                <div class="modal-content">
+                    <pre>
+Игра.
+Система предлагает набор векторов функций.
+Пользователь определяет полным или нет является набор функций. 
+Если система б.ф. неполна, то пользователь должен указать замкнутый класс,
+которому набор функций принадлежит.</pre>
+                </div>
+            </div>
+
+            <!-- toast-уведомление -->
+            <div class="custom-toast">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="icon icon-tabler icons-tabler-outline icon-tabler-message-exclamation">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                    <path d="M8 9h8" />
+                    <path d="M8 13h6" />
+                    <path d="M15 18h-2l-5 3v-3h-2a3 3 0 0 1 -3 -3v-8a3 3 0 0 1 3 -3h12a3 3 0 0 1 3 3v5.5" />
+                    <path d="M19 16v3" />
+                    <path d="M19 22v.01" />
+                </svg>
+                <div class="toast-content">
+                    <div class="toast-message">
+                        <span class="toast-text"></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Кнопка информации -->
+            <button class="info-btn" onclick="if(!this.classList.contains('disabled')) toggleInfoModal()">
+                <div class="info-btn-text">
+                    Справка
+                </div>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="icon icon-tabler icons-tabler-outline icon-tabler-info-circle">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                    <path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0" />
+                    <path d="M12 9h.01" />
+                    <path d="M11 12h1v4h1" />
+                </svg>
+            </button>
+        </div>
+
+        <h1>Игра. Полные системы б.ф.</h1>
+        <div class="input-group" style="margin-top: 1rem;">
+            <input type="number" id="funcCount" placeholder="Количество функций (1-5)" pattern="\d*"
+                autocomplete="off">
+            <input type="number" id="varCount" placeholder="Количество переменных в функции (1-5)" pattern="\d*"
+                autocomplete="off">
+            <button class="generate-btn" id="generate-btn">Другая система векторов</button>
+        </div>
+
+        <!-- Окно верности/неверности ответа -->
+        <div id="answer-message" class="answer hidden">
+            <svg class="correct-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                fill="currentColor" style="display: none;">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                <path
+                    d="M17 3.34a10 10 0 1 1 -14.995 8.984l-.005 -.324l.005 -.324a10 10 0 0 1 14.995 -8.336zm-1.293 5.953a1 1 0 0 0 -1.32 -.083l-.094 .083l-3.293 3.292l-1.293 -1.292l-.094 -.083a1 1 0 0 0 -1.403 1.403l.083 .094l2 2l.094 .083a1 1 0 0 0 1.226 0l.094 -.083l4 -4l.083 -.094a1 1 0 0 0 -.083 -1.32z" />
+            </svg>
+            <svg class="incorrect-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                fill="currentColor" style="display: none;">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                <path
+                    d="M12 2l.324 .001l.318 .004l.616 .017l.299 .013l.579 .034l.553 .046c4.785 .464 6.732 2.411 7.196 7.196l.046 .553l.034 .579c.005 .098 .01 .198 .013 .299l.017 .616l.005 .642l-.005 .642l-.017 .616l-.013 .299l-.034 .579l-.046 .553c-.464 4.785 -2.411 6.732 -7.196 7.196l-.553 .046l-.579 .034c-.098 .005 -.198 .01 -.299 .013l-.616 .017l-.642 .005l-.642 -.005l-.616 -.017l-.299 -.013l-.579 -.034l-.553 -.046c-4.785 -.464 -6.732 -2.411 -7.196 -7.196l-.046 -.553l-.034 -.579a28.058 28.058 0 0 1 -.013 -.299l-.017 -.616c-.003 -.21 -.005 -.424 -.005 -.642l.001 -.324l.004 -.318l.017 -.616l.013 -.299l.034 -.579l.046 -.553c.464 -4.785 2.411 -6.732 7.196 -7.196l.553 -.046l.579 -.034c.098 -.005 .198 -.01 .299 -.013l.616 -.017c.21 -.003 .424 -.005 .642 -.005zm-1.489 7.14a1 1 0 0 0 -1.218 1.567l1.292 1.293l-1.292 1.293l-.083 .094a1 1 0 0 0 1.497 1.32l1.293 -1.292l1.293 1.292l.094 .083a1 1 0 0 0 1.32 -1.497l-1.292 -1.293l1.292 -1.293l.083 -.094a1 1 0 0 0 -1.497 -1.32l-1.293 1.292l-1.293 -1.292l-.094 -.083z" />
+            </svg>
+            <span id="message-text"></span>
+        </div>
+
+        <div class="output-group">
+            <div class="output">Тут будет набор векторов функций</div>
+        </div>
+
+        <div class="radio-group">
+            <div class="zero-unit-radio">
+                <label>Набор функции является:</label>
+                <input type="radio" name="residual" id="residual-0" value="0" checked>
+                <input type="radio" name="residual" id="residual-1" value="1">
+                <label for="residual-0" class="option option-0">
+                    <div class="dot"></div>
+                    <span>Неполным</span>
+                </label>
+                <label for="residual-1" class="option option-1">
+                    <div class="dot"></div>
+                    <span>Полным</span>
+                </label>
+            </div>
+        </div>
+
+        <div class="preferred-classes">
+            <span>Выберите замкнутые классы, которым принадлежит набор:</span>
+
+            <div class="checkbox-wrapper">
+                <input type="checkbox" value="T0" id="T0">
+                <label for="T0">T₀ (сохраняет 0)</label>
+            </div>
+
+            <div class="checkbox-wrapper">
+                <input type="checkbox" value="T1" id="T1">
+                <label for="T1">T₁ (сохраняет 1)</label>
+            </div>
+
+            <div class="checkbox-wrapper">
+                <input type="checkbox" value="S" id="S">
+                <label for="S">S (самодвойственная)</label>
+            </div>
+
+            <div class="checkbox-wrapper">
+                <input type="checkbox" value="M" id="M">
+                <label for="M">M (монотонная)</label>
+            </div>
+
+            <div class="checkbox-wrapper">
+                <input type="checkbox" value="L" id="L">
+                <label for="L">L (линейная)</label>
+            </div>
+        </div>
+        <button class="check-btn" id="check-btn">Проверить ответ</button>
+    </div>
+
     <script src="../../js/tasks_theme.js"></script>
-    <script src="../../js/tasks/bool_task11.js"></script>
+    <script type="module" src="../../js/tasks/bool_task11.js"></script>
 </body>
 
 </html>

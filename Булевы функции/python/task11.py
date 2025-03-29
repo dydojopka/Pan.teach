@@ -70,11 +70,11 @@ def is_complete_system(functions, variables):
     """Проверяет полноту системы булевых функций."""
     # Проверяем принадлежность к каждому из пяти замкнутых классов
     classes = {
-        'T0 (сохраняет ноль)': all(check_preserves_zero(func, variables) for func in functions),
-        'T1 (сохраняет единицу)': all(check_preserves_one(func, variables) for func in functions),
-        'S (самодвойственные)': all(check_self_dual(func, variables) for func in functions),
-        'M (монотонные)': all(check_monotonic(func, variables) for func in functions),
-        'L (линейные)': all(check_linear(func, variables) for func in functions)
+        'T0 (сохраняет 0)': all(check_preserves_zero(func, variables) for func in functions),
+        'T1 (сохраняет 1)': all(check_preserves_one(func, variables) for func in functions),
+        'S (самодвойсвенная)': all(check_self_dual(func, variables) for func in functions),
+        'M (монотонная)': all(check_monotonic(func, variables) for func in functions),
+        'L (линейная)': all(check_linear(func, variables) for func in functions)
     }
     
     # Система полна, если не содержится ни в одном из классов

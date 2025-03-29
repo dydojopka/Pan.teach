@@ -134,20 +134,42 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Автоматическое форматирование ввода с пробелами
     vectorInput.addEventListener('input', function (e) {
-        const rawValue = e.target.value.replace(/ /g, '');
+        // Удаляем все символы кроме 0 и 1 перед форматированием
+        const rawValue = e.target.value.replace(/[^01]/g, '');
         e.target.value = formatWithSpaces(rawValue);
+    
+        // Используем очищенное от пробелов значение для проверок
+        const cleanInput = rawValue; // Уже не содержит пробелов
+    
+        if (cleanInput.length > 8) {
+            showToast('Максимальная длина вектора — 8 бит');
+            buildButton.disabled = true;
+            buildButton.classList.add('disabled');
+        } else {
+            hideToast();
+            initValidation(
+                'buildButton',
+                () => {
+                    return (
+                        cleanInput.length > 0 &&
+                        (cleanInput.length & (cleanInput.length - 1)) === 0 &&
+                        cleanInput.length <= 8
+                    );
+                },
+                ['#vectorInput']
+            );
+        }
     });
 
     // Валидация в реальном времени для кнопки
     initValidation(
         'buildButton',
         () => {
-            const input = vectorInput.value.replace(/ /g, '');
+            const input = vectorInput.value.replace(/ /g, ''); // Удаляем пробелы
             return (
                 input.length > 0 &&
-                /^[01]+$/.test(input) &&
                 (input.length & (input.length - 1)) === 0 &&
-                input.length <= 8 // Добавлено ограничение длины
+                input.length <= 8
             );
         },
         ['#vectorInput']
@@ -185,10 +207,6 @@ document.addEventListener('DOMContentLoaded', function () {
         // Валидация
         if (!input) {
             showToast('Введите вектор функции');
-            return;
-        }
-        if (!/^[01]+$/.test(input)) {
-            showToast('Вектор должен содержать только 0 и 1');
             return;
         }
         if ((input.length & (input.length - 1)) !== 0) {

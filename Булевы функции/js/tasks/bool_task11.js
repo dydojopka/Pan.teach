@@ -145,7 +145,7 @@ const checkSystemCompleteness = (functions, varCount) => {
         T1: checkSome(f => f.vector[f.vector.length - 1] === 1),
         S: checkSome(f => isSelfDual(f.vector)),
         M: checkSome(f => isMonotonic(f.vector, f.variables)),
-        L: checkSome(f => isLinear(f.vector, f.variables))
+        L: checkSome(f => isLinear(f.vector))
     };
 
     const activeClasses = Object.entries(classes)
@@ -171,25 +171,50 @@ const isMonotonic = (vector, variables) => {
     return true;
 };
 
-const isLinear = (vector, varCount) =>
-    buildZhegalkinCoefficients(vector)
-        .slice(2 ** varCount)
-        .every(v => v === 0);
+function isLinear(f) {
+    const n = Math.log2(f.length);
+    if (n % 1 !== 0) return false;
 
-const buildZhegalkinCoefficients = (vector) => {
-    const coeffs = [...vector];
-    for (let i = 0; i < vector.length; i++) {
-        const step = 1 << i;
-        for (let j = 0; j < vector.length; j += 2 * step) {
-            for (let k = j; k < j + step; k++) {
-                if (k + step < vector.length) {
-                    coeffs[k + step] ^= coeffs[k];
-                }
+    const anf = [...f];
+    for (let i = 0; i < n; i++) {
+        const stride = 1 << i;
+        for (let j = 0; j < anf.length; j += 2 * stride) {
+            for (let k = 0; k < stride; k++) {
+                anf[j + k + stride] ^= anf[j + k];
             }
         }
     }
-    return coeffs;
-};
+
+    const mask = (1 << n) - 1;
+    for (let i = 0; i < anf.length; i++) {
+        if (countBits(i & mask) > 1 && anf[i]) return false;
+    }
+    return true;
+}
+
+function countBits(x) {
+    return x.toString(2).replace(/0/g, '').length;
+}
+
+// const isLinear = (vector, varCount) =>
+//     buildZhegalkinCoefficients(vector)
+//         .slice(2 ** varCount)
+//         .every(v => v === 0);
+
+// const buildZhegalkinCoefficients = (vector) => {
+//     const coeffs = [...vector];
+//     for (let i = 0; i < vector.length; i++) {
+//         const step = 1 << i;
+//         for (let j = 0; j < vector.length; j += 2 * step) {
+//             for (let k = j; k < j + step; k++) {
+//                 if (k + step < vector.length) {
+//                     coeffs[k + step] ^= coeffs[k];
+//                 }
+//             }
+//         }
+//     }
+//     return coeffs;
+// };
 
 const arraysEqual = (a, b) =>
     a.length === b.length && a.every((val, idx) => val === b[idx]);

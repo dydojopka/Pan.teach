@@ -28,7 +28,7 @@ function returnToMainMenu() {
     if (taskType) {
         localStorage.setItem('lastActiveSection', taskType);
     }
-    window.location.href = '../index.html';
+    window.location.href = '../../index.html';
 }
 
 // Определение раздела по url задачи

@@ -132,7 +132,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const errorDiv = document.getElementById('error');
     const sdnfFormula = document.getElementById('sdnfFormula');
 
-    // Автоматическое форматирование ввода с пробелами
+    // Автоматическое форматирование ввода с пробелами и валидация в одном обработчике
     vectorInput.addEventListener('input', function (e) {
         // Удаляем все символы кроме 0 и 1 перед форматированием
         const rawValue = e.target.value.replace(/[^01]/g, '');
@@ -145,64 +145,40 @@ document.addEventListener('DOMContentLoaded', function () {
             showToast('Максимальная длина вектора — 8 бит');
             buildButton.disabled = true;
             buildButton.classList.add('disabled');
-        } else {
+        } else if (cleanInput.length < 2) {
+            // Добавляем проверку на минимальную длину
             hideToast();
-            initValidation(
-                'buildButton',
-                () => {
-                    return (
-                        cleanInput.length > 0 &&
-                        (cleanInput.length & (cleanInput.length - 1)) === 0 &&
-                        cleanInput.length <= 8
-                    );
-                },
-                ['#vectorInput']
-            );
-        }
-    });
-
-    // Валидация в реальном времени для кнопки
-    initValidation(
-        'buildButton',
-        () => {
-            const input = vectorInput.value.replace(/ /g, ''); // Удаляем пробелы
-            return (
-                input.length > 0 &&
-                (input.length & (input.length - 1)) === 0 &&
-                input.length <= 8
-            );
-        },
-        ['#vectorInput']
-    );
-
-    vectorInput.addEventListener('input', function () {
-        const input = vectorInput.value.replace(/ /g, '');
-
-        if (input.length > 8) {
-            showToast('Максимальная длина вектора — 8 бит');
             buildButton.disabled = true;
             buildButton.classList.add('disabled');
         } else {
             hideToast();
-            // Обновляем состояние кнопки через существующую валидацию
-            initValidation(
-                'buildButton',
-                () => {
-                    return (
-                        input.length > 0 &&
-                        /^[01]+$/.test(input) &&
-                        (input.length & (input.length - 1)) === 0 &&
-                        input.length <= 8 // Добавляем проверку длины
-                    );
-                },
-                ['#vectorInput']
+            // Обновляем состояние кнопки
+            const isValid = (
+                cleanInput.length >= 2 &&
+                /^[01]+$/.test(cleanInput) &&
+                (cleanInput.length & (cleanInput.length - 1)) === 0 &&
+                cleanInput.length <= 8
             );
+            buildButton.disabled = !isValid;
+            buildButton.classList.toggle('disabled', !isValid);
         }
     });
+    
+    // Инициализация валидации при загрузке страницы
+    const input = vectorInput.value.replace(/ /g, '');
+    const isValid = (
+        input.length >= 2 &&
+        /^[01]+$/.test(input) &&
+        (input.length & (input.length - 1)) === 0 &&
+        input.length <= 8
+    );
+    buildButton.disabled = !isValid;
+    buildButton.classList.toggle('disabled', !isValid);
 
     buildButton.addEventListener('click', function () {
         errorDiv.style.display = 'none';
-        const input = vectorInput.value.replace(/ /g, '').trim();
+        // Очищаем строку от пробелов и лишних символов один раз
+        const input = vectorInput.value.replace(/\s+/g, '').trim();
 
         // Валидация
         if (!input) {
@@ -219,7 +195,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
 
         try {
-            // Добавленный код: преобразование в вектор и получение DNF
+            // Преобразование в вектор и получение DNF
             const vector = input.split('').map(Number);
             const dnf = getMinimalDNF(vector);
 

@@ -1,7 +1,7 @@
 function getTaskUrl(id) {
     const type = id.startsWith('bt') ? 'bool' : 'graph';
     const taskNumber = id.replace(/\D/g, '');
-    return `../html/tasks/${type}_task${taskNumber}.html`;
+    return `html/tasks/${type}_task${taskNumber}.html`;
 }
 
 // Кнопка смены темы

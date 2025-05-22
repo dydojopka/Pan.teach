@@ -207,7 +207,54 @@
 
     <main class="main-content">
         <div class="task-container">
-            <h1>Задача 1: Теория графов</h1>
+            <div class="action-buttons">
+                <!-- Кнопка назад -->
+                <button class="back-btn" onclick="returnToMainMenu()">
+                    <div class="back-btn-text">
+                        Назад
+                    </div>
+
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="icon icon-tabler icons-tabler-outline icon-tabler-arrow-back-up">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                        <path d="M9 14l-4 -4l4 -4" />
+                        <path d="M5 10h11a4 4 0 1 1 0 8h-1" />
+                    </svg>
+                </button>
+
+                <!-- Модальное окно -->
+                <div id="infoModal" class="modal" style="display: none;">
+                    <div class="modal-header">
+                        Задача 0:
+                        <button class="close-btn">&times;</button>
+                    </div>
+                    <div class="modal-content">
+                        <pre>
+Система предлагает пользователю задать граф матрицей смежности (или матрицей инци
+дентности или списками смежности) и затем показывает пользователю степень каждой вершины,
+число компонент связности, является ли граф эйлеровым (полуэйлеровым), является ли граф
+двудольным (полным двудольным) (Задача разбирается на практике).</pre>
+                    </div>
+                </div>
+
+                <!-- Кнопка информации -->
+                <button class="info-btn" onclick="if(!this.classList.contains('disabled')) toggleInfoModal()">
+                    <div class="info-btn-text">
+                        Справка
+                    </div>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="icon icon-tabler icons-tabler-outline icon-tabler-info-circle">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                        <path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0" />
+                        <path d="M12 9h.01" />
+                        <path d="M11 12h1v4h1" />
+                    </svg>
+                </button>
+            </div>
+
+            <h1>Анализ свойств</h1>
 
             <div class="container">
                 <div class="matrix-input-container">

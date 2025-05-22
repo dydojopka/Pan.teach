@@ -1,0 +1,214 @@
+.graph-container {
+    width: 100%;
+    margin: 2rem 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.graph-canvas {
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    box-shadow: 0 4px 12px var(--shadow);
+    background-color: var(--card);
+    max-width: 100%;
+    height: auto;
+}
+
+/* Graph Control Panel */
+.graph-controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.graph-controls button {
+    flex: 1;
+    min-width: 150px;
+    padding: 0.75rem 1.5rem;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+    background-color: var(--accent);
+    color: white;
+    border: none;
+    transition: all 0.2s ease;
+}
+
+.graph-controls button:hover {
+    background-color: var(--accent-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(59, 130, 246, 0.3);
+}
+
+/* Graph Legend */
+.graph-legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 1.5rem;
+    justify-content: center;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-right: 1rem;
+}
+
+.legend-color {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    50% {
+        transform: scale(1.1);
+        opacity: 0.8;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.pulse {
+    animation: pulse 1s ease-in-out;
+}
+
+@media (max-width: 768px) {
+    .graph-canvas {
+        max-height: 350px;
+    }
+
+    .graph-controls button {
+        min-width: 120px;
+        font-size: 0.9rem;
+    }
+}
+/* Для задачи 12 */
+.matrix-input-container {
+    background: var(--background);
+    border: 2px solid var(--color-main);
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    box-shadow: var(--shadow-in-box);
+}
+
+.matrix-container {
+    margin: 1.5rem 0;
+    overflow-x: auto;
+}
+
+.matrix-table {
+    border-collapse: collapse;
+    margin: 0 auto;
+}
+
+.matrix-table th {
+    background: var(--color-main);
+    color: var(--background);
+    padding: 0.5rem;
+    font-weight: bold;
+}
+
+.matrix-table td {
+    padding: 0;
+    border: 1px solid var(--color-main);
+    width: 40px;
+    height: 40px;
+    text-align: center;
+}
+
+.matrix-cell {
+    width: 100%;
+    height: 100%;
+    border: none;
+    font-family: 'ShareTech', serif;
+    font-size: 1rem;
+    cursor: pointer;
+    background: var(--background);
+    transition: all 0.2s;
+}
+
+.matrix-cell.active {
+    background: var(--color-main-transparent);
+}
+
+.results-container {
+    background: var(--background);
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+    margin-top: 2rem;
+    box-shadow: var(--shadow-in-box);
+}
+
+.coloring-controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin: 1.5rem 0;
+    align-items: center;
+}
+
+.coloring-status {
+    display: flex;
+    gap: 2rem;
+    margin-bottom: 1.5rem;
+}
+
+.status-item {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.coloring-legend {
+    display: flex;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.legend-color {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+}
+
+.speed-control {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-left: auto;
+}
+
+.hidden {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .coloring-status, .coloring-legend {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    
+    .speed-control {
+        margin-left: 0;
+    }
+}

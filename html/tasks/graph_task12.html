@@ -1,49 +1,40 @@
 rapg<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ru" data-theme="light">
-
 <head>
     <meta charset="UTF-8">
-    <title>Задача 12: Теория графов</title>
+    <title>Задача 12: Раскраска графа | Pan.teach</title>
     <link rel="stylesheet" href="../../css/styles.css">
+    <link rel="stylesheet" href="../../css/graph.css">
     <script>
-        document.documentElement.setAttribute('data-theme',
+        document.documentElement.setAttribute('data-theme', 
             localStorage.getItem('theme') || 'light'
         );
     </script>
-    <style>
-        body {
-            overflow: auto;
-        }
-    </style>
 </head>
-
-<body class="task-loading">
+<body style="overflow: auto;">
     <header class="site-header">
         <button id="menu-toggle" class="header-btn">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                class="icon icon-tabler icons-tabler-outline icon-tabler-menu-2">
-                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                <path d="M4 6l16 0" />
-                <path d="M4 12l16 0" />
-                <path d="M4 18l16 0" />
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                <path d="M4 6l16 0"/><path d="M4 12l16 0"/><path d="M4 18l16 0"/>
             </svg>
         </button>
 
+
         <div class="current-section">
-            <span id="section-name">Теория графов</span>
+            <span>Теория графов</span>
         </div>
+
+
         <button id="theme-toggle" class="header-btn" onclick="toggleTheme()">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                class="icon icon-tabler icons-tabler-outline icon-tabler-sun-moon">
-                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                <path d="M9.173 14.83a4 4 0 1 1 5.657 -5.657" />
-                <path d="M11.294 12.707l.174 .247a7.5 7.5 0 0 0 8.845 2.492a9 9 0 0 1 -14.671 2.914" />
-                <path d="M3 12h1" />
-                <path d="M12 3v1" />
-                <path d="M5.6 5.6l.7 .7" />
-                <path d="M3 21l18 -18" />
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                <path d="M9.173 14.83a4 4 0 1 1 5.657 -5.657"/>
+                <path d="M11.294 12.707l.174 .247a7.5 7.5 0 0 0 8.845 2.492a9 9 0 0 1 -14.671 2.914"/>
+                <path d="M3 12h1"/><path d="M12 3v1"/><path d="M5.6 5.6l.7 .7"/><path d="M3 21l18 -18"/>
             </svg>
         </button>
     </header>
@@ -199,13 +190,75 @@ rapg<!DOCTYPE html>
 
     <main class="main-content">
         <div class="task-container">
-            <h1>Задача 12: Теория графов</h1>
-            <p>Здесь будет содержание задачи...</p>
+            <h1>Раскраска графа</h1>
+            
+            <div class="graph-setup">
+                <div class="input-group">
+                    <label for="matrix-size">Размер графа:</label>
+                    <input type="number" id="matrix-size" min="3" max="15" value="5">
+                    <button id="generate-matrix" class="generate-btn">Создать</button>
+                </div>
+                
+                <div id="matrix-container" class="matrix-container">
+                    <p class="hint">Выберите размер графа и нажмите "Создать"</p>
+                </div>
+                
+                <div class="matrix-actions">
+                    <button id="color-graph" class="generate-btn" disabled>Раскрасить</button>
+                    <button id="reset-matrix" class="check-btn" disabled>Сбросить</button>
+                    <button id="load-example" class="check-btn">Пример</button>
+                </div>
+            </div>
+            
+            <div class="results-container hidden" id="results-container">
+                <h2>Раскраска графа</h2>
+                
+                <div class="graph-container">
+                    <canvas id="graph-canvas" class="graph-canvas" width="500" height="400"></canvas>
+                </div>
+                
+                <div class="coloring-controls">
+                    <button id="start-coloring" class="generate-btn">Начать</button>
+                    <button id="step-coloring" class="check-btn">Шаг</button>
+                    <button id="restart-coloring" class="check-btn">Сбросить</button>
+                    
+                    <div class="speed-control">
+                        <label for="animation-speed">Скорость:</label>
+                        <input type="range" id="animation-speed" min="1" max="10" value="5">
+                    </div>
+                </div>
+                
+                <div class="coloring-status">
+                    <div class="status-item">
+                        <span class="label">Шаг:</span>
+                        <span id="current-step" class="value">0</span>
+                    </div>
+                    <div class="status-item">
+                        <span class="label">Вершина:</span>
+                        <span id="current-vertex" class="value">-</span>
+                    </div>
+                    <div class="status-item">
+                        <span class="label">Цвет:</span>
+                        <span id="current-color" class="value">-</span>
+                    </div>
+                </div>
+                
+                <div class="coloring-legend">
+                    <div class="legend-item">
+                        <div class="legend-color" style="background-color: #3b82f6;"></div>
+                        <span>Не раскрашено</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background-color: #f97316;"></div>
+                        <span>Текущая</span>
+                    </div>
+                </div>
+            </div>
         </div>
     </main>
 
     <script src="../../js/tasks_theme.js"></script>
-    <script src="../../js/tasks/graph_task12.js"></script>
+    <script type="module" src="../../js/tasks/graph_task12.js"></script>
+    <script src="../../js/theme.js"></script>
 </body>
-
 </html>

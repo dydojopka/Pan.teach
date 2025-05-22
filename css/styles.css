@@ -977,6 +977,7 @@ input[type="text"] {
     transform: none;
 }
 
+
 input {
     box-shadow: var(--shadow);
 }
@@ -1630,4 +1631,22 @@ input {
 input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {
     -webkit-appearance: none;
+}
+
+/* Сетка 2x2 */
+#graph-info {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    padding: 1rem;
+    margin: 2rem 0;
+}
+
+.preferred-classes {
+    border: 2px solid var(--color-main);
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+    background: var(--background);
+    box-shadow: var(--shadow-in-box);
+    min-height: 200px; /* Фиксированная высота для выравнивания */
 }

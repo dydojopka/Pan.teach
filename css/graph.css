@@ -19,27 +19,11 @@
 .graph-controls {
     display: flex;
     flex-wrap: wrap;
-    gap: 1rem;
-    margin-bottom: 1.5rem;
 }
 
 .graph-controls button {
     flex: 1;
-    min-width: 150px;
-    padding: 0.75rem 1.5rem;
-    border-radius: 4px;
-    font-size: 1rem;
-    cursor: pointer;
-    background-color: var(--accent);
-    color: white;
-    border: none;
-    transition: all 0.2s ease;
-}
-
-.graph-controls button:hover {
-    background-color: var(--accent-hover);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(59, 130, 246, 0.3);
+    margin: 1rem;
 }
 
 /* Graph Legend */

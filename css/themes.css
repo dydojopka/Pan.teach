@@ -6,7 +6,7 @@
 
     --color-orange: rgb(230, 59, 25);
     --color-orange-light: rgb(255, 95, 27);
-    --color-orange-light-tran: rgba(255, 95, 27, 0.5);
+    --color-orange-light-tran: rgba(255, 95, 27, 0.3);
     --color-orange-dark: rgb(179, 45, 19);
 
     --color-clear: rgba(0, 0, 0, 0);
@@ -27,6 +27,7 @@
     --background: var(--color-white);
     --text-color: var(--color-black);
     --color-main: var(--color-orange);
+    --color-main-transparent: var(--color-orange-light-tran);
     --color-main-light: var(--color-orange-light);
     --color-main-dark: var(--color-orange-dark);
 
@@ -50,6 +51,7 @@
     --background: var(--color-black);
     --text-color: var(--color-white);
     --color-main: var(--color-orange);
+    --color-main-transparent: var(--color-orange-light-tran);
     --color-main-light: var(--color-orange-light);
     --color-main-dark: var(--color-orange-dark);
     

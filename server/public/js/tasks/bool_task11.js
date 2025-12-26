@@ -1,4 +1,5 @@
 import { initValidation, formatWithSpaces, showToast } from '../common.js';
+import { completeTask } from '../common.js';
 
 const elements = {
     answerMessage: document.getElementById('answer-message'),
@@ -266,6 +267,8 @@ const showResult = (isCorrect, { isComplete, classes }, userClasses) => {
         });
         elements.checkBtn.disabled = true;
         elements.checkBtn.classList.add('disabled');
+
+        completeTask(11); // Задание завершено
     } else {
         userClasses.forEach(cls => {
             if (!classes.includes(cls)) {

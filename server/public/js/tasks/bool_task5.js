@@ -1,4 +1,6 @@
 import { initValidation, showToast, hideToast } from '../common.js';
+import { completeTask } from '../common.js';
+
 
 // Глобальные переменные для хранения текущего состояния игры
 let currentVector = '';
@@ -182,6 +184,8 @@ function checkAnswer() {
     if (isCorrect) {
         showToast('Правильно! Все переменные определены верно.', false);
         lockDropZones(); // Блокируем зоны
+
+        completeTask(5); // Задание завершено
     } else {
         showToast('Неправильно! Попробуйте еще раз.');
     }

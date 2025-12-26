@@ -1,4 +1,5 @@
 import { initValidation, formatWithSpaces, showToast } from '../common.js';
+import { completeTask } from '../common.js';
 
 document.getElementById('nInput').addEventListener('input', function (e) {
     this.value = this.value.replace(/[^0-9]/g, '');
@@ -137,6 +138,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         // Показ сообщения
         showMessage(correct);
+        completeTask(10); // Задание завершено
 
         // Сброс предыдущих стилей
         document.querySelectorAll('input[type="checkbox"]').forEach(cb => {

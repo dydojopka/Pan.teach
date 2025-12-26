@@ -7,7 +7,9 @@
     <link rel="stylesheet" href="css/styles.css"> 
 </head>
 
+
 <body>
+
     <div id="initial-overlay" class="startup-overlay"></div>
     <div id="task-transition-overlay" class="task-overlay"></div>
 
@@ -330,6 +332,15 @@
     </div>
 
     <script src="js/theme.js"></script>
+
+    <script type="module">
+        // Подключаем модуль
+        import { checkAuth } from './js/auth.js';
+
+        // Проверяем авторизацию
+        checkAuth();
+    </script>
+
 </body>
 
 </html>

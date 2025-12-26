@@ -1,4 +1,5 @@
 import { initValidation, formatWithSpaces, showToast, hideToast, formulaToMathML } from '../common.js';
+import { completeTask } from '../common.js';
 
 document.addEventListener('DOMContentLoaded', function () {
     const generateBtn = document.getElementById('generate');
@@ -211,6 +212,8 @@ document.addEventListener('DOMContentLoaded', function () {
                 showMessage(true);
                 toggleInputState(true);
                 hideToast();
+
+                completeTask(7); // Задание завершено
             } else {
                 showMessage(false);
                 const correct = cnfToString(correctCNF);

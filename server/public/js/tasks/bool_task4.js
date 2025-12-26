@@ -1,4 +1,6 @@
 import { initValidation } from '../common.js';
+import { completeTask } from '../common.js';
+
 
 document.addEventListener('DOMContentLoaded', function () {
     const booleanFunctions = [
@@ -92,6 +94,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
         const isCorrect = selectedFunction.name === correctFunction.name;
         showMessage(isCorrect);
+
+        if (isCorrect) {
+            completeTask(4); // Задание завершено
+        }
 
         // Подсветка всех ответов
         document.querySelectorAll('.radio-option label').forEach(label => {

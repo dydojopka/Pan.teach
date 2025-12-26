@@ -145,3 +145,25 @@ export function formulaToMathML(formula) {
     return `<math>${mathmlTerms.join(`<mo>${mainOperator}</mo>`)}</math>`;
 
 }
+
+
+export async function completeTask(taskId) {
+    const token = localStorage.getItem('token');
+    if (!token) return;
+
+    try {
+        await fetch('/api/progress/complete', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify({
+                taskId,
+                completed: true
+            })
+        });
+    } catch (err) {
+        console.error('Ошибка сохранения прогресса', err);
+    }
+}

@@ -1650,3 +1650,8 @@ input[type="number"]::-webkit-outer-spin-button {
     box-shadow: var(--shadow-in-box);
     min-height: 200px; /* Фиксированная высота для выравнивания */
 }
+
+.buttons-task.completed {
+    border: 2px solid var(--color-green-light);
+    box-shadow: 0 0 8px var(--color-green);
+}

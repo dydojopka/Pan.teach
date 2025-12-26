@@ -200,3 +200,33 @@ document.addEventListener('DOMContentLoaded', () => {
         localStorage.removeItem('lastActiveSection');
     }
 });
+
+
+async function markCompletedTasks() {
+    console.log('markCompletedTasks called');
+
+    const token = localStorage.getItem('token');
+    console.log('token:', token);
+
+    if (!token) return;
+
+    const res = await fetch('/api/progress', {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    });
+
+    console.log('progress response status', res.status);
+
+    const data = await res.json();
+    console.log('progress data', data);
+
+    data.completedTasks.forEach(taskId => {
+        const btn = document.getElementById(`bt${taskId}`);
+        console.log('try mark', taskId, btn);
+
+        if (btn) btn.classList.add('completed');
+    });
+}
+
+document.addEventListener('DOMContentLoaded', markCompletedTasks);

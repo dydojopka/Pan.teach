@@ -2,23 +2,28 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8" />
-  <title>Login</title>
-  <link rel="stylesheet" href="css/style.css" />
+  <title>Вход</title>
+  <link rel="stylesheet" href="css/styles.css"> 
 </head>
 <body>
-  <div class="login-container">
-    <h1>Вход</h1>
 
-    <form id="login-form">
-      <input type="email" id="email" placeholder="Email" required />
-      <input type="password" id="password" placeholder="Пароль" required />
-      <button type="submit">Войти</button>
-    </form>
+  <div class="auth-page">
+    <div class="auth-card">
+      <h1 class="auth-title">Вход</h1>
 
-    <p id="error-message" style="color: red;"></p>
+      <form id="login-form" class="auth-form">
+        <input type="email" id="email" placeholder="Email" required />
+        <input type="password" id="password" placeholder="Пароль" required />
+        <button type="submit" class="btn-primary">Войти</button>
+      </form>
 
-    <!-- Ссылка на регистрацию -->
-    <p>Нет аккаунта? <a href="register.html">Зарегистрироваться</a></p>
+      <p id="error-message" class="auth-error"></p>
+
+      <p class="auth-footer">
+        Нет аккаунта?
+        <a href="register.html">Зарегистрироваться</a>
+      </p>
+    </div>
   </div>
 
   <script src="js/login.js" type="module"></script>

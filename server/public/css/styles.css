@@ -37,6 +37,27 @@
     }
 }
 
+#userStatusContainer {
+    position: fixed;
+    bottom: 10%;          /* отступ от низа */
+    left: 50%;
+    transform: translateX(-50%);
+
+    font-size: 16px;
+    color: var(--background);
+    cursor: pointer;
+
+    padding: 8px 16px;
+    border-radius: 10px;
+    background: var(--color-main);
+    backdrop-filter: blur(4px);
+}
+
+#userStatus{
+    font-weight: bold;
+}
+
+
 /* Кнопоки выбора задач */
 button.buttons-task {
     container-type: inline-size;
@@ -1654,4 +1675,54 @@ input[type="number"]::-webkit-outer-spin-button {
 .buttons-task.completed {
     border: 2px solid var(--color-green-light);
     box-shadow: 0 0 8px var(--color-green);
+}
+
+
+.auth-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.auth-card {
+  width: 360px;
+  padding: 30px;
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.auth-title {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.auth-form input {
+  padding: 10px;
+  font-size: 14px;
+}
+
+.btn-primary {
+  padding: 10px;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.auth-error {
+  margin-top: 10px;
+  color: #d32f2f;
+  text-align: center;
+}
+
+.auth-footer {
+  margin-top: 15px;
+  text-align: center;
+  font-size: 14px;
 }

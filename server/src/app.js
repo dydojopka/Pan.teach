@@ -28,7 +28,6 @@ import usersRoutes from './routes/users.routes.js';
 import progressRoutes from './routes/progress.routes.js';
 
 
-app.use('/api/progress', progressRoutes);
 app.use('/api', usersRoutes);
 app.use('/api/register', registerRoutes);
 app.use('/api/auth', authRoutes);
@@ -41,5 +40,15 @@ app.use('/api/progress', progressRoutes);
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '../public/index.html'));
 });
+
+// fallback ТОЛЬКО для HTML-страниц
+app.get('*', (req, res) => {
+  if (req.path.startsWith('/api')) {
+    return res.status(404).json({ message: 'API route not found' });
+  }
+
+  res.sendFile(path.join(__dirname, '../public/index.html'));
+});
+
 
 export default app;

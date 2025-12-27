@@ -16,13 +16,21 @@
 - **Регистрация** — создание нового аккаунта с указанием имени, email и пароля
 - **Авторизация** — вход в систему с использованием JWT токенов
 
+
+| Авторизация              | Регистрация                          |
+|:-------------------------|:-------------------------------------|
+|![login](Source/login.png)|![regisration](Source/regisration.png)|
+
 ### Сохранение прогресса
 
 Система автоматически сохраняет прогресс выполнения игровых заданий:
 
 - После успешного решения задачи прогресс сохраняется на сервере
 - Каждый пользователь имеет персональную историю выполненных заданий
-- Прогресс привязан к конкретному пользователю и задачам по раздел "Булевы функции" [4](/server/public/js/tasks/bool_task4.js), [5](/server/public/js/tasks/bool_task5.js), [6](/server/public/js/tasks/bool_task6.js), [7](/server/public/js/tasks/bool_task7.js), [10](/server/public/js/tasks/bool_task10.js) и [11](/server/public/js/tasks/bool_task11.js) 
+- Прогресс привязан к конкретному пользователю и задачам по раздел "Булевы функции" [4](/server/public/js/tasks/bool_task4.js), [5](/server/public/js/tasks/bool_task5.js), [6](/server/public/js/tasks/bool_task6.js), [7](/server/public/js/tasks/bool_task7.js), [10](/server/public/js/tasks/bool_task10.js) и [11](/server/public/js/tasks/bool_task11.js)
+
+Пример пометки пройденных игровых заданий:
+![task_saved](Source/task_saved.png)
 
 ### Игровые задания
 
@@ -31,7 +39,6 @@
 - Определение имени функции по вектору значений
 - Построение таблиц истинности
 - Работу с различными формами представления булевых функций
- 
 
 ## Технологический стек
 

@@ -1707,6 +1707,13 @@ input[type="number"]::-webkit-outer-spin-button {
 .auth-form input {
   padding: 10px;
   font-size: 14px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.auth-form input:focus {
+  outline: none;
+  border-color: #4a90e2; /* Цвет при фокусе */
 }
 
 .btn-primary {
